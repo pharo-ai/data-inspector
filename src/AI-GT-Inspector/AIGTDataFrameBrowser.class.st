@@ -51,7 +51,17 @@ AIGTDataFrameBrowser >> composeOperationsPane: browser [
 					andShow: [ :a | self evaluatorIn: a ].
 				b transmit 
 					to: #summary;
-					andShow: [ : a | self summaryDisplayIn: a ] ] ]
+					andShow: [ : subA | 
+						subA tabulator with: [ : c |
+							c
+								row: #summaryDescribe;
+								row: #summaryStats span: 2.
+							c transmit 
+								to: #summaryDescribe;
+								andShow: [ : d | self summaryDisplayIn: d ].
+							c transmit
+								to: #summaryStats;
+								andShow: [ : d | self summaryStatsIn: d ] ] ] ] ]
 ]
 
 { #category : #'private building' }
@@ -147,17 +157,25 @@ AIGTDataFrameBrowser >> stringWithoutInitialCommentFrom: aString [
 ]
 
 { #category : #'private building' }
-AIGTDataFrameBrowser >> summaryDescriptorsAt: aDataFrame [
+AIGTDataFrameBrowser >> summaryDescriptions [
 
 	^ Dictionary new
-		at: 'Dimensions' put: #dimensions;
+		at: 'Dimensions' 		put: #dimensions;
+		at: 'Has nil'			put: #hasNil;
+		at: 'Has categorical'	put: #hasCategorical;
 		yourself
 ]
 
 { #category : #'private building' }
-AIGTDataFrameBrowser >> summaryDescriptorsFrom: aDataFrame [
+AIGTDataFrameBrowser >> summaryDescriptionsLabels [
 
-	^ { 'Dimensions' } 
+	^ self summaryDescriptions keys asSortedCollection 
+]
+
+{ #category : #'private building' }
+AIGTDataFrameBrowser >> summaryDescriptorsAt: aString [
+
+	^ self summaryDescriptions at: aString
 ]
 
 { #category : #'private building' }
@@ -166,20 +184,72 @@ AIGTDataFrameBrowser >> summaryDisplayIn: composite [
 	composite fastTable
 		beMultiple;
 		wantsAutomaticRefresh: true;
-		display: [ : aDataFrame | self summaryDescriptorsFrom: aDataFrame  ];
+		display: [ : aDataFrame | self summaryDescriptionsLabels  ];
 		column: 'Type'
-			evaluated: [ '' ]
-			width: 75
-			tags: [ : anObject  | anObject ]
-			sortedBy: [ :x :y |  x variableTag < y  variableTag ];
+			evaluated: [ : aString | aString ]
+			width: 85;
 		column: 'Value' 
-			evaluated: [ : aString |  GTObjectPrinter asNonTruncatedTextFrom: (self summaryDescriptorsAt: aString) ]
-			width: 175
+			evaluated: [ : aString | self summaryValueFor: aString ]
+			width: 165
 ]
 
 { #category : #'private building' }
-AIGTDataFrameBrowser >> summaryItemsFrom: aDataFrame [
+AIGTDataFrameBrowser >> summaryStats [
 
-	^ { 
-		aDataFrame dimensions  } 
+	^ Dictionary new
+		at: 'Average' 				put: #average;
+		at: 'Mode' 					put: #mode;
+		at: 'Median'					put: #median;
+		at: 'Variance'				put: #variance;
+		at: 'Standard deviation'	put: #stdev;
+		at: 'Minimum'				put: #min;
+		at: 'Maximum'				put: #max;
+		at: '1st Quartile'			put: #firstQuartile;
+		at: '3rd Quartile'			put: #thirdQuartile;
+		yourself
+]
+
+{ #category : #'private building' }
+AIGTDataFrameBrowser >> summaryStatsAt: aString [
+
+	^ self summaryStats at: aString
+]
+
+{ #category : #'private building' }
+AIGTDataFrameBrowser >> summaryStatsIn: composite [
+
+	| fastTable |
+	
+	fastTable := composite fastTable
+		beMultiple;
+		wantsAutomaticRefresh: true;
+		display: [ : aDataFrame | self summaryStatsLabels  ];
+		column: 'Stat'
+			evaluated: [ : aString | aString ]
+			width: 85;
+		yourself.
+	self entity columnNames do: [ : col |
+		fastTable 
+			column: col 
+			evaluated: [ : aString | self summaryStatsValueFor: aString in: col ]
+			width: 60 ]
+]
+
+{ #category : #'private building' }
+AIGTDataFrameBrowser >> summaryStatsLabels [
+
+	^ self summaryStats keys "asSortedCollection" 
+]
+
+{ #category : #'private building' }
+AIGTDataFrameBrowser >> summaryStatsValueFor: aString in: col [
+
+	^ (self entity column: col) perform: (self summaryStatsAt: aString)
+]
+
+{ #category : #'private building' }
+AIGTDataFrameBrowser >> summaryValueFor: aString [
+
+	^ GTObjectPrinter asNonTruncatedTextFrom: 
+		(self entity perform: (self summaryDescriptorsAt: aString))
 ]
