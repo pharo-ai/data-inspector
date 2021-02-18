@@ -23,3 +23,4 @@ spec
 
 Just inspect any DataFrame and select the palette with "Data Inspector":
 
+![data-inspector-screenshot](https://user-images.githubusercontent.com/4825959/108403782-65a81900-721f-11eb-9264-a2e17231c965.png)
