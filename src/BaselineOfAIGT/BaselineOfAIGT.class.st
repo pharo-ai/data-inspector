@@ -10,8 +10,13 @@ BaselineOfAIGT >> baseline: spec [
 	spec
 		for: #(common)
 		do: [ 
+			"Baselines"
+			spec
+  				baseline: 'DataFrame'
+  				with: [ spec repository: 'github://PolyMathOrg/DataFrame/src' ].
+		
 			spec 
-				package: 'AI-GT'.
+				package: 'AI-GT'			with: [ spec requires: #('DataFrame') ].
 				"package: 'AI-GT-Tests'	with: [ spec requires: #(#'AI-GT') ]."
 			spec 
 				group: 'Core' 						with: #(#'AI-GT');

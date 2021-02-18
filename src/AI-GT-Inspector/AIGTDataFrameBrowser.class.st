@@ -1,3 +1,13 @@
+"
+A GT presentation for extending DataFrame inspection in a new palette, with three additional panes:
+
+1) It includes an evaluator for the inspected DataFrame.
+2) A small window which describes basic DataFrame information such as its dimensions, if it has nil values, etc.
+3) A small window with summary statistics for the DataFrame.
+
+Most the important methods start with #summary...
+
+"
 Class {
 	#name : #AIGTDataFrameBrowser,
 	#superclass : #GLMCompositePresentation,
@@ -244,7 +254,12 @@ AIGTDataFrameBrowser >> summaryStatsLabels [
 { #category : #'private building' }
 AIGTDataFrameBrowser >> summaryStatsValueFor: aString in: col [
 
-	^ (self entity column: col) perform: (self summaryStatsAt: aString)
+	| colDataSeries |
+	
+	colDataSeries := self entity column: col.
+	^ colDataSeries isNumerical
+		ifTrue: [ colDataSeries perform: (self summaryStatsAt: aString) ]
+		ifFalse: [ 0  ]
 ]
 
 { #category : #'private building' }
