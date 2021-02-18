@@ -19,7 +19,7 @@ BaselineOfAIGT >> baseline: spec [
 				package: 'AI-GT'			with: [ spec requires: #('DataFrame') ].
 				"package: 'AI-GT-Tests'	with: [ spec requires: #(#'AI-GT') ]."
 			spec 
-				group: 'Core' 						with: #(#'AI-GT');
+				group: 'Core' 						with: #('AI-GT');
 				"group: 'Tests' 						with: #(#'AI-GT' #'AI-GT-Tests');"
 				group: 'default' 					with: #('Core' "'Tests'") ]
 ]

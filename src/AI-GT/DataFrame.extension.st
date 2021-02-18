@@ -1,6 +1,6 @@
 Extension { #name : #DataFrame }
 
-{ #category : #'*AI-GT-Inspector' }
+{ #category : #'*AI-GT' }
 DataFrame >> gtInspectorDataEvaluatorIn: composite [
 	<gtInspectorPresentationOrder: 1>
 	<gtInspectorTag: #basic>
@@ -8,14 +8,14 @@ DataFrame >> gtInspectorDataEvaluatorIn: composite [
 	composite custom: (AIGTDataFrameBrowser new startOn: self)
 ]
 
-{ #category : #'*AI-GT-Inspector' }
+{ #category : #'*AI-GT' }
 DataFrame >> hasCategorical [
 	" Answer <true> if the receiver has at least one categorical (not numerical) value "
 	
 	^ self anySatisfy: #isCategorical.
 ]
 
-{ #category : #'*AI-GT-Inspector' }
+{ #category : #'*AI-GT' }
 DataFrame >> hasNil [
 	" Answer <true> if the receiver has at least one nil value "
 	
