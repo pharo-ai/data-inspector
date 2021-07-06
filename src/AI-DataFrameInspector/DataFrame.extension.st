@@ -29,3 +29,17 @@ DataFrame >> evaluatorRowsLimit [
 
 	^ 10000
 ]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataFrame >> hasCategorical [
+	" Answer <true> if the receiver has at least one categorical (not numerical) value "
+	
+	^ self anySatisfy: #isCategorical.
+]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataFrame >> hasNil [
+	" Answer <true> if the receiver has at least one nil value "
+	
+	^ self anySatisfy: #hasNil.
+]

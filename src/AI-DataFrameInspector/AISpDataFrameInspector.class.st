@@ -152,12 +152,7 @@ AISpDataFrameInspector >> initializeDataFramePane [
 { #category : #initialization }
 AISpDataFrameInspector >> initializeEvaluatorPane [
 
-	application := StPharoApplication new.
-	evaluatorPane := self instantiate: SpCodePresenter.
-	evaluatorPane 
-		withSyntaxHighlight;
-		withLineNumbers;
-		beForObject: self dataFrame.
+	evaluatorPane := self instantiate: AISpDataFrameEvaluator.
 ]
 
 { #category : #initialization }
