@@ -1,33 +1,30 @@
-"
-An AIGTDataFrameBrowserTest is a test class for testing the behavior of AIGTDataFrameBrowser
-"
 Class {
-	#name : #AIGTDataFrameBrowserTest,
+	#name : #AISpDataFrameInspectorTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'dataFrameBrowser'
 	],
-	#category : #'AI-GT-Tests-Inspector'
+	#category : #'AI-DataFrameInspector-Tests'
 }
 
 { #category : #accessing }
-AIGTDataFrameBrowserTest >> dataFrameBrowser [
+AISpDataFrameInspectorTest >> dataFrameBrowser [
 	^ dataFrameBrowser
 ]
 
 { #category : #accessing }
-AIGTDataFrameBrowserTest >> dataFrameBrowser: anObject [
+AISpDataFrameInspectorTest >> dataFrameBrowser: anObject [
 	dataFrameBrowser := anObject
 ]
 
 { #category : #accessing }
-AIGTDataFrameBrowserTest >> entity [
+AISpDataFrameInspectorTest >> entity [
 
 	^ self dataFrameBrowser entity
 ]
 
 { #category : #accessing }
-AIGTDataFrameBrowserTest >> sampleDataFrame [
+AISpDataFrameInspectorTest >> sampleDataFrame [
 
 	^ DataFrame readFromCsvWithRowNames: 'country,child_mort,exports,health,imports,income,inflation,life_expec,total_fer,gdpp
 Afghanistan,90.2,10,7.58,44.9,1610,9.44,56.2,5.82,553
@@ -36,28 +33,27 @@ Algeria,27.3,38.4,4.17,31.4,12900,16.1,76.5,2.89,4460'.
 ]
 
 { #category : #running }
-AIGTDataFrameBrowserTest >> setUp [
+AISpDataFrameInspectorTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 
-	dataFrameBrowser := AIGTDataFrameBrowser new.
-	dataFrameBrowser entity: self sampleDataFrame.
+	dataFrameBrowser := AISpDataFrameInspector on: self sampleDataFrame.
 ]
 
 { #category : #test }
-AIGTDataFrameBrowserTest >> testSummaryDescriptions [
+AISpDataFrameInspectorTest >> testSummaryDescriptions [
 
 	self assert: (self dataFrameBrowser summaryDescriptions isKindOf: Dictionary)
 ]
 
 { #category : #test }
-AIGTDataFrameBrowserTest >> testSummaryDescriptionsLabels [
+AISpDataFrameInspectorTest >> testSummaryDescriptionsLabels [
 
 	self assert: (self dataFrameBrowser summaryDescriptionsLabels isKindOf: Collection).
 	self deny: self dataFrameBrowser summaryDescriptionsLabels isEmpty.
 ]
 
 { #category : #test }
-AIGTDataFrameBrowserTest >> testSummaryDescriptorsAt [
+AISpDataFrameInspectorTest >> testSummaryDescriptorsAt [
 
 	self assert: (self dataFrameBrowser summaryDescriptorsAt: 'Dimensions') equals: #dimensions.
 	self assert: (self dataFrameBrowser summaryDescriptorsAt: 'Has nil') equals: #hasNil.
@@ -67,13 +63,13 @@ AIGTDataFrameBrowserTest >> testSummaryDescriptorsAt [
 ]
 
 { #category : #test }
-AIGTDataFrameBrowserTest >> testSummaryStats [
+AISpDataFrameInspectorTest >> testSummaryStats [
 
 	self assert: (self dataFrameBrowser summaryStats isKindOf: Dictionary)
 ]
 
 { #category : #test }
-AIGTDataFrameBrowserTest >> testSummaryStatsAt [
+AISpDataFrameInspectorTest >> testSummaryStatsAt [
 
 	self assert: (self dataFrameBrowser summaryStatsAt: 'Average') equals: #average.
 	self assert: (self dataFrameBrowser summaryStatsAt: 'Mode') equals: #mode.
@@ -87,14 +83,14 @@ AIGTDataFrameBrowserTest >> testSummaryStatsAt [
 ]
 
 { #category : #test }
-AIGTDataFrameBrowserTest >> testSummaryStatsLabels [
+AISpDataFrameInspectorTest >> testSummaryStatsLabels [
 
 	self assert: (self dataFrameBrowser summaryStatsLabels isKindOf: Collection).
 	self deny: self dataFrameBrowser summaryStatsLabels isEmpty.
 ]
 
 { #category : #test }
-AIGTDataFrameBrowserTest >> testSummaryValueFor [
+AISpDataFrameInspectorTest >> testSummaryValueFor [
 
 	self assert: (self dataFrameBrowser summaryValueFor: 'Dimensions') equals: '(3@9)'.
 
