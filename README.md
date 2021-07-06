@@ -11,7 +11,7 @@ A little Pharo tool to operate and view DataFrame info in a same inspector view.
 ```smalltalk
 EpMonitor disableDuring: [ 
 	Metacello new
-		baseline: 'AIGT';
+		baseline: 'AIDataInspector';
 		repository: 'github://pharo-ai/data-inspector/src';
 		load ]
 ```
@@ -20,7 +20,7 @@ EpMonitor disableDuring: [
 
 ```smalltalk
 spec 
-   baseline: 'AIGT' 
+   baseline: 'AIDataInspector' 
    with: [ spec repository: 'github://pharo-ai/data-inspector/src' ].
 ```
 
