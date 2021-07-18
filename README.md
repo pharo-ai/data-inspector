@@ -34,7 +34,8 @@ EpMonitor disableDuring: [
 		baseline: 'AIDatasets';
 		repository: 'github://pharo-ai/datasets';
 		load ].
+
 AIDatasets loadIris inspect.
 ```
 
-![data-inspector-screenshot](https://user-images.githubusercontent.com/4825959/108403782-65a81900-721f-11eb-9264-a2e17231c965.png)
+![data-inspector-screenshot](https://user-images.githubusercontent.com/4825959/126080714-59abffd3-0d3b-4ed9-a860-13bb77bd7a9b.png)
