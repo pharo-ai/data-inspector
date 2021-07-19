@@ -1,3 +1,7 @@
+"
+AISpDataFrameInspector openOn: AIDatasets loadIris.
+AISpDataFrameInspector openOn: AIDatasets loadWine.
+"
 Class {
 	#name : #AISpDataFrameInspector,
 	#superclass : #StInspection,
@@ -5,10 +9,10 @@ Class {
 		'dataFrame',
 		'evaluatorPane',
 		'inspectorPane',
-		'summaryPane',
 		'selectedItems',
 		'additionalInfoPane',
-		'dataFramePresenter'
+		'dataFramePresenter',
+		'summaryPresenter'
 	],
 	#category : #'AI-DataFrameInspector'
 }
@@ -21,7 +25,7 @@ AISpDataFrameInspector class >> defaultSpec [
 			add: #dataFramePresenter;
 			add: (SpPanedLayout newLeftToRight
 				add: #evaluatorPane;
-				add: #summaryPane;
+				add: #summaryPresenter;
 				yourself);
 			yourself);
 		add: #additionalInfoPane;
@@ -171,7 +175,7 @@ AISpDataFrameInspector >> initializePresenters [
 { #category : #initialization }
 AISpDataFrameInspector >> initializeSummaryPane [
 
-	summaryPane := self instantiate: AISpDataFrameSummaryPresenter on: self dataFrame
+	summaryPresenter := self instantiate: AISpDataFrameSummaryPresenter on: self dataFrame
 ]
 
 { #category : #accessing }
@@ -199,13 +203,13 @@ AISpDataFrameInspector >> selectedItems: anObject [
 ]
 
 { #category : #accessing }
-AISpDataFrameInspector >> summaryPane [
+AISpDataFrameInspector >> summaryPresenter [
 
-	^ summaryPane
+	^ summaryPresenter
 ]
 
 { #category : #accessing }
-AISpDataFrameInspector >> summaryPane: anObject [
+AISpDataFrameInspector >> summaryPresenter: anObject [
 
-	summaryPane := anObject
+	summaryPresenter := anObject
 ]
