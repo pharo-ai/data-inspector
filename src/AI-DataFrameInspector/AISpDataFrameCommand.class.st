@@ -22,5 +22,5 @@ AISpDataFrameCommand >> dataFrame [
 { #category : #accessing }
 AISpDataFrameCommand >> selectedItem [
 
-	^ self context dfPane selectedItem
+	^ self context dataFramePresenter selectedItem
 ]
