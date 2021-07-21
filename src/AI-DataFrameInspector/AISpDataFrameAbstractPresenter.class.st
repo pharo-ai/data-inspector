@@ -1,3 +1,14 @@
+"
+This is an abstract superclass with behavior to set the presenter's model data frame.
+ 
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	dataFrame:		<DataFrame>
+
+
+    Implementation Points
+"
 Class {
 	#name : #AISpDataFrameAbstractPresenter,
 	#superclass : #StPresenter,

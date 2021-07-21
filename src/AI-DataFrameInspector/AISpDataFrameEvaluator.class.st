@@ -1,10 +1,10 @@
 Class {
 	#name : #AISpDataFrameEvaluator,
-	#superclass : #StPresenter,
+	#superclass : #AISpDataFrameAbstractPresenter,
 	#instVars : [
 		'toolbar',
-		'dataFrame',
-		'evalPresenter'
+		'evalPresenter',
+		'activationBlock'
 	],
 	#category : #'AI-DataFrameInspector'
 }
@@ -36,6 +36,20 @@ AISpDataFrameEvaluator >> dataFrame: anObject [
 	dataFrame := anObject
 ]
 
+{ #category : #commands }
+AISpDataFrameEvaluator >> doEvaluateAndGo [
+	| value |
+	
+	activationBlock ifNil: [ ^ self ].
+
+	value := self evalPresenter 
+		evaluate: self evalPresenter selectedTextOrLine
+		onCompileError: [ ^ self ]
+		onError: [ :e | e pass ].
+	
+	activationBlock value: (StEvaluatedSelectionModel newValue: value)
+]
+
 { #category : #accessing }
 AISpDataFrameEvaluator >> evalPresenter [
 
@@ -48,19 +62,36 @@ AISpDataFrameEvaluator >> evalPresenter: anObject [
 	evalPresenter := anObject
 ]
 
+{ #category : #evaluation }
+AISpDataFrameEvaluator >> evaluatorActions [
+	
+	^ CmCommandGroup forSpec
+		beDisplayedAsGroup;
+		register: (StEvaluateCommand forSpecContext: self);
+		yourself
+]
+
 { #category : #initialization }
 AISpDataFrameEvaluator >> initializePresenters [
+	" Private - See superimplementor's comment "
 
 	application := StPharoApplication new.
-	
-	toolbar := self instantiate: AISpDataFrameEvaluatorToolbar.
+
+	toolbar := self instantiate: AISpDataFrameEvaluatorToolbar on: self dataFrame.
 
 	evalPresenter := self instantiate: SpCodePresenter.
 	evalPresenter 
 		withSyntaxHighlight;
 		withLineNumbers;
-		beForObject: self owner dataFrame.
+		beForObject: self dataFrame.
 
+]
+
+{ #category : #initialization }
+AISpDataFrameEvaluator >> selectedTextOrLine [
+	" See comment in selectedTextOrLine "
+
+	^ self evalPresenter selectedTextOrLine
 ]
 
 { #category : #accessing }

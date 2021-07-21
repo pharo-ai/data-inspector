@@ -157,23 +157,23 @@ AISpDataFrameInspector >> initializeDataFramePane [
 ]
 
 { #category : #initialization }
-AISpDataFrameInspector >> initializeEvaluatorPane [
+AISpDataFrameInspector >> initializeEvaluatorPresenter [
 
-	evaluatorPane := self instantiate: AISpDataFrameEvaluator.
+	evaluatorPane := self instantiate: AISpDataFrameEvaluator on: self dataFrame.
 ]
 
 { #category : #initialization }
 AISpDataFrameInspector >> initializePresenters [
 
 	self initializeDataFramePane.
-	self initializeEvaluatorPane.
+	self initializeEvaluatorPresenter.
 	self initializeAdditionalInfoPane.
-	self initializeSummaryPane.
+	self initializeSummaryPresenter.
 
 ]
 
 { #category : #initialization }
-AISpDataFrameInspector >> initializeSummaryPane [
+AISpDataFrameInspector >> initializeSummaryPresenter [
 
 	summaryPresenter := self instantiate: AISpDataFrameSummaryPresenter on: self dataFrame
 ]
