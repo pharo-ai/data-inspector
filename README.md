@@ -1,10 +1,14 @@
 [![Coverage Status](https://coveralls.io/repos/github/pharo-ai/data-inspector/badge.svg?branch=master)](https://coveralls.io/github/pharo-ai/data-inspector?branch=master)
-[![Pharo version](https://img.shields.io/badge/Pharo-8.0-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo version](https://img.shields.io/badge/Pharo-9.0-%23aac9ff.svg)](https://pharo.org/download)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/pharo-ai/data-inspector/master/LICENSE)
 
 # Description
 
-A little Pharo tool to operate and view DataFrame info in a same inspector view. It shows the DataFrame in the upper part, and an Evaluator with two views: One with the data frame basic statistics, and another one to describe basic data frame information such as dimensions, if has nil values, etc.
+A Pharo inspector extension to operate and view DataFrame multiple information in a same inspector view. Currently it displays:
+
+- The DataFrame in the upper part.
+- In the middle part, an Evaluator with a summary data table (basic statistics).
+- A lower part with Roassal histograms for each column and a data table which describes basic data frame information such as dimensions, if has nil values, etc.
 
 # Installation
 
