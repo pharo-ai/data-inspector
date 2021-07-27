@@ -47,6 +47,6 @@ AISpDataFrameBasicPresenter >> initializePresenters [
 
 	basicInfoPresenter := self instantiate: AISpDataFrameBasicInfo on: self dataFrame.
 	basicVizPresenter := self instantiate: AISpDataFrameBasicViz on: self dataFrame.
-	basicVizPresenter script: [ :view | self basicVizPresenter visualizeAllHistograms: view ].
+	basicVizPresenter script: [ :view | self basicVizPresenter plotAllHistograms: view ].
 
 ]

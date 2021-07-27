@@ -41,6 +41,14 @@ AISpDataFrameBasicViz >> allColumnValues [
 		(dataFrame column: colName) asArray collect: #value ]
 ]
 
+{ #category : #initialization }
+AISpDataFrameBasicViz >> allColumnValuesWithColumnName [
+	" Private - Answer a <Collection> of <Association> with numeric column values in the receiver's data frame "
+
+	^ self numericColumnNames collect: [ : colName |
+		colName -> ((dataFrame column: colName) asArray collect: #value) ]
+]
+
 { #category : #accessing }
 AISpDataFrameBasicViz >> chart [
 
@@ -121,6 +129,46 @@ AISpDataFrameBasicViz >> plot: anObject [
 ]
 
 { #category : #initialization }
+AISpDataFrameBasicViz >> plotAllHistograms: aCanvas [
+
+	| shapes |
+
+	chart container: aCanvas.
+	shapes := self allColumnValuesWithColumnName collect: [ : columnAssoc | 
+		self plotHistogram: columnAssoc ].
+	aCanvas addAll: shapes;
+		addInteraction: RSCanvasController new;
+		addInteraction: RSZoomToFitCanvasInteraction new;
+		addInteraction: RSZoomableCanvasInteraction new;
+		addInteraction: RSKeyNavigationCanvasInteraction new.
+	RSHorizontalLineLayout new
+		gapSize: 4;
+		on: shapes.
+	aCanvas when: RSExtentChangedEvent do: [ 
+		aCanvas camera zoomToFit: aCanvas extent.
+		aCanvas signalUpdate ].
+
+]
+
+{ #category : #initialization }
+AISpDataFrameBasicViz >> plotHistogram: columnAssoc [
+
+	| g c columnValues |
+
+	columnValues := columnAssoc value.
+	g := RSGroup new.
+	c := RSChart new.
+	c container: g.
+	plot := RSHistogramPlot new x: columnValues; bins: self numberOfBins.
+	c addPlot: plot.
+	c addDecoration: RSVerticalTick new.
+	c addDecoration: RSHorizontalTick new.
+	c title: columnAssoc key. 
+	c build.
+	^ g asShapeFor: self numberOfBins.
+]
+
+{ #category : #initialization }
 AISpDataFrameBasicViz >> selectedColumnValues [
 
 	^ (dataFrame column: 'sepal length (cm)') asArray collect: #value
@@ -135,36 +183,10 @@ AISpDataFrameBasicViz >> setModelBeforeInitialization: aDomainObject [
 ]
 
 { #category : #initialization }
-AISpDataFrameBasicViz >> visualizeAllHistograms: aCanvas [
-
-	| shapes |
-
-	chart container: aCanvas.
-	shapes := self allColumnValues collect: [ : columnValues | | g c |
-		g := RSGroup new.
-		c := RSChart new.
-		c container: g.
-		plot := RSHistogramPlot new x: columnValues; bins: self numberOfBins.
-		c addPlot: plot.
-		c addDecoration: RSVerticalTick new.
-		c addDecoration: RSHorizontalTick new.
-		c title: self numberOfBins. 
-		c build.
-		g asShapeFor: self numberOfBins ].
-	aCanvas addAll: shapes.
-	RSHorizontalLineLayout new
-		gapSize: 4;
-		on: shapes.
-	aCanvas when: RSExtentChangedEvent do: [ 
-		aCanvas camera zoomToFit: aCanvas extent.
-		aCanvas signalUpdate ].
-
-]
-
-{ #category : #initialization }
 AISpDataFrameBasicViz >> visualizeHistogram: aView [
 	" Private - For single selection, do not delete yet "
 
+	self flag: #review.
 	chart container: aView.
 	plot := RSHistogramPlot new.
 	plot x: self selectedColumnValues.
