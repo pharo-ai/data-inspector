@@ -1,3 +1,16 @@
+"
+Implements a presenter with Pharo source code evaluation capabilities. The receiver in this evaluator represents the data frame currently displayed. It includes a toolbar, implemented in `AISpDataFrameEvaluatorToolbar`
+ 
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	activationBlock:		<Object>
+	evalPresenter:		<Object>
+	toolbar:		<AISpDataFrameEvaluatorToolbar>
+
+
+    Implementation Points
+"
 Class {
 	#name : #AISpDataFrameEvaluator,
 	#superclass : #AISpDataFrameAbstractPresenter,
@@ -52,6 +65,7 @@ AISpDataFrameEvaluator >> doEvaluateAndGo [
 
 { #category : #accessing }
 AISpDataFrameEvaluator >> evalPresenter [
+	" Answer the receiver's <SpCodePresenter> "
 
 	^ evalPresenter
 ]
@@ -60,6 +74,18 @@ AISpDataFrameEvaluator >> evalPresenter [
 AISpDataFrameEvaluator >> evalPresenter: anObject [
 
 	evalPresenter := anObject
+]
+
+{ #category : #initialization }
+AISpDataFrameEvaluator >> evalPresenterText [
+
+	^ self evalPresenter text
+]
+
+{ #category : #initialization }
+AISpDataFrameEvaluator >> evalPresenterText: aString [
+
+	self evalPresenter text: aString.
 ]
 
 { #category : #evaluation }
@@ -85,6 +111,12 @@ AISpDataFrameEvaluator >> initializePresenters [
 		withLineNumbers;
 		beForObject: self dataFrame.
 
+]
+
+{ #category : #accessing }
+AISpDataFrameEvaluator >> interactionModel [
+
+	^ self evalPresenter interactionModel
 ]
 
 { #category : #initialization }

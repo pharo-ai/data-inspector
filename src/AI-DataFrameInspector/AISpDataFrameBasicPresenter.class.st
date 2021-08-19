@@ -1,3 +1,19 @@
+"
+This presenter includes two panes :
+
+- One including basic information about the data frame, implemented in `AISpDataFrameBasicInfo`
+- Another one with a histogram for the data frame numerical columns, implemented in `AISpDataFrameBasicViz`
+
+
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	basicInfoPresenter:		<AISpDataFrameBasicInfo>
+	basicVizPresenter:		<AISpDataFrameBasicViz>
+
+
+    Implementation Points
+"
 Class {
 	#name : #AISpDataFrameBasicPresenter,
 	#superclass : #AISpDataFrameAbstractPresenter,
@@ -11,9 +27,15 @@ Class {
 { #category : #specs }
 AISpDataFrameBasicPresenter class >> defaultSpec [
 
-	^ SpPanedLayout newLeftToRight
-		add: #basicVizPresenter;
-		add: #basicInfoPresenter;
+	^ SpBoxLayout newTopToBottom
+		add: #basicVizPresenter
+		  expand: true
+		  fill: true
+		  padding: 0;
+		add: #basicInfoPresenter
+		  expand: true
+		  fill: true
+		  padding: 0;
 		yourself.
 
 ]

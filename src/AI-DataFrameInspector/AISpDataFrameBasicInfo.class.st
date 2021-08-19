@@ -1,3 +1,18 @@
+"
+Displays a table with basic information about the data frame such as :
+
+- Dimensions
+- Whether contains categorical columns
+- Whether any column contains NA/NULL/nil values.
+
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	dataFramePresenter:		<SpTablePresenter>
+
+
+    Implementation Points
+"
 Class {
 	#name : #AISpDataFrameBasicInfo,
 	#superclass : #AISpDataFrameAbstractPresenter,
@@ -10,7 +25,7 @@ Class {
 { #category : #specs }
 AISpDataFrameBasicInfo class >> defaultSpec [
 
-	^ SpPanedLayout newTopToBottom
+	^ SpBoxLayout newTopToBottom
 		add: #dataFramePresenter;
 		yourself.
 

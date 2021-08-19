@@ -21,16 +21,30 @@ Class {
 AISpDataFrameInspector class >> defaultSpec [
 
 	^ SpPanedLayout newTopToBottom
-		add: (SpPanedLayout newTopToBottom
-			add: #dataFramePresenter;
-			add: (SpPanedLayout newLeftToRight
+		add: #dataFramePresenter;
+		add: (SpPanedLayout newLeftToRight
 				add: #evaluatorPane;
-				add: #summaryPresenter;
+				add: (SpPanedLayout newTopToBottom
+					add: #summaryPresenter;
+					add: #additionalInfoPane;				
+					yourself);
 				yourself);
-			yourself);
-		add: #additionalInfoPane;
 		yourself.
 
+]
+
+{ #category : #examples }
+AISpDataFrameInspector class >> example01 [
+	<example>
+	
+	self openOn: AIDatasets loadIris.
+]
+
+{ #category : #examples }
+AISpDataFrameInspector class >> example02 [
+	<example>
+	
+	self openOn: AIDatasets loadWine.
 ]
 
 { #category : #'instance creation' }
@@ -139,13 +153,7 @@ AISpDataFrameInspector >> initializeDataFramePane [
 		enableSearch;
 		contextMenu: [ self contextMenu ];
 		contextKeyBindings: self contextMenuKeyBindings;
-		addColumn:
-			((SpCheckBoxTableColumn
-				evaluated: [ :branch | self selectedItems includes: branch ])
-				onActivation: [ :branch | self selectedItems add: branch ];
-				onDeactivation: [ :branch | self selectedItems remove: branch ];
-				width: 20 * self currentWorld displayScaleFactor;
-				yourself).
+		addColumn: self newCheckBoxColumn.
 	self columnNames doWithIndex: [ : columnName : idx |
 		dataFramePresenter addColumn: (
 			SpStringTableColumn new
@@ -188,6 +196,18 @@ AISpDataFrameInspector >> inspectorPane [
 AISpDataFrameInspector >> inspectorPane: anObject [
 
 	inspectorPane := anObject
+]
+
+{ #category : #'private building' }
+AISpDataFrameInspector >> newCheckBoxColumn [
+	" Private - Answer a check box column to select specific rows in the receiver "
+
+	^ (SpCheckBoxTableColumn
+			evaluated: [ :branch | self selectedItems includes: branch ])
+			onActivation: [ :branch | self selectedItems add: branch ];
+			onDeactivation: [ :branch | self selectedItems remove: branch ];
+			width: 20 * self currentWorld displayScaleFactor;
+			yourself
 ]
 
 { #category : #accessing }

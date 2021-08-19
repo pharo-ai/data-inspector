@@ -1,3 +1,23 @@
+"
+This Roassal >=3 presenter provides histogram for all numeric columns in the displayed data frame.
+
+# Implementation Points
+
+- Initialization happens in setModelBeforeInitialization:
+- They key method for rendering is `AISpDataFrameBasicViz>>plotAllHistograms`
+
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	chart:		<RSChart>
+	dataFrame:		<Object>
+	group:		<Object>
+	numberOfBins:		<Object>
+	plot:		<Object>
+
+
+    Implementation Points
+"
 Class {
 	#name : #AISpDataFrameBasicViz,
 	#superclass : #SpRoassalPresenter,
@@ -168,9 +188,10 @@ AISpDataFrameBasicViz >> plotHistogram: columnAssoc [
 	^ g asShapeFor: self numberOfBins.
 ]
 
-{ #category : #initialization }
+{ #category : #'to review' }
 AISpDataFrameBasicViz >> selectedColumnValues [
 
+	self flag: #review.
 	^ (dataFrame column: 'sepal length (cm)') asArray collect: #value
 ]
 
@@ -182,7 +203,7 @@ AISpDataFrameBasicViz >> setModelBeforeInitialization: aDomainObject [
 	group := RSGroup new.
 ]
 
-{ #category : #initialization }
+{ #category : #'to review' }
 AISpDataFrameBasicViz >> visualizeHistogram: aView [
 	" Private - For single selection, do not delete yet "
 
