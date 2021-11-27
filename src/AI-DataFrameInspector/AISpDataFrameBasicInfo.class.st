@@ -49,6 +49,7 @@ AISpDataFrameBasicInfo >> initializePresenters [
 
 	dataFramePresenter := self newTable
 		showColumnHeaders;
+		beMultipleSelection;
 "		contextMenu: [ self contextMenu ];
 		contextKeyBindings: self contextMenuKeyBindings;"
 		items: self summaryDescriptionsLabels;

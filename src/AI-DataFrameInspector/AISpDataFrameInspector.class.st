@@ -88,6 +88,7 @@ AISpDataFrameInspector >> contextMenuActions [
 		beRoot;
 		register: (AISpDataFrameCopyRowValuesCommand forSpecContext: self);
 		register: (AISpDataFrameCopyRowValuesWithLabelsCommand forSpecContext: self);
+		register: (AISpDataFrameCopyRowSelectionsCommand forSpecContext: self);
 		yourself
 ]
 
@@ -141,13 +142,13 @@ AISpDataFrameInspector >> initialize [
 ]
 
 { #category : #initialization }
-AISpDataFrameInspector >> initializeAdditionalInfoPane [
+AISpDataFrameInspector >> initializeAdditionalInfoPresenter [
 
 	additionalInfoPane := self instantiate: AISpDataFrameBasicPresenter on: self dataFrame.
 ]
 
 { #category : #initialization }
-AISpDataFrameInspector >> initializeDataFramePane [
+AISpDataFrameInspector >> initializeDataFramePresenter [
 
 	dataFramePresenter := self newTable
 		enableSearch;
@@ -173,9 +174,9 @@ AISpDataFrameInspector >> initializeEvaluatorPresenter [
 { #category : #initialization }
 AISpDataFrameInspector >> initializePresenters [
 
-	self initializeDataFramePane.
+	self initializeDataFramePresenter.
 	self initializeEvaluatorPresenter.
-	self initializeAdditionalInfoPane.
+	self initializeAdditionalInfoPresenter.
 	self initializeSummaryPresenter.
 
 ]
