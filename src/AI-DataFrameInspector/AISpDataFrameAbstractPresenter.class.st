@@ -33,10 +33,12 @@ AISpDataFrameAbstractPresenter >> contextMenu [
 { #category : #initialization }
 AISpDataFrameAbstractPresenter >> contextMenuActions [
 
+	self halt. "2"
 	^ CmCommandGroup forSpec
 		beRoot;
 		register: (AISpDataFrameCopyRowValuesCommand forSpecContext: self);
 		register: (AISpDataFrameCopyRowValuesWithLabelsCommand forSpecContext: self);
+		register: (AISpDataFrameCopyRowSelectionsCommand forSpecContext: self);
 		yourself
 ]
 

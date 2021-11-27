@@ -24,3 +24,10 @@ AISpDataFrameCommand >> selectedItem [
 
 	^ self context dataFramePresenter selectedItem
 ]
+
+{ #category : #accessing }
+AISpDataFrameCommand >> selectedItems [
+	" Answer a <Collection> with the checked items in the receiver's presenter context "
+
+	^ self context selectedItems
+]
