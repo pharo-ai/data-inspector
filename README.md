@@ -42,5 +42,5 @@ EpMonitor disableDuring: [
 AIDatasets loadIris inspect.
 ```
 
-![data-inspector-screenshot](https![2021-11-27 17-02-00](https://user-images.githubusercontent.com/4825959/143688886-49ee898b-1bcf-4ef3-aadb-245708df6d8b.gif)
+![data-inspector-screenshot](https://user-images.githubusercontent.com/4825959/143688886-49ee898b-1bcf-4ef3-aadb-245708df6d8b.gif)
 
