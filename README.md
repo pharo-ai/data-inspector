@@ -10,6 +10,12 @@ A Pharo inspector extension to operate and view DataFrame multiple information i
 - In the middle part, an Evaluator with a summary data table (basic statistics).
 - A lower part with Roassal histograms for each column and a data table which describes basic data frame information such as dimensions, if has nil values, etc.
 
+A configurable limit is set by default to quickly visualize a DataFrame. To change the limit, for example to 50000, you can evaluate:
+
+```smalltalk
+AISpDataFrameInspector maxRows: 50000
+```
+
 # Installation
 
 ```smalltalk
