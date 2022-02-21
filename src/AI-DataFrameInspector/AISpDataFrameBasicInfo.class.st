@@ -82,6 +82,7 @@ AISpDataFrameBasicInfo >> summaryDescriptionsLabels [
 
 { #category : #'private building' }
 AISpDataFrameBasicInfo >> summaryDescriptorsAt: aString [
+	"Answer a <Symbol> representing a selector to obtain the value of a summary value in the receiver's data frame "
 
 	^ self summaryDescriptions at: aString
 ]

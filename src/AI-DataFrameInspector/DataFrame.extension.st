@@ -13,7 +13,7 @@ DataFrame >> evaluator [
 	^ AISpDataFrameInspector on: (
 		self numberOfRows > self evaluatorRowsLimit
 			ifFalse: [ self ]
-			ifTrue: [ self head: 100 ])
+			ifTrue: [ self head: AISpDataFrameInspector maxRows ])
 ]
 
 { #category : #'*AI-DataFrameInspector' }

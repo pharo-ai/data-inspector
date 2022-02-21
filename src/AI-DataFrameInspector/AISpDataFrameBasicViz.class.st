@@ -154,8 +154,7 @@ AISpDataFrameBasicViz >> plotAllHistograms: aCanvas [
 	| shapes |
 
 	chart container: aCanvas.
-	shapes := self allColumnValuesWithColumnName collect: [ : columnAssoc | 
-		self plotHistogram: columnAssoc ].
+	shapes := self allColumnValuesWithColumnName collect: [ : columnAssoc | self plotHistogram: columnAssoc ].
 	aCanvas addAll: shapes;
 		addInteraction: RSCanvasController new;
 		addInteraction: RSZoomToFitCanvas new;
@@ -172,6 +171,7 @@ AISpDataFrameBasicViz >> plotAllHistograms: aCanvas [
 
 { #category : #initialization }
 AISpDataFrameBasicViz >> plotHistogram: columnAssoc [
+	" Answer a <RSComposite> "
 
 	| g c columnValues |
 
@@ -179,7 +179,9 @@ AISpDataFrameBasicViz >> plotHistogram: columnAssoc [
 	g := RSGroup new.
 	c := RSChart new.
 	c container: g.
-	plot := RSHistogramPlot new x: columnValues; bins: self numberOfBins.
+	plot := [ RSHistogramPlot new x: columnValues; bins: self numberOfBins ]
+	on: DomainError
+	do: [ : ex | RSLinePlot new y: columnValues  ].
 	c addPlot: plot.
 	c addDecoration: RSVerticalTick new.
 	c addDecoration: RSHorizontalTick new.

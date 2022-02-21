@@ -14,6 +14,9 @@ Class {
 		'dataFramePresenter',
 		'summaryPresenter'
 	],
+	#classVars : [
+		'MaxRows'
+	],
 	#category : #'AI-DataFrameInspector'
 }
 
@@ -45,6 +48,21 @@ AISpDataFrameInspector class >> example02 [
 	<example>
 	
 	self openOn: AIDatasets loadWine.
+]
+
+{ #category : #accessing }
+AISpDataFrameInspector class >> maxRows [
+	" Answer the <Number> of rows to visualize in the receiver "
+	
+	^ MaxRows
+		ifNil: [ MaxRows := 100 ]
+]
+
+{ #category : #accessing }
+AISpDataFrameInspector class >> maxRows: anInteger [
+	" Set the maximum <Number> of rows to visualize in the receiver "
+	
+	MaxRows := anInteger
 ]
 
 { #category : #'instance creation' }
@@ -89,6 +107,7 @@ AISpDataFrameInspector >> contextMenuActions [
 		register: (AISpDataFrameCopyRowValuesCommand forSpecContext: self);
 		register: (AISpDataFrameCopyRowValuesWithLabelsCommand forSpecContext: self);
 		register: (AISpDataFrameCopyRowSelectionsCommand forSpecContext: self);
+		register: (AISpDataFrameInspectCommand forSpecContext: self);		
 		yourself
 ]
 
