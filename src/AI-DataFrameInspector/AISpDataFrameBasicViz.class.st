@@ -157,9 +157,9 @@ AISpDataFrameBasicViz >> plotAllHistograms: aCanvas [
 	shapes := self allColumnValuesWithColumnName collect: [ : columnAssoc | self plotHistogram: columnAssoc ].
 	aCanvas addAll: shapes;
 		addInteraction: RSCanvasController new;
-		addInteraction: RSZoomToFitCanvas new;
-		addInteraction: RSZoomableCanvas new;
-		addInteraction: RSKeyNavigationCanvas new.
+		addInteraction: RSZoomToFitCanvasInteraction new;
+		addInteraction: RSZoomableCanvasInteraction new;
+		addInteraction: RSZoomableCanvasInteraction new.
 	RSHorizontalLineLayout new
 		gapSize: 4;
 		on: shapes.

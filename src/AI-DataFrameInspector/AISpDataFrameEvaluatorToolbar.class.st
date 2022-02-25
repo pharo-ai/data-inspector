@@ -18,8 +18,8 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #specs }
-AISpDataFrameEvaluatorToolbar class >> defaultSpec [
+{ #category : #layout }
+AISpDataFrameEvaluatorToolbar class >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
 		add: #toolbar;
