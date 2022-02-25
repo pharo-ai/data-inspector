@@ -22,8 +22,8 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #specs }
-AISpDataFrameEvaluator class >> defaultSpec [
+{ #category : #layout }
+AISpDataFrameEvaluator class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: #toolbar

@@ -24,8 +24,8 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #specs }
-AISpDataFrameBasicPresenter class >> defaultSpec [
+{ #category : #layout }
+AISpDataFrameBasicPresenter class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: #basicVizPresenter

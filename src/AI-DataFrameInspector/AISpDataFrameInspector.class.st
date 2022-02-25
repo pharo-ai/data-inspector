@@ -20,8 +20,8 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #specs }
-AISpDataFrameInspector class >> defaultSpec [
+{ #category : #layout }
+AISpDataFrameInspector class >> defaultLayout [
 
 	^ SpPanedLayout newTopToBottom
 		add: #dataFramePresenter;

@@ -7,8 +7,8 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #specs }
-AISpDataFrameSummaryPresenter class >> defaultSpec [
+{ #category : #layout }
+AISpDataFrameSummaryPresenter class >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: #dataFramePresenter;
