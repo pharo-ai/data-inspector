@@ -1,4 +1,4 @@
-[![Build status](https://github.com/pharo-ai/data-inspector-models/workflows/CI/badge.svg)](https://github.com/pharo-ai/data-inspector/actions/workflows/test.yml)
+[![Build status](https://github.com/pharo-ai/data-inspector-models/workflows/CI/badge.svg)](https://github.com/pharo-ai/data-inspector/actions/workflows/CI.yml)
 [![Coverage Status](https://coveralls.io/repos/github/pharo-ai/data-inspector/badge.svg?branch=master)](https://coveralls.io/github/pharo-ai/data-inspector?branch=master)
 [![Pharo version](https://img.shields.io/badge/Pharo-9.0-%23aac9ff.svg)](https://pharo.org/download)
 [![Pharo version](https://img.shields.io/badge/Pharo-10.0-%23aac9ff.svg)](https://pharo.org/download)
