@@ -8,7 +8,7 @@ DataFrame >> at: anIndex ifAbsent: aBlock [
 
 { #category : #'*AI-DataFrameInspector' }
 DataFrame >> evaluator [
-    <inspectorPresentationOrder: 2 title: 'Inspector'>
+    <inspectorPresentationOrder: 2 title: 'DataFrame'>
     
 	^ AISpDataFrameInspector on: (
 		self numberOfRows > self evaluatorRowsLimit
