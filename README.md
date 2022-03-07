@@ -52,3 +52,4 @@ AIDatasets loadIris inspect.
 
 ![data-inspector-screenshot](https://user-images.githubusercontent.com/4825959/143688886-49ee898b-1bcf-4ef3-aadb-245708df6d8b.gif)
 
+![Capture d’écran 2022-03-07 à 17 39 37](https://user-images.githubusercontent.com/33934979/157077758-49fd5b65-29de-47de-8559-a549cfc49357.png)
