@@ -38,10 +38,16 @@ AISpDataFrameBasicInfoTest >> testSummaryDescriptionsLabels [
 	self deny: self dfBrowser summaryDescriptionsLabels isEmpty.
 ]
 
-{ #category : #test }
+{ #category : #tests }
 AISpDataFrameBasicInfoTest >> testSummaryValueFor [
 
-	self assert: (self dfBrowser summaryValueFor: 'Dimensions') equals: '(3@9)'.
-
-
+	self
+		assert: (self dfBrowser summaryValueFor: 'Dimensions')
+		equals: '(3@9)'.
+		self
+		assert: (self dfBrowser summaryValueFor: 'Has nil')
+		equals: 'false'.
+		self
+		assert: (self dfBrowser summaryValueFor: 'Has categorical')
+		equals: 'false'.
 ]
