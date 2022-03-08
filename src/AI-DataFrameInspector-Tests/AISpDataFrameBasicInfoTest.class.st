@@ -21,26 +21,57 @@ AISpDataFrameBasicInfoTest >> entity [
 { #category : #running }
 AISpDataFrameBasicInfoTest >> setUp [
 
-	dfBrowser := AISpDataFrameBasicInfo on: self sampleDataFrame.
+	dfBrowser := AISpDataFrameBasicInfo on: self sampleDataFrame
 ]
 
 { #category : #test }
+AISpDataFrameBasicInfoTest >> testInitializePresenters [
+
+	self
+		assertCollection: dfBrowser dataFramePresenter items
+		hasSameElements: dfBrowser summaryDescriptionsLabels.
+	self assert: (dfBrowser dataFramePresenter columns anyOne isKindOf: SpStringTableColumn)
+]
+
+{ #category : #tests }
 AISpDataFrameBasicInfoTest >> testSummaryDescriptions [
 
-	self assert: (self dfBrowser summaryDescriptions isKindOf: Dictionary)
+	self assert:
+		(self dfBrowser summaryDescriptions isKindOf: Dictionary)
 ]
 
-{ #category : #test }
+{ #category : #tests }
 AISpDataFrameBasicInfoTest >> testSummaryDescriptionsLabels [
 
-	self assert: (self dfBrowser summaryDescriptionsLabels isKindOf: Collection).
-	self deny: self dfBrowser summaryDescriptionsLabels isEmpty.
+	self
+		assertCollection: self dfBrowser summaryDescriptionsLabels
+		hasSameElements: { 'Dimensions'. 'Has nil'. 'Has categorical' }
 ]
 
 { #category : #test }
+AISpDataFrameBasicInfoTest >> testSummaryDescriptorsAt [
+
+	self
+		assert: (self dfBrowser summaryDescriptorsAt: 'Dimensions')
+		equals: #dimensions.
+	self
+		assert: (self dfBrowser summaryDescriptorsAt: 'Has nil')
+		equals: #hasNil.
+	self
+		assert: (self dfBrowser summaryDescriptorsAt: 'Has categorical')
+		equals: #hasCategorical
+]
+
+{ #category : #tests }
 AISpDataFrameBasicInfoTest >> testSummaryValueFor [
 
-	self assert: (self dfBrowser summaryValueFor: 'Dimensions') equals: '(3@9)'.
-
-
+	self
+		assert: (self dfBrowser summaryValueFor: 'Dimensions')
+		equals: '(3@9)'.
+		self
+		assert: (self dfBrowser summaryValueFor: 'Has nil')
+		equals: 'false'.
+		self
+		assert: (self dfBrowser summaryValueFor: 'Has categorical')
+		equals: 'false'.
 ]
