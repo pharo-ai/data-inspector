@@ -31,11 +31,12 @@ AISpDataFrameBasicInfoTest >> testSummaryDescriptions [
 		(self dfBrowser summaryDescriptions isKindOf: Dictionary)
 ]
 
-{ #category : #test }
+{ #category : #tests }
 AISpDataFrameBasicInfoTest >> testSummaryDescriptionsLabels [
 
-	self assert: (self dfBrowser summaryDescriptionsLabels isKindOf: Collection).
-	self deny: self dfBrowser summaryDescriptionsLabels isEmpty.
+	self
+		assertCollection: self dfBrowser summaryDescriptionsLabels
+		hasSameElements: { 'Dimensions'. 'Has nil'. 'Has categorical' }
 ]
 
 { #category : #tests }
