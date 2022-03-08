@@ -24,10 +24,11 @@ AISpDataFrameBasicInfoTest >> setUp [
 	dfBrowser := AISpDataFrameBasicInfo on: self sampleDataFrame
 ]
 
-{ #category : #test }
+{ #category : #tests }
 AISpDataFrameBasicInfoTest >> testSummaryDescriptions [
 
-	self assert: (self dfBrowser summaryDescriptions isKindOf: Dictionary)
+	self assert:
+		(self dfBrowser summaryDescriptions isKindOf: Dictionary)
 ]
 
 { #category : #test }
