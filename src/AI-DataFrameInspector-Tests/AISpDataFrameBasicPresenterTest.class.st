@@ -22,8 +22,12 @@ AISpDataFrameBasicPresenterTest >> setUp [
 	dfPresenter := AISpDataFrameBasicPresenter on: self sampleDataFrame.
 ]
 
-{ #category : #test }
-AISpDataFrameBasicPresenterTest >> testBasicInfoPresenter [
+{ #category : #tests }
+AISpDataFrameBasicPresenterTest >> testInitializePresenters [
 
-	self assert: (self dfPresenter basicInfoPresenter isKindOf: AISpDataFrameBasicInfo).
+	self assert:
+		(self dfPresenter basicInfoPresenter isKindOf:
+			 AISpDataFrameBasicInfo).
+	self assert:
+		(self dfPresenter basicVizPresenter isKindOf: AISpDataFrameBasicViz)
 ]
