@@ -24,22 +24,6 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #layout }
-AISpDataFrameBasicPresenter class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		add: #basicVizPresenter
-		  expand: true
-		  fill: true
-		  padding: 0;
-		add: #basicInfoPresenter
-		  expand: true
-		  fill: true
-		  padding: 0;
-		yourself.
-
-]
-
 { #category : #accessing }
 AISpDataFrameBasicPresenter >> basicInfoPresenter [
 
@@ -62,6 +46,22 @@ AISpDataFrameBasicPresenter >> basicVizPresenter [
 AISpDataFrameBasicPresenter >> basicVizPresenter: anObject [
 
 	basicVizPresenter := anObject
+]
+
+{ #category : #layout }
+AISpDataFrameBasicPresenter >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: basicVizPresenter
+		  expand: true
+		  fill: true
+		  padding: 0;
+		add: basicInfoPresenter
+		  expand: true
+		  fill: true
+		  padding: 0;
+		yourself.
+
 ]
 
 { #category : #initialization }

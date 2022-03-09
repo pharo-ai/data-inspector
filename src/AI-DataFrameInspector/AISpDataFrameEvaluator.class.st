@@ -22,21 +22,6 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #layout }
-AISpDataFrameEvaluator class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		add: #toolbar
-			expand: false
-			fill: true
-			padding: 2;
-		add: #evalPresenter
-			expand: true
-			fill: true
-			padding: 2;				
-		yourself
-]
-
 { #category : #accessing }
 AISpDataFrameEvaluator >> dataFrame [
 
@@ -47,6 +32,21 @@ AISpDataFrameEvaluator >> dataFrame [
 AISpDataFrameEvaluator >> dataFrame: anObject [
 
 	dataFrame := anObject
+]
+
+{ #category : #layout }
+AISpDataFrameEvaluator >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: toolbar
+			expand: false
+			fill: true
+			padding: 2;
+		add: evalPresenter
+			expand: true
+			fill: true
+			padding: 2;				
+		yourself
 ]
 
 { #category : #commands }

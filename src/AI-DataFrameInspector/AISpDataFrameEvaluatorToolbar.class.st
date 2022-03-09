@@ -19,10 +19,10 @@ Class {
 }
 
 { #category : #layout }
-AISpDataFrameEvaluatorToolbar class >> defaultLayout [
+AISpDataFrameEvaluatorToolbar >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
-		add: #toolbar;
+		add: toolbar;
 		yourself
 ]
 

@@ -20,22 +20,6 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #layout }
-AISpDataFrameInspector class >> defaultLayout [
-
-	^ SpPanedLayout newTopToBottom
-		add: #dataFramePresenter;
-		add: (SpPanedLayout newLeftToRight
-				add: #evaluatorPane;
-				add: (SpPanedLayout newTopToBottom
-					add: #summaryPresenter;
-					add: #additionalInfoPane;				
-					yourself);
-				yourself);
-		yourself.
-
-]
-
 { #category : #examples }
 AISpDataFrameInspector class >> example01 [
 	<example>
@@ -77,14 +61,14 @@ AISpDataFrameInspector class >> on: aDataFrame [
 { #category : #'instance creation' }
 AISpDataFrameInspector class >> openOn: aDataFrame [
 
-	^ (self on: aDataFrame) 
-		openWithSpec;
-		withWindowDo: [ :w | 
-          w
-				extent: 1200 @ 700;
-				centered;
-            title: 'DataFrame Inspector' translated;
-            aboutText: 'About DataFrame' ]
+	^ (self on: aDataFrame)
+		  open;
+		  withWindowDo: [ :w | 
+			  w
+				  extent: 1200 @ 700;
+				  centered;
+				  title: 'DataFrame Inspector' translated;
+				  aboutText: 'About DataFrame' ]
 ]
 
 { #category : #initialization }
@@ -139,6 +123,22 @@ AISpDataFrameInspector >> dataFramePresenter [
 AISpDataFrameInspector >> dataFramePresenter: anObject [
 
 	dataFramePresenter := anObject
+]
+
+{ #category : #layout }
+AISpDataFrameInspector >> defaultLayout [
+
+	^ SpPanedLayout newTopToBottom
+		add: dataFramePresenter;
+		add: (SpPanedLayout newLeftToRight
+				add: evaluatorPane;
+				add: (SpPanedLayout newTopToBottom
+					add: summaryPresenter;
+					add: additionalInfoPane;				
+					yourself);
+				yourself);
+		yourself.
+
 ]
 
 { #category : #accessing }
