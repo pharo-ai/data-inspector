@@ -18,7 +18,7 @@ BaselineOfAIDataInspector >> baseline: spec [
 			spec 
 				package: 'AI-DataFrameInspector'			with: [ spec requires: #('DataFrame') ];
 				package: 'AI-DataFrameInspector-Tests'	with: [ spec requires: #('AI-DataFrameInspector') ].
-			spec 
+			spec
 				group: 'Core' 						with: #('AI-DataFrameInspector');
 				group: 'Tests' 						with: #('AI-DataFrameInspector' 'AI-DataFrameInspector-Tests');
 				group: 'default' 					with: #('Core' 'Tests') ]

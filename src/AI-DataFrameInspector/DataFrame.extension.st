@@ -7,16 +7,6 @@ DataFrame >> at: anIndex ifAbsent: aBlock [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
-DataFrame >> evaluator [
-    <inspectorPresentationOrder: 2 title: 'DataFrame'>
-    
-	^ AISpDataFrameInspector on: (
-		self numberOfRows > self evaluatorRowsLimit
-			ifFalse: [ self ]
-			ifTrue: [ self head: AISpDataFrameInspector maxRows ])
-]
-
-{ #category : #'*AI-DataFrameInspector' }
 DataFrame >> evaluatorContext: aContext [
 
 	aContext withoutEvaluator

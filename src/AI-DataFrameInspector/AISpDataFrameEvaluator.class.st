@@ -99,18 +99,24 @@ AISpDataFrameEvaluator >> evaluatorActions [
 
 { #category : #initialization }
 AISpDataFrameEvaluator >> initializePresenters [
+
 	" Private - See superimplementor's comment "
 
 	application := StPharoApplication new.
-
-	toolbar := self instantiate: AISpDataFrameEvaluatorToolbar on: self dataFrame.
+	
+	self initializeToolbar.
 
 	evalPresenter := self instantiate: SpCodePresenter.
-	evalPresenter 
+	evalPresenter
 		withSyntaxHighlight;
 		withLineNumbers;
-		beForObject: self dataFrame.
+		beForObject: self dataFrame
+]
 
+{ #category : #initialization }
+AISpDataFrameEvaluator >> initializeToolbar [
+
+	toolbar := self instantiate: AISpDataFrameEvaluatorToolbar on: self dataFrame
 ]
 
 { #category : #accessing }
