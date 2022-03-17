@@ -43,7 +43,9 @@ BaselineOfAIDataInspector >> externalDependencies: spec [
 		with: [ spec repository: 'github://PolyMathOrg/DataFrame/src' ].
 	spec
 		baseline: 'Roassal3'
-		with: [ spec repository: 'github://ObjectProfile/Roassal3:v0.9.9f' ]
+		with: [ spec
+			repository: 'github://ObjectProfile/Roassal3:v0.9.9f';
+			onConflict: [ :ex | ex useIncoming ] ]
 ]
 
 { #category : #baselines }
