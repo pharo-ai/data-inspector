@@ -9,6 +9,15 @@ BaselineOfAIDataInspector >> baseline: spec [
 
 	<baseline>
 	
+	spec for: #( common ) do: [ 
+		self externalDependencies: spec.
+		self packages: spec.
+		
+		spec
+		  group: 'Core' with: #( 'AI-DataFrameInspector' );
+		  group: 'Tests' with: #( 'AI-DataFrameInspector' 'AI-DataFrameInspector-Tests' );
+		  group: 'default' with: #( 'Core' 'Tests' ) ].
+	
 	"Pharo 9 support"
 	spec for: #'pharo9.x' do: [ 
 		self externalDependencies: spec.
@@ -16,13 +25,14 @@ BaselineOfAIDataInspector >> baseline: spec [
 		
 		spec
 			package: 'AI-DataFrameInspectorPharo9'
-			with: [ spec requires: #( 'AI-DataFrameInspector' ) ] ].
+			with: [ spec requires: #( 'AI-DataFrameInspector' ) ].
+		
+		"Add AI-DataFrameInspectorPharo9 to the Core group"
+		spec
+		  group: 'Core' with: #( 'AI-DataFrameInspector' 'AI-DataFrameInspectorPharo9' );
+		  group: 'Tests' with: #( 'AI-DataFrameInspector' 'AI-DataFrameInspector-Tests' );
+		  group: 'default' with: #( 'Core' 'Tests' )].
 
-	"Pharo 10 or >"
-	spec for: #( common ) do: [ 
-		self externalDependencies: spec.
-		self packages: spec.
-		self groups: spec ]
 ]
 
 { #category : #baselines }
@@ -38,8 +48,7 @@ BaselineOfAIDataInspector >> groups: spec [
 
 	^ spec
 		  group: 'Core' with: #( 'AI-DataFrameInspector' );
-		  group: 'Tests'
-		  with: #( 'AI-DataFrameInspector' 'AI-DataFrameInspector-Tests' );
+		  group: 'Tests' with: #( 'AI-DataFrameInspector' 'AI-DataFrameInspector-Tests' );
 		  group: 'default' with: #( 'Core' 'Tests' )
 ]
 
