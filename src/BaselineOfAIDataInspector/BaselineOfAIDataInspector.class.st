@@ -24,7 +24,7 @@ BaselineOfAIDataInspector >> baseline: spec [
 			spec
 				for: #'pharo9.x'
 				do: [
-					spec package: 'AI-DataFrameInspector'.
+					spec package: 'AI-DataFrameInspector' with: [ spec requires: #('DataFrame') ].
 					spec package: 'AI-DataFrameInspectorPharo9' with: [ spec requires: #('AI-DataFrameInspector') ] ].
 			
 			"Groups"
