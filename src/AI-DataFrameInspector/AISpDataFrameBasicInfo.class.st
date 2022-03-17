@@ -22,15 +22,6 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #layout }
-AISpDataFrameBasicInfo class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		add: #dataFramePresenter;
-		yourself.
-
-]
-
 { #category : #initialization }
 AISpDataFrameBasicInfo >> dataFramePresenter [
 
@@ -41,6 +32,14 @@ AISpDataFrameBasicInfo >> dataFramePresenter [
 AISpDataFrameBasicInfo >> dataFramePresenter: anObject [
 
 	dataFramePresenter := anObject
+]
+
+{ #category : #layout }
+AISpDataFrameBasicInfo >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: dataFramePresenter;
+		yourself
 ]
 
 { #category : #initialization }

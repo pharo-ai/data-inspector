@@ -22,21 +22,6 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #layout }
-AISpDataFrameEvaluator class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		add: #toolbar
-			expand: false
-			fill: true
-			padding: 2;
-		add: #evalPresenter
-			expand: true
-			fill: true
-			padding: 2;				
-		yourself
-]
-
 { #category : #accessing }
 AISpDataFrameEvaluator >> dataFrame [
 
@@ -47,6 +32,21 @@ AISpDataFrameEvaluator >> dataFrame [
 AISpDataFrameEvaluator >> dataFrame: anObject [
 
 	dataFrame := anObject
+]
+
+{ #category : #layout }
+AISpDataFrameEvaluator >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: toolbar
+			expand: false
+			fill: true
+			padding: 2;
+		add: evalPresenter
+			expand: true
+			fill: true
+			padding: 2;				
+		yourself
 ]
 
 { #category : #commands }
@@ -99,18 +99,24 @@ AISpDataFrameEvaluator >> evaluatorActions [
 
 { #category : #initialization }
 AISpDataFrameEvaluator >> initializePresenters [
+
 	" Private - See superimplementor's comment "
 
 	application := StPharoApplication new.
-
-	toolbar := self instantiate: AISpDataFrameEvaluatorToolbar on: self dataFrame.
+	
+	self initializeToolbar.
 
 	evalPresenter := self instantiate: SpCodePresenter.
-	evalPresenter 
+	evalPresenter
 		withSyntaxHighlight;
 		withLineNumbers;
-		beForObject: self dataFrame.
+		beForObject: self dataFrame
+]
 
+{ #category : #initialization }
+AISpDataFrameEvaluator >> initializeToolbar [
+
+	toolbar := self instantiate: AISpDataFrameEvaluatorToolbar on: self dataFrame
 ]
 
 { #category : #accessing }

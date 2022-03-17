@@ -7,15 +7,6 @@ Class {
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #layout }
-AISpDataFrameSummaryPresenter class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom
-		add: #dataFramePresenter;
-		yourself.
-
-]
-
 { #category : #accessing }
 AISpDataFrameSummaryPresenter >> dataFramePresenter [
 
@@ -28,27 +19,33 @@ AISpDataFrameSummaryPresenter >> dataFramePresenter: anObject [
 	dataFramePresenter := anObject
 ]
 
+{ #category : #layout }
+AISpDataFrameSummaryPresenter >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		add: dataFramePresenter;
+		yourself
+]
+
 { #category : #initialization }
-AISpDataFrameSummaryPresenter >> initializePresenter [ 
+AISpDataFrameSummaryPresenter >> initializePresenters [
+
 	" Private - The summary pane is a table to display receiver summary statistics "
 
-	dataFramePresenter := self newTable
+	dataFramePresenter := self newTable.
+	dataFramePresenter
 		showColumnHeaders;
 		beMultipleSelection;
-"		contextMenu: [ self contextMenu ];
+		"contextMenu: [ self contextMenu ];
 		contextKeyBindings: self contextMenuKeyBindings;"
 		items: self summaryStatsLabels;
-		addColumn:  (SpStringTableColumn 
-			title: 'Statistic' 
-			evaluated: [ :each | each ]);
-		yourself.
-	self columnNames do: [ : columnName |
-		dataFramePresenter addColumn: (
-			SpStringTableColumn new
-				title: columnName;
-				evaluated: [ : aString | self summaryStatsValueFor: aString in: columnName ];
-				beSortable) ].
+		addColumn: (SpStringTableColumn title: 'Statistic' evaluated: [ :each | each ]).
 
+	self columnNames do: [ :columnName | 
+		dataFramePresenter addColumn: (SpStringTableColumn new
+				 title: columnName;
+				 evaluated: [ :aString | self summaryStatsValueFor: aString in: columnName ];
+				 beSortable) ]
 ]
 
 { #category : #'private building' }
