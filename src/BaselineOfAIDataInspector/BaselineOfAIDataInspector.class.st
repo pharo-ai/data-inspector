@@ -40,7 +40,10 @@ BaselineOfAIDataInspector >> externalDependencies: spec [
 
 	spec
 		baseline: 'DataFrame'
-		with: [ spec repository: 'github://PolyMathOrg/DataFrame/src' ]
+		with: [ spec repository: 'github://PolyMathOrg/DataFrame/src' ].
+	spec
+		baseline: 'Roassal3'
+		with: [ spec repository: 'github://ObjectProfile/Roassal3:v0.9.9f' ]
 ]
 
 { #category : #baselines }
