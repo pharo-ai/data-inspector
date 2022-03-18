@@ -21,7 +21,8 @@ AISpDataFrameBasicInfoTest >> entity [
 { #category : #running }
 AISpDataFrameBasicInfoTest >> setUp [
 
-	dfBrowser := AISpDataFrameBasicInfo on: self sampleDataFrame
+	super setUp.
+	dfBrowser := AISpDataFrameBasicInfoPresenter on: self sampleDataFrame
 ]
 
 { #category : #test }
