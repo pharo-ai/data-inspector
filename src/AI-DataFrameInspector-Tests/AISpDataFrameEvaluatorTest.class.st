@@ -20,7 +20,7 @@ AISpDataFrameEvaluatorTest >> dfEvaluator [
 AISpDataFrameEvaluatorTest >> setUp [
 	super setUp.
 	
-	dfEvaluator := AISpDataFrameEvaluator on: self sampleDataFrame
+	dfEvaluator := AISpDataFrameEvaluatorPresenter on: self sampleDataFrame
 ]
 
 { #category : #test }

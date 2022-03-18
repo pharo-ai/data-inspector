@@ -7,17 +7,17 @@ DataFrame >> at: anIndex ifAbsent: aBlock [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
-DataFrame >> evaluator [
-    <inspectorPresentationOrder: 2 title: 'DataFrame'>
+DataFrame >> dataDescriber [
+    <inspectorPresentationOrder: 2 title: 'Data Description'>
     
-	^ AISpDataFrameInspector on: (
+	^ AISpDataFrameDescriberPresenter on: (
 		self numberOfRows > self evaluatorRowsLimit
 			ifFalse: [ self ]
-			ifTrue: [ self head: AISpDataFrameInspector maxRows ])
+			ifTrue: [ self head: AISpDataFrameDescriberPresenter maxRows ])
 ]
 
 { #category : #'*AI-DataFrameInspector' }
-DataFrame >> evaluatorContext: aContext [
+DataFrame >> dataDescriberContext: aContext [
 
 	aContext withoutEvaluator
 
@@ -25,21 +25,48 @@ DataFrame >> evaluatorContext: aContext [
 
 { #category : #'*AI-DataFrameInspector' }
 DataFrame >> evaluatorRowsLimit [
+
 	" Private - The maximum limit to consider a DataFrame is big enough for a visualization "
 
-	^ 10000
+	^ 5000
 ]
 
 { #category : #'*AI-DataFrameInspector' }
 DataFrame >> hasCategorical [
+
 	" Answer <true> if the receiver has at least one categorical (not numerical) value "
-	
-	^ self anySatisfy: #isCategorical.
+
+	^ self anySatisfy: [ :each | each isCategorical ]
 ]
 
 { #category : #'*AI-DataFrameInspector' }
 DataFrame >> hasNil [
+
 	" Answer <true> if the receiver has at least one nil value "
+
+	^ self anySatisfy: [ :each | each hasNil ]
+]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataFrame >> visualizer [
+
+	<inspectorPresentationOrder: 3 title: 'Visualizations'>
+	| roassalPresenter |
 	
-	^ self anySatisfy: #hasNil.
+	roassalPresenter := AISpDataFrameVisualizerPresenter on:
+		(self numberOfRows > self evaluatorRowsLimit
+			ifFalse: [ self ]
+			ifTrue: [ self head: AISpDataFrameDescriberPresenter maxRows ]).
+	
+	^ SpRoassal3InspectorPresenter new
+		canvas: roassalPresenter createCanvas;
+		yourself
+	
+
+]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataFrame >> visualizerContext: aContext [
+
+	aContext withoutEvaluator
 ]

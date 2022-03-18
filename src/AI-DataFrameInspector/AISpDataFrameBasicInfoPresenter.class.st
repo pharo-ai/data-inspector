@@ -14,7 +14,7 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #AISpDataFrameBasicInfo,
+	#name : #AISpDataFrameBasicInfoPresenter,
 	#superclass : #AISpDataFrameAbstractPresenter,
 	#instVars : [
 		'dataFramePresenter'
@@ -23,19 +23,19 @@ Class {
 }
 
 { #category : #initialization }
-AISpDataFrameBasicInfo >> dataFramePresenter [
+AISpDataFrameBasicInfoPresenter >> dataFramePresenter [
 
 	^ dataFramePresenter
 ]
 
 { #category : #accessing }
-AISpDataFrameBasicInfo >> dataFramePresenter: anObject [
+AISpDataFrameBasicInfoPresenter >> dataFramePresenter: anObject [
 
 	dataFramePresenter := anObject
 ]
 
 { #category : #layout }
-AISpDataFrameBasicInfo >> defaultLayout [
+AISpDataFrameBasicInfoPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: dataFramePresenter;
@@ -43,14 +43,12 @@ AISpDataFrameBasicInfo >> defaultLayout [
 ]
 
 { #category : #initialization }
-AISpDataFrameBasicInfo >> initializePresenters [
+AISpDataFrameBasicInfoPresenter >> initializePresenters [
 	" Private - The summary pane is a table to display receiver summary statistics "
 
 	dataFramePresenter := self newTable
 		showColumnHeaders;
 		beMultipleSelection;
-"		contextMenu: [ self contextMenu ];
-		contextKeyBindings: self contextMenuKeyBindings;"
 		items: self summaryDescriptionsLabels;
 		addColumn:  (SpStringTableColumn 
 			title: 'Type' 
@@ -64,7 +62,7 @@ AISpDataFrameBasicInfo >> initializePresenters [
 ]
 
 { #category : #'private building' }
-AISpDataFrameBasicInfo >> summaryDescriptions [
+AISpDataFrameBasicInfoPresenter >> summaryDescriptions [
 
 	^ Dictionary new
 		at: 'Dimensions' 		put: #dimensions;
@@ -74,20 +72,20 @@ AISpDataFrameBasicInfo >> summaryDescriptions [
 ]
 
 { #category : #'private building' }
-AISpDataFrameBasicInfo >> summaryDescriptionsLabels [
+AISpDataFrameBasicInfoPresenter >> summaryDescriptionsLabels [
 
 	^ self summaryDescriptions keys asSortedCollection 
 ]
 
 { #category : #'private building' }
-AISpDataFrameBasicInfo >> summaryDescriptorsAt: aString [
+AISpDataFrameBasicInfoPresenter >> summaryDescriptorsAt: aString [
 	"Answer a <Symbol> representing a selector to obtain the value of a summary value in the receiver's data frame "
 
 	^ self summaryDescriptions at: aString
 ]
 
 { #category : #'private building' }
-AISpDataFrameBasicInfo >> summaryValueFor: aString [
+AISpDataFrameBasicInfoPresenter >> summaryValueFor: aString [
 
 	^ StObjectPrinter asNonTruncatedTextFrom: 
 		(self dataFrame perform: (self summaryDescriptorsAt: aString))

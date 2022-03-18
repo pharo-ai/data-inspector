@@ -27,7 +27,7 @@ AISpDataFrameBasicPresenterTest >> testInitializePresenters [
 
 	self assert:
 		(self dfPresenter basicInfoPresenter isKindOf:
-			 AISpDataFrameBasicInfo).
+			 AISpDataFrameBasicInfoPresenter).
 	self assert:
-		(self dfPresenter basicVizPresenter isKindOf: AISpDataFrameBasicViz)
+		(self dfPresenter basicVizPresenter isKindOf: AISpDataFrameVisualizerPresenter)
 ]
