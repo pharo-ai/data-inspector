@@ -10,12 +10,6 @@ Class {
 	#category : #'AI-DataFrameInspector-Tests'
 }
 
-{ #category : #accessing }
-AISpDataFrameEvaluatorPresenterTest >> dfEvaluator [
-
-	^ dfEvaluator
-]
-
 { #category : #running }
 AISpDataFrameEvaluatorPresenterTest >> setUp [
 	super setUp.
@@ -24,7 +18,7 @@ AISpDataFrameEvaluatorPresenterTest >> setUp [
 ]
 
 { #category : #tests }
-AISpDataFrameEvaluatorPresenterTest >> testEvalPresenterText [
+AISpDataFrameEvaluatorPresenterTest >> testEvaluatorPresenterText [
 
-	self assert: self dfEvaluator evalPresenterText equals: String empty
+	self assert: dfEvaluator evaluatorPresenterText equals: 'self'
 ]

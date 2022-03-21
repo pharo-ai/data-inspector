@@ -30,22 +30,16 @@ AISpDataFrameEvaluatorPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
-AISpDataFrameEvaluatorPresenter >> evalPresenterText [
-
-	^ evaluatorPresenter text
-]
-
-{ #category : #initialization }
-AISpDataFrameEvaluatorPresenter >> evalPresenterText: aString [
-
-	evaluatorPresenter text: aString
-]
-
 { #category : #accessing }
 AISpDataFrameEvaluatorPresenter >> evaluatorPresenter [
 
 	^ evaluatorPresenter
+]
+
+{ #category : #initialization }
+AISpDataFrameEvaluatorPresenter >> evaluatorPresenterText [
+
+	^ evaluatorPresenter text
 ]
 
 { #category : #initialization }
