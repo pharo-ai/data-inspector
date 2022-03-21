@@ -2,13 +2,13 @@
 I am a baseline
 "
 Class {
-	#name : #BaselineOfAIDataInspector,
+	#name : #BaselineOfAIDataFrameInspector,
 	#superclass : #BaselineOf,
 	#category : #BaselineOfAIDataFrameInspector
 }
 
 { #category : #baselines }
-BaselineOfAIDataInspector >> baseline: spec [
+BaselineOfAIDataFrameInspector >> baseline: spec [
 
 	<baseline>
 	
