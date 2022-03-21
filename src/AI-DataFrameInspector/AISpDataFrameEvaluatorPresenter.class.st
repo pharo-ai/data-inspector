@@ -16,8 +16,7 @@ Class {
 	#superclass : #AISpDataFrameAbstractPresenter,
 	#instVars : [
 		'toolbar',
-		'evalPresenter',
-		'activationBlock'
+		'evaluatorPresenter'
 	],
 	#category : #'AI-DataFrameInspector-Sub presenters'
 }
@@ -27,63 +26,37 @@ AISpDataFrameEvaluatorPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
 		add: toolbar expand: false;
-		add: evalPresenter;
+		add: evaluatorPresenter;
 		yourself
-]
-
-{ #category : #commands }
-AISpDataFrameEvaluatorPresenter >> doEvaluateAllAndGo [
-
-	evalPresenter selectAll.
-	self doEvaluateAndGo
-]
-
-{ #category : #commands }
-AISpDataFrameEvaluatorPresenter >> doEvaluateAndGo [
-
-	| evaluatingResult |
-	
-	"activationBlock ifNil: [ ^ self ]."
-
-	evaluatingResult := evalPresenter 
-		evaluate: evalPresenter selectedTextOrLine
-		onCompileError: [ ^ self ]
-		onError: [ :e | e pass ].
-	
-	evalPresenter insertPrintPopoverAfterCurrentSelection: evaluatingResult.
-	
-	"activationBlock value: (StEvaluatedSelectionModel newValue: value)"
 ]
 
 { #category : #initialization }
 AISpDataFrameEvaluatorPresenter >> evalPresenterText [
 
-	^ evalPresenter text
+	^ evaluatorPresenter text
 ]
 
 { #category : #initialization }
 AISpDataFrameEvaluatorPresenter >> evalPresenterText: aString [
 
-	evalPresenter text: aString.
+	evaluatorPresenter text: aString
 ]
 
-{ #category : #evaluation }
-AISpDataFrameEvaluatorPresenter >> evaluatorActions [
-	
-	^ CmCommandGroup forSpec
-		beDisplayedAsGroup;
-		register: (StEvaluateCommand forSpecContext: self);
-		yourself
+{ #category : #accessing }
+AISpDataFrameEvaluatorPresenter >> evaluatorPresenter [
+
+	^ evaluatorPresenter
 ]
 
 { #category : #initialization }
 AISpDataFrameEvaluatorPresenter >> initializeEvaluator [
 
-	evalPresenter := self instantiate: SpCodePresenter.
-	evalPresenter
+	evaluatorPresenter := self instantiate: SpCodePresenter.
+	evaluatorPresenter
 		withSyntaxHighlight;
 		withLineNumbers;
-		beForObject: self dataFrame
+		beForObject: self dataFrame;
+		text: 'self'
 ]
 
 { #category : #initialization }

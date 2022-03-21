@@ -19,20 +19,6 @@ Class {
 	#category : #'AI-DataFrameInspector-Main presenters'
 }
 
-{ #category : #examples }
-AISpDataFrameDescriberPresenter class >> example01 [
-	<example>
-	
-	self openOn: AIDatasets loadIris.
-]
-
-{ #category : #examples }
-AISpDataFrameDescriberPresenter class >> example02 [
-	<example>
-	
-	self openOn: AIDatasets loadWine.
-]
-
 { #category : #accessing }
 AISpDataFrameDescriberPresenter class >> maxRows [
 	" Answer the <Number> of rows to visualize in the receiver "
@@ -156,6 +142,8 @@ AISpDataFrameDescriberPresenter >> initializePresenters [
 	self initializeEvaluatorPresenter.
 	self initializeAdditionalInfoPresenter.
 	self initializeSummaryPresenter.
+	
+	self focusOrder add: evaluatorPane
 
 ]
 

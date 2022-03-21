@@ -77,6 +77,5 @@ AISpDataFrameBasicInfoPresenter >> summaryDescriptorsAt: aString [
 { #category : #'private building' }
 AISpDataFrameBasicInfoPresenter >> summaryValueFor: aString [
 
-	^ StObjectPrinter asNonTruncatedTextFrom:
-		  (self dataFrame perform: (self summaryDescriptorsAt: aString))
+	^ (self dataFrame perform: (self summaryDescriptorsAt: aString)) asString
 ]

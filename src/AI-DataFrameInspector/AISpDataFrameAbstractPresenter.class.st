@@ -11,7 +11,7 @@ Internal Representation and Key Implementation Points.
 "
 Class {
 	#name : #AISpDataFrameAbstractPresenter,
-	#superclass : #StPresenter,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'dataFrame'
 	],

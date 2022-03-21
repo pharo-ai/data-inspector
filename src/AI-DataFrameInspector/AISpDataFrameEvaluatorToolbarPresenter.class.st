@@ -32,6 +32,12 @@ AISpDataFrameEvaluatorToolbarPresenter >> doEvaluateAllAndGo [
 	self owner doEvaluateAllAndGo
 ]
 
+{ #category : #accessing }
+AISpDataFrameEvaluatorToolbarPresenter >> evaluatorPresenter [
+
+	^ self owner evaluatorPresenter
+]
+
 { #category : #initialization }
 AISpDataFrameEvaluatorToolbarPresenter >> initializePresenters [ 
 
@@ -41,23 +47,12 @@ AISpDataFrameEvaluatorToolbarPresenter >> initializePresenters [
 { #category : #initialization }
 AISpDataFrameEvaluatorToolbarPresenter >> initializeToolbar [
 
-	toolbar := self newToolbar.
-	toolbar
-		displayMode: StPharoSettings toolbarDisplayMode;
-		addStyle: 'stToolbar';
-		fillWith: self toolbarActions
-]
+	"evaluateItButton := AISpEvaluateItCommand asSpecButtonForContext: self"
 
-{ #category : #actions }
-AISpDataFrameEvaluatorToolbarPresenter >> loadPage: aFileReference [
+	| group |
+	group := CmCommandGroup forSpec.
+	AISpAbstractToolbarCommand toolbarButtons do: [ :aCommand | 
+		group register: (aCommand forSpecContext: self) ].
 
-	self owner evalPresenterText: (StPlaygroundPage fromReference: aFileReference) contents.
-]
-
-{ #category : #accessing }
-AISpDataFrameEvaluatorToolbarPresenter >> toolbarActions [
-
-	^ CmCommandGroup forSpec
-		register: (StPlaygroundDoItCommand forSpecContext: self);
-		yourself
+	toolbar := group asToolbarPresenter
 ]
