@@ -1,3 +1,8 @@
+"
+I am a command that copies the clicked row with the names of the label of the DataFrame.
+
+I am converted to a spec context menu that appears when you right click in a DataFrame row.
+"
 Class {
 	#name : #AISpDataFrameCopyRowValuesWithLabelsCommand,
 	#superclass : #AISpDataFrameCommand,

@@ -5,7 +5,7 @@ Class {
 	#name : #AISpDataFrameSummaryPresenter,
 	#superclass : #AISpDataFrameAbstractPresenter,
 	#instVars : [
-		'dataFramePresenter'
+		'dataFrameSummaryPresenter'
 	],
 	#category : #'AI-DataFrameInspector'
 }
@@ -14,27 +14,25 @@ Class {
 AISpDataFrameSummaryPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: dataFramePresenter;
+		add: dataFrameSummaryPresenter;
 		yourself
 ]
 
 { #category : #initialization }
 AISpDataFrameSummaryPresenter >> initializePresenters [
 
-	dataFramePresenter := self newTable.
-	dataFramePresenter
+	dataFrameSummaryPresenter := self newTable.
+	dataFrameSummaryPresenter
 		showColumnHeaders;
 		beMultipleSelection;
-		"contextMenu: [ self contextMenu ];
-		contextKeyBindings: self contextMenuKeyBindings;"
 		items: self summaryStatsLabels;
 		addColumn: (SpStringTableColumn title: 'Statistic' evaluated: [ :each | each ]).
 
 	self columnNames do: [ :columnName | 
-		dataFramePresenter addColumn: (SpStringTableColumn new
-				 title: columnName;
-				 evaluated: [ :aString | self summaryStatsValueFor: aString in: columnName ];
-				 beSortable) ]
+		dataFrameSummaryPresenter addColumn: (SpStringTableColumn new
+			title: columnName;
+			evaluated: [ :aString | self summaryStatsValueFor: aString in: columnName ];
+			beSortable) ]
 ]
 
 { #category : #defaults }
@@ -42,6 +40,7 @@ AISpDataFrameSummaryPresenter >> performCalculation: aString forDataSeries: colD
 
 	| calculation |
 	calculation := colDataSeries perform: (self summaryStatsAt: aString).
+
 	^ self roundResult: calculation
 ]
 
@@ -50,7 +49,7 @@ AISpDataFrameSummaryPresenter >> roundResult: aNumber [
 
 	"We choose to show only 3 decimal places according to the European Association of Science Editors guidelines include the useful rule of thumb: “numbers should be given in (sic) 2–3 effective digits”"
 
-	^ aNumber printShowingDecimalPlaces: 3
+	^ aNumber printShowingDecimalPlaces: 2
 ]
 
 { #category : #calculating }

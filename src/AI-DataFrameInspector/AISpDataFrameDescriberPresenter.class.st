@@ -4,7 +4,7 @@ AISpDataFrameInspector openOn: AIDatasets loadWine.
 "
 Class {
 	#name : #AISpDataFrameDescriberPresenter,
-	#superclass : #StInspection,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'dataFrame',
 		'evaluatorPane',
@@ -38,7 +38,7 @@ AISpDataFrameDescriberPresenter class >> maxRows [
 	" Answer the <Number> of rows to visualize in the receiver "
 	
 	^ MaxRows
-		ifNil: [ MaxRows := 5000 ]
+		ifNil: [ MaxRows := 1000 ]
 ]
 
 { #category : #accessing }

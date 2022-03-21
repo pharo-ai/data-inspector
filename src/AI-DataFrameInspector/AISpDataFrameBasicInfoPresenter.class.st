@@ -17,48 +17,39 @@ Class {
 	#name : #AISpDataFrameBasicInfoPresenter,
 	#superclass : #AISpDataFrameAbstractPresenter,
 	#instVars : [
-		'dataFramePresenter'
+		'dataFrameBasicInfoPresenter'
 	],
 	#category : #'AI-DataFrameInspector'
 }
 
-{ #category : #initialization }
-AISpDataFrameBasicInfoPresenter >> dataFramePresenter [
-
-	^ dataFramePresenter
-]
-
 { #category : #accessing }
-AISpDataFrameBasicInfoPresenter >> dataFramePresenter: anObject [
+AISpDataFrameBasicInfoPresenter >> dataFrameBasicInfoPresenter [
 
-	dataFramePresenter := anObject
+	^ dataFrameBasicInfoPresenter
 ]
 
 { #category : #layout }
 AISpDataFrameBasicInfoPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: dataFramePresenter;
+		add: dataFrameBasicInfoPresenter;
 		yourself
 ]
 
 { #category : #initialization }
 AISpDataFrameBasicInfoPresenter >> initializePresenters [
-	" Private - The summary pane is a table to display receiver summary statistics "
 
-	dataFramePresenter := self newTable
+	dataFrameBasicInfoPresenter := self newTable.
+	dataFrameBasicInfoPresenter
 		showColumnHeaders;
 		beMultipleSelection;
 		items: self summaryDescriptionsLabels;
-		addColumn:  (SpStringTableColumn 
-			title: 'Type' 
-			evaluated: [ :each | each ]);
-		addColumn: (
-			SpStringTableColumn new
-				title: 'Value';
-				evaluated: [ : aString | self summaryValueFor: aString ];
-				beSortable).
-
+		addColumn:
+			(SpStringTableColumn title: 'Type' evaluated: [ :each | each ]);
+		addColumn: (SpStringTableColumn new
+			title: 'Value';
+			evaluated: [ :aString | self summaryValueFor: aString ];
+			beSortable)
 ]
 
 { #category : #'private building' }
@@ -79,7 +70,6 @@ AISpDataFrameBasicInfoPresenter >> summaryDescriptionsLabels [
 
 { #category : #'private building' }
 AISpDataFrameBasicInfoPresenter >> summaryDescriptorsAt: aString [
-	"Answer a <Symbol> representing a selector to obtain the value of a summary value in the receiver's data frame "
 
 	^ self summaryDescriptions at: aString
 ]
@@ -87,6 +77,6 @@ AISpDataFrameBasicInfoPresenter >> summaryDescriptorsAt: aString [
 { #category : #'private building' }
 AISpDataFrameBasicInfoPresenter >> summaryValueFor: aString [
 
-	^ StObjectPrinter asNonTruncatedTextFrom: 
-		(self dataFrame perform: (self summaryDescriptorsAt: aString))
+	^ StObjectPrinter asNonTruncatedTextFrom:
+		  (self dataFrame perform: (self summaryDescriptorsAt: aString))
 ]

@@ -1,3 +1,8 @@
+"
+I am a command that opens the inspector on the DataFrame clicked row.
+
+I am converted to a spec context menu that appears when you right click in a DataFrame row.
+"
 Class {
 	#name : #AISpDataFrameInspectCommand,
 	#superclass : #AISpDataFrameCommand,

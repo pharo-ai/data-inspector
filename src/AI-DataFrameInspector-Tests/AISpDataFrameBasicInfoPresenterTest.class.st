@@ -1,5 +1,5 @@
 Class {
-	#name : #AISpDataFrameBasicInfoTest,
+	#name : #AISpDataFrameBasicInfoPresenterTest,
 	#superclass : #AISpDataFrameAbstractTest,
 	#instVars : [
 		'dfBrowser'
@@ -8,49 +8,48 @@ Class {
 }
 
 { #category : #accessing }
-AISpDataFrameBasicInfoTest >> dfBrowser [
+AISpDataFrameBasicInfoPresenterTest >> dfBrowser [
 	^ dfBrowser
 ]
 
 { #category : #accessing }
-AISpDataFrameBasicInfoTest >> entity [
+AISpDataFrameBasicInfoPresenterTest >> entity [
 
 	^ self dfBrowser entity
 ]
 
 { #category : #running }
-AISpDataFrameBasicInfoTest >> setUp [
+AISpDataFrameBasicInfoPresenterTest >> setUp [
 
 	super setUp.
 	dfBrowser := AISpDataFrameBasicInfoPresenter on: self sampleDataFrame
 ]
 
-{ #category : #test }
-AISpDataFrameBasicInfoTest >> testInitializePresenters [
+{ #category : #tests }
+AISpDataFrameBasicInfoPresenterTest >> testInitializePresenters [
 
 	self
-		assertCollection: dfBrowser dataFramePresenter items
-		hasSameElements: dfBrowser summaryDescriptionsLabels.
-	self assert: (dfBrowser dataFramePresenter columns anyOne isKindOf: SpStringTableColumn)
+		assertCollection: dfBrowser dataFrameBasicInfoPresenter items
+		hasSameElements: dfBrowser summaryDescriptionsLabels
 ]
 
 { #category : #tests }
-AISpDataFrameBasicInfoTest >> testSummaryDescriptions [
+AISpDataFrameBasicInfoPresenterTest >> testSummaryDescriptions [
 
 	self assert:
 		(self dfBrowser summaryDescriptions isKindOf: Dictionary)
 ]
 
 { #category : #tests }
-AISpDataFrameBasicInfoTest >> testSummaryDescriptionsLabels [
+AISpDataFrameBasicInfoPresenterTest >> testSummaryDescriptionsLabels [
 
 	self
 		assertCollection: self dfBrowser summaryDescriptionsLabels
 		hasSameElements: { 'Dimensions'. 'Has nil'. 'Has categorical' }
 ]
 
-{ #category : #test }
-AISpDataFrameBasicInfoTest >> testSummaryDescriptorsAt [
+{ #category : #tests }
+AISpDataFrameBasicInfoPresenterTest >> testSummaryDescriptorsAt [
 
 	self
 		assert: (self dfBrowser summaryDescriptorsAt: 'Dimensions')
@@ -64,7 +63,7 @@ AISpDataFrameBasicInfoTest >> testSummaryDescriptorsAt [
 ]
 
 { #category : #tests }
-AISpDataFrameBasicInfoTest >> testSummaryValueFor [
+AISpDataFrameBasicInfoPresenterTest >> testSummaryValueFor [
 
 	self
 		assert: (self dfBrowser summaryValueFor: 'Dimensions')

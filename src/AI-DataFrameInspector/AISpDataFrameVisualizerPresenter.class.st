@@ -117,48 +117,58 @@ AISpDataFrameVisualizerPresenter >> numericColumnNames [
 
 { #category : #initialization }
 AISpDataFrameVisualizerPresenter >> plotAllHistograms: aCanvas [
+
 	| shapes |
-	shapes := self allColumnValuesWithColumnName collect: [ : columnAssoc | 
+	shapes := self allColumnValuesWithColumnName collect: [ :columnAssoc | 
 		self plotHistogram: columnAssoc ].
-	aCanvas 
+	
+	aCanvas
 		addAll: shapes;
 		addInteraction: RSCanvasController new.
-	
+
 	aCanvas when: RSExtentChangedEvent do: [ 
 		RSFlowLayout new
 			gapSize: 10;
 			maxWidth: aCanvas extent x;
 			on: shapes.
 		aCanvas camera zoomToFit: aCanvas extent * 0.98.
-		
-		aCanvas signalUpdate ].
 
+		aCanvas signalUpdate ]
 ]
 
 { #category : #initialization }
 AISpDataFrameVisualizerPresenter >> plotHistogram: columnAssoc [
-	" Answer a <RSComposite> "
 
 	| container c columnValues plot vertical horizontal |
 
 	columnValues := columnAssoc value.
 	c := RSChart new.
 	container := RSGroup new.
-	c container: container.
-	plot := [ RSHistogramPlot new x: columnValues; bins: self numberOfBins ]
-	on: DomainError
-	do: [ : ex | RSLinePlot new y: columnValues  ].
 	
-	c addPlot: plot.
-	c addDecoration: (vertical := RSVerticalTick new).
-	c addDecoration: (horizontal := RSHorizontalTick new).
+	plot := [ RSHistogramPlot new
+		x: columnValues;
+		bins: self numberOfBins ]
+			on: DomainError
+			do: [ : ex | RSLinePlot new y: columnValues  ].
+			
+	vertical := RSVerticalTick new.
 	vertical fontSize: 11.
-	horizontal fontSize: 11.
+	horizontal := RSHorizontalTick new.
+	horizontal
+		fontSize: 11;
+		useDiagonalLabel.
+	
+	c container: container.
+	c addPlot: plot.
+	c addDecoration: vertical.
+	c addDecoration: horizontal.	
 	c title: columnAssoc key. 
 	c build.
+	
 	plot createdShapes @ (RSPopup new
 		model: #yourself;
 		yourself).
+	
 	^ container asShape.
 ]
 
