@@ -19,7 +19,7 @@ Class {
 		'evalPresenter',
 		'activationBlock'
 	],
-	#category : #'AI-DataFrameInspector'
+	#category : #'AI-DataFrameInspector-Sub presenters'
 }
 
 { #category : #layout }

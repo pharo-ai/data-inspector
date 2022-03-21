@@ -6,14 +6,13 @@ I am converted to a spec context menu that appears when you right click in a Dat
 Class {
 	#name : #AISpDataFrameCopyRowValuesWithLabelsCommand,
 	#superclass : #AISpDataFrameCommand,
-	#category : #'AI-DataFrameInspector'
+	#category : #'AI-DataFrameInspector-Context menu commands'
 }
 
 { #category : #converting }
 AISpDataFrameCopyRowValuesWithLabelsCommand >> asSpecCommand [ 
 	
-	^ super asSpecCommand 
-		iconProvider: self application;
+	^ super asSpecCommand
 		iconName: #smallCopy;
 		shortcutKey: $c control unix | $c control win | $c command mac;
 		yourself
@@ -21,6 +20,7 @@ AISpDataFrameCopyRowValuesWithLabelsCommand >> asSpecCommand [
 
 { #category : #executing }
 AISpDataFrameCopyRowValuesWithLabelsCommand >> execute [
+
 	"Execute the actions that should be done by the command.
 	 This method expect that the context has been put in #context inst. var. if any context is relevant."
 
@@ -29,6 +29,7 @@ AISpDataFrameCopyRowValuesWithLabelsCommand >> execute [
 
 { #category : #initialization }
 AISpDataFrameCopyRowValuesWithLabelsCommand >> initialize [
+
 	super initialize.
 	self
 		name: 'Copy row with labels';

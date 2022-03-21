@@ -15,7 +15,7 @@ Class {
 	#instVars : [
 		'toolbar'
 	],
-	#category : #'AI-DataFrameInspector'
+	#category : #'AI-DataFrameInspector-Sub presenters'
 }
 
 { #category : #layout }
@@ -41,11 +41,11 @@ AISpDataFrameEvaluatorToolbarPresenter >> initializePresenters [
 { #category : #initialization }
 AISpDataFrameEvaluatorToolbarPresenter >> initializeToolbar [
 
-	toolbar := self newToolbar
+	toolbar := self newToolbar.
+	toolbar
 		displayMode: StPharoSettings toolbarDisplayMode;
 		addStyle: 'stToolbar';
-		fillWith: self toolbarActions;
-		yourself
+		fillWith: self toolbarActions
 ]
 
 { #category : #actions }
@@ -59,8 +59,5 @@ AISpDataFrameEvaluatorToolbarPresenter >> toolbarActions [
 
 	^ CmCommandGroup forSpec
 		register: (StPlaygroundDoItCommand forSpecContext: self);
-		register: (StPlaygroundPublishCommand forSpecContext: self);
-		register: (StPlaygroundBindingsCommand forSpecContext: self owner);
-		register: (StPlaygroundPagesCommand forSpecContext: self);
 		yourself
 ]

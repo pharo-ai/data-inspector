@@ -4,14 +4,8 @@ Abstract class for context commands related with DataFrame inspector.
 Class {
 	#name : #AISpDataFrameCommand,
 	#superclass : #CmCommand,
-	#category : #'AI-DataFrameInspector'
+	#category : #'AI-DataFrameInspector-Context menu commands'
 }
-
-{ #category : #converting }
-AISpDataFrameCommand >> application [
-
-	^ StPharoApplication current
-]
 
 { #category : #accessing }
 AISpDataFrameCommand >> dataFrame [
@@ -27,7 +21,6 @@ AISpDataFrameCommand >> selectedItem [
 
 { #category : #accessing }
 AISpDataFrameCommand >> selectedItems [
-	" Answer a <Collection> with the checked items in the receiver's presenter context "
 
 	^ self context selectedItems
 ]

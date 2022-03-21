@@ -26,7 +26,7 @@ Class {
 	#instVars : [
 		'numberOfBins'
 	],
-	#category : #'AI-DataFrameInspector'
+	#category : #'AI-DataFrameInspector-Main presenters'
 }
 
 { #category : #'instance creation' }

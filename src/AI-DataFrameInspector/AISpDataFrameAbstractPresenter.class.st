@@ -15,7 +15,7 @@ Class {
 	#instVars : [
 		'dataFrame'
 	],
-	#category : #'AI-DataFrameInspector'
+	#category : #'AI-DataFrameInspector-Sub presenters'
 }
 
 { #category : #initialization }

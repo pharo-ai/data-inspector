@@ -19,7 +19,7 @@ Class {
 	#instVars : [
 		'dataFrameBasicInfoPresenter'
 	],
-	#category : #'AI-DataFrameInspector'
+	#category : #'AI-DataFrameInspector-Sub presenters'
 }
 
 { #category : #accessing }

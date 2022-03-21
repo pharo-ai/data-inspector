@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'dataFrameSummaryPresenter'
 	],
-	#category : #'AI-DataFrameInspector'
+	#category : #'AI-DataFrameInspector-Sub presenters'
 }
 
 { #category : #layout }

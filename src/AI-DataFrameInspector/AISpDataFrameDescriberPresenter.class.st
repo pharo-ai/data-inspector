@@ -16,7 +16,7 @@ Class {
 	#classVars : [
 		'MaxRows'
 	],
-	#category : #'AI-DataFrameInspector'
+	#category : #'AI-DataFrameInspector-Main presenters'
 }
 
 { #category : #examples }

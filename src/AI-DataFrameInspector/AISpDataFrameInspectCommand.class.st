@@ -6,14 +6,13 @@ I am converted to a spec context menu that appears when you right click in a Dat
 Class {
 	#name : #AISpDataFrameInspectCommand,
 	#superclass : #AISpDataFrameCommand,
-	#category : #'AI-DataFrameInspector'
+	#category : #'AI-DataFrameInspector-Context menu commands'
 }
 
 { #category : #converting }
 AISpDataFrameInspectCommand >> asSpecCommand [ 
 	
-	^ super asSpecCommand 
-		iconProvider: self application;
+	^ super asSpecCommand
 		iconName: #smallInspectIt;
 		shortcutKey: $i control unix | $i control win | $i command mac;
 		yourself
@@ -21,6 +20,7 @@ AISpDataFrameInspectCommand >> asSpecCommand [
 
 { #category : #executing }
 AISpDataFrameInspectCommand >> execute [
+
 	"Execute the actions that should be done by the command.
 	 This method expect that the context has been put in #context inst. var. if any context is relevant."
 
@@ -29,6 +29,7 @@ AISpDataFrameInspectCommand >> execute [
 
 { #category : #initialization }
 AISpDataFrameInspectCommand >> initialize [
+
 	super initialize.
 	self
 		name: 'Inspect';
