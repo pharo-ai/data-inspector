@@ -1,7 +1,7 @@
 SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'AIDataInspector',
+      #baseline : 'AIDataFrameInspector',
       #directory : 'src',
       #platforms : [ #pharo ]
     }
