@@ -23,7 +23,7 @@ AISpDataFrameInspector maxRows: 50000
 ```smalltalk
 EpMonitor disableDuring: [ 
 	Metacello new
-		baseline: 'AIDataInspector';
+		baseline: 'AIDataFrameInspector';
 		repository: 'github://pharo-ai/data-inspector/src';
 		load ]
 ```
