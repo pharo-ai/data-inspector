@@ -26,12 +26,6 @@ AISpDataFrameEvaluatorToolbarPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #actions }
-AISpDataFrameEvaluatorToolbarPresenter >> doEvaluateAllAndGo [
-
-	self owner doEvaluateAllAndGo
-]
-
 { #category : #accessing }
 AISpDataFrameEvaluatorToolbarPresenter >> evaluatorPresenter [
 

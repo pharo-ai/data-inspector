@@ -47,7 +47,7 @@ AISpEvaluateItCommand >> execute [
 	context evaluatorPresenter selectAll.
 	
 	evaluatingResult := context evaluatorPresenter 
-		evaluate: context evaluatorPresenter  selectedTextOrLine
+		evaluate: context evaluatorPresenter selectedTextOrLine
 		onCompileError: [ ^ self ]
 		onError: [ :e | e pass ].
 	
