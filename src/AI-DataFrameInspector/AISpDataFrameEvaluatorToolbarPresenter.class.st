@@ -10,7 +10,7 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #AISpDataFrameEvaluatorToolbar,
+	#name : #AISpDataFrameEvaluatorToolbarPresenter,
 	#superclass : #AISpDataFrameAbstractPresenter,
 	#instVars : [
 		'toolbar'
@@ -19,21 +19,27 @@ Class {
 }
 
 { #category : #layout }
-AISpDataFrameEvaluatorToolbar >> defaultLayout [
+AISpDataFrameEvaluatorToolbarPresenter >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
 		add: toolbar;
 		yourself
 ]
 
-{ #category : #accessing }
-AISpDataFrameEvaluatorToolbar >> initializePresenters [ 
+{ #category : #actions }
+AISpDataFrameEvaluatorToolbarPresenter >> doEvaluateAllAndGo [
+
+	self owner doEvaluateAllAndGo
+]
+
+{ #category : #initialization }
+AISpDataFrameEvaluatorToolbarPresenter >> initializePresenters [ 
 
 	self initializeToolbar.
 ]
 
-{ #category : #accessing }
-AISpDataFrameEvaluatorToolbar >> initializeToolbar [
+{ #category : #initialization }
+AISpDataFrameEvaluatorToolbarPresenter >> initializeToolbar [
 
 	toolbar := self newToolbar
 		displayMode: StPharoSettings toolbarDisplayMode;
@@ -42,14 +48,14 @@ AISpDataFrameEvaluatorToolbar >> initializeToolbar [
 		yourself
 ]
 
-{ #category : #accessing }
-AISpDataFrameEvaluatorToolbar >> loadPage: aFileReference [
+{ #category : #actions }
+AISpDataFrameEvaluatorToolbarPresenter >> loadPage: aFileReference [
 
 	self owner evalPresenterText: (StPlaygroundPage fromReference: aFileReference) contents.
 ]
 
 { #category : #accessing }
-AISpDataFrameEvaluatorToolbar >> toolbarActions [
+AISpDataFrameEvaluatorToolbarPresenter >> toolbarActions [
 
 	^ CmCommandGroup forSpec
 		register: (StPlaygroundDoItCommand forSpecContext: self);

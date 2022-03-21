@@ -24,30 +24,6 @@ AISpDataFrameAbstractPresenter >> columnNames [
 	^ self dataFrame columnNames
 ]
 
-{ #category : #initialization }
-AISpDataFrameAbstractPresenter >> contextMenu [
-
-	^ self contextMenuActions asMenuPresenter
-]
-
-{ #category : #initialization }
-AISpDataFrameAbstractPresenter >> contextMenuActions [
-
-	self halt. "2"
-	^ CmCommandGroup forSpec
-		beRoot;
-		register: (AISpDataFrameCopyRowValuesCommand forSpecContext: self);
-		register: (AISpDataFrameCopyRowValuesWithLabelsCommand forSpecContext: self);
-		register: (AISpDataFrameCopyRowSelectionsCommand forSpecContext: self);
-		yourself
-]
-
-{ #category : #initialization }
-AISpDataFrameAbstractPresenter >> contextMenuKeyBindings [
-
-	^ self contextMenuActions asKMCategory
-]
-
 { #category : #accessing }
 AISpDataFrameAbstractPresenter >> dataFrame [
 
@@ -60,7 +36,7 @@ AISpDataFrameAbstractPresenter >> dataFrame: anObject [
 	dataFrame := anObject
 ]
 
-{ #category : #'private building' }
+{ #category : #'accessing - model' }
 AISpDataFrameAbstractPresenter >> setModelBeforeInitialization: aDomainObject [
 
 	dataFrame := aDomainObject

@@ -1,54 +1,58 @@
+"
+I am a presenter that shows the summary of the statistics of a given DataFrame.
+"
 Class {
 	#name : #AISpDataFrameSummaryPresenter,
 	#superclass : #AISpDataFrameAbstractPresenter,
 	#instVars : [
-		'dataFramePresenter'
+		'dataFrameSummaryPresenter'
 	],
 	#category : #'AI-DataFrameInspector'
 }
-
-{ #category : #accessing }
-AISpDataFrameSummaryPresenter >> dataFramePresenter [
-
-	^ dataFramePresenter
-]
-
-{ #category : #accessing }
-AISpDataFrameSummaryPresenter >> dataFramePresenter: anObject [
-
-	dataFramePresenter := anObject
-]
 
 { #category : #layout }
 AISpDataFrameSummaryPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: dataFramePresenter;
+		add: dataFrameSummaryPresenter;
 		yourself
 ]
 
 { #category : #initialization }
 AISpDataFrameSummaryPresenter >> initializePresenters [
 
-	" Private - The summary pane is a table to display receiver summary statistics "
-
-	dataFramePresenter := self newTable.
-	dataFramePresenter
+	dataFrameSummaryPresenter := self newTable.
+	dataFrameSummaryPresenter
 		showColumnHeaders;
 		beMultipleSelection;
-		"contextMenu: [ self contextMenu ];
-		contextKeyBindings: self contextMenuKeyBindings;"
 		items: self summaryStatsLabels;
 		addColumn: (SpStringTableColumn title: 'Statistic' evaluated: [ :each | each ]).
 
 	self columnNames do: [ :columnName | 
-		dataFramePresenter addColumn: (SpStringTableColumn new
-				 title: columnName;
-				 evaluated: [ :aString | self summaryStatsValueFor: aString in: columnName ];
-				 beSortable) ]
+		dataFrameSummaryPresenter addColumn: (SpStringTableColumn new
+			title: columnName;
+			evaluated: [ :aString | self summaryStatsValueFor: aString in: columnName ];
+			beSortable) ]
 ]
 
-{ #category : #'private building' }
+{ #category : #defaults }
+AISpDataFrameSummaryPresenter >> performCalculation: aString forDataSeries: colDataSeries [
+
+	| calculation |
+	calculation := colDataSeries perform: (self summaryStatsAt: aString).
+
+	^ self roundResult: calculation
+]
+
+{ #category : #defaults }
+AISpDataFrameSummaryPresenter >> roundResult: aNumber [
+
+	"We choose to show only 3 decimal places according to the European Association of Science Editors guidelines include the useful rule of thumb: “numbers should be given in (sic) 2–3 effective digits”"
+
+	^ aNumber printShowingDecimalPlaces: 2
+]
+
+{ #category : #calculating }
 AISpDataFrameSummaryPresenter >> summaryStats [
 
 	^ Dictionary new
@@ -64,25 +68,25 @@ AISpDataFrameSummaryPresenter >> summaryStats [
 		yourself
 ]
 
-{ #category : #'private building' }
+{ #category : #calculating }
 AISpDataFrameSummaryPresenter >> summaryStatsAt: aString [
 
 	^ self summaryStats at: aString
 ]
 
-{ #category : #'private building' }
+{ #category : #calculating }
 AISpDataFrameSummaryPresenter >> summaryStatsLabels [
 
-	^ self summaryStats keys "asSortedCollection" 
+	^ self summaryStats keys
 ]
 
-{ #category : #'private building' }
+{ #category : #calculating }
 AISpDataFrameSummaryPresenter >> summaryStatsValueFor: aString in: col [
 
 	| colDataSeries |
-	
 	colDataSeries := self dataFrame column: col.
+	
 	^ colDataSeries isNumerical
-		ifTrue: [ colDataSeries perform: (self summaryStatsAt: aString) ]
-		ifFalse: [ 0  ]
+		ifTrue: [ self performCalculation: aString forDataSeries: colDataSeries ]
+		ifFalse: [ 'NaN' ]
 ]
