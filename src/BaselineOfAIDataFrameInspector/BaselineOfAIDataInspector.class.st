@@ -1,7 +1,10 @@
+"
+I am a baseline
+"
 Class {
 	#name : #BaselineOfAIDataInspector,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfAIDataInspector
+	#category : #BaselineOfAIDataFrameInspector
 }
 
 { #category : #baselines }
