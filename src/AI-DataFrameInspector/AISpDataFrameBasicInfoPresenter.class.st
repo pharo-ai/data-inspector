@@ -45,7 +45,7 @@ AISpDataFrameBasicInfoPresenter >> initializePresenters [
 		beMultipleSelection;
 		items: self summaryDescriptionsLabels;
 		addColumn:
-			(SpStringTableColumn title: 'Type' evaluated: [ :each | each ]);
+			(SpStringTableColumn title: 'Property' evaluated: [ :each | each ]);
 		addColumn: (SpStringTableColumn new
 			title: 'Value';
 			evaluated: [ :aString | self summaryValueFor: aString ];
