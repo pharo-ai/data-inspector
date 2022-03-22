@@ -24,6 +24,22 @@ AISpDataFrameSummaryPresenterTest >> setUp [
 ]
 
 { #category : #test }
+AISpDataFrameSummaryPresenterTest >> testInitializePresenters [
+
+	self
+		assert:
+		self dfSummaryPresenter dataFrameSummaryPresenter columns size
+		equals: self dfSummaryPresenter dataFrame columns size + 1
+]
+
+{ #category : #test }
+AISpDataFrameSummaryPresenterTest >> testRoundResult [
+
+	self assert: (self dfSummaryPresenter roundResult: 56.8787887) equals: '56.88'.
+	self deny: (self dfSummaryPresenter roundResult: 56.8787887) equals: '56.87'
+]
+
+{ #category : #test }
 AISpDataFrameSummaryPresenterTest >> testSummaryStats [
 
 	self assert: (self dfSummaryPresenter summaryStats isKindOf: Dictionary)
@@ -48,4 +64,12 @@ AISpDataFrameSummaryPresenterTest >> testSummaryStatsLabels [
 
 	self assert: (self dfSummaryPresenter summaryStatsLabels isKindOf: Collection).
 	self deny: self dfSummaryPresenter summaryStatsLabels isEmpty.
+]
+
+{ #category : #test }
+AISpDataFrameSummaryPresenterTest >> testSummaryStatsValueForIn [
+
+	self assert: (self dfSummaryPresenter summaryStatsValueFor: 'Minimum' in: 'child_mort') equals: '16.60'.
+	self assert: (self dfSummaryPresenter summaryStatsValueFor: 'Maximum' in: 'exports') equals: '38.40'.
+	self assert: (self dfSummaryPresenter summaryStatsValueFor: 'Average' in: 'gdpp') equals: '3034.33'.
 ]
