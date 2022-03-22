@@ -10,6 +10,12 @@ Class {
 	#category : #'AI-DataFrameInspector-Sub presenters'
 }
 
+{ #category : #accessing }
+AISpDataFrameSummaryPresenter >> dataFrameSummaryPresenter [
+
+	^ dataFrameSummaryPresenter
+]
+
 { #category : #layout }
 AISpDataFrameSummaryPresenter >> defaultLayout [
 
