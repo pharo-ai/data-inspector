@@ -1,3 +1,6 @@
+"
+I am a subclass that only changes the name of the label for the logistic regression model
+"
 Class {
 	#name : #AISpClassificationMetricsPresenter,
 	#superclass : #AISpAbstractMetricsPresenter,

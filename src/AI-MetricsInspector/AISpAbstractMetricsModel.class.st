@@ -1,3 +1,8 @@
+"
+I am an abtract model that calculates all the available metrics for a given actual and predicted values.
+
+I must be instantiated with the actual and predicted values that a model returns. See my class side instantiation method.
+"
 Class {
 	#name : #AISpAbstractMetricsModel,
 	#superclass : #Object,
@@ -38,6 +43,16 @@ AISpAbstractMetricsModel >> collectMetrics: aCollectionOfClasses [
 		value := aMetricClass new computeForActual: actualValues predicted: predictedValues.
 		value := self roundResult: value.
 		name -> value ]
+]
+
+{ #category : #inspector }
+AISpAbstractMetricsModel >> inspectorTab [
+	^ self subclassResponsibility
+]
+
+{ #category : #inspector }
+AISpAbstractMetricsModel >> inspectorTabContext: arg1 [ 
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }

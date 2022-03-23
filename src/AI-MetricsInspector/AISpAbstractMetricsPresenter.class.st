@@ -1,3 +1,6 @@
+"
+I am a presenter that show in two tables the metrics that can be applied for a regression model or a classification model. For the moment, I will work with linear regression and logistic regression models.
+"
 Class {
 	#name : #AISpAbstractMetricsPresenter,
 	#superclass : #SpPresenter,

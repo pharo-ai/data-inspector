@@ -1,3 +1,6 @@
+"
+I am a subclass that defines which are going to by my primary metrics and which are the secondary
+"
 Class {
 	#name : #AISpClassificationMetricsModel,
 	#superclass : #AISpAbstractMetricsModel,
