@@ -15,15 +15,19 @@ BaselineOfAIDataFrameInspector >> baseline: spec [
 	spec for: #( common ) do: [ 
 		"External dependencies"
 		spec
-			baseline: 'DataFrame'
-			with: [ spec repository: 'github://PolyMathOrg/DataFrame/src' ].
+			baseline: 'AIExternalDependencies'
+			with: [ spec
+				loads: #('DataFrameGroup');
+				repository: 'github://pharo-ai/external-dependencies' ].
+			
+		"pharo-ai dependencies"
 		spec 
 			baseline: 'AIMetrics' 
 			with: [ spec repository: 'github://pharo-ai/metrics' ].
 		
 		"Packages"
 		spec
-			package: 'AI-DataFrameInspector' with: [ spec requires: #( 'DataFrame' ) ];
+			package: 'AI-DataFrameInspector' with: [ spec requires: #( 'AIExternalDependencies' ) ];
 			package: 'AI-MetricsInspector' with: [ spec requires: #('AIMetrics') ];
 			package: 'AI-DataFrameInspector-Tests' with: [ spec requires: #( 'AI-DataFrameInspector' ) ].
 		
