@@ -17,7 +17,7 @@ BaselineOfAIDataFrameInspector >> baseline: spec [
 		spec
 			baseline: 'AIExternalDependencies'
 			with: [ spec
-				loads: #('DataFrameGroup');
+				loads: #('DataFrameGroup' 'Roassal3Group');
 				repository: 'github://pharo-ai/external-dependencies' ].
 			
 		"pharo-ai dependencies"
