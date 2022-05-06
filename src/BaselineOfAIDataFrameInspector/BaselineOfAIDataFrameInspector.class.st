@@ -28,7 +28,7 @@ BaselineOfAIDataFrameInspector >> baseline: spec [
 		
 		"Packages"
 		spec
-			package: 'AI-DataFrameInspector' with: [ spec requires: #( 'AIExternalDependencies' ) ];
+			package: 'AI-DataFrameInspector' with: [ spec requires: #( 'AIExternalRoassal3' 'AIExternalDataFrame' ) ];
 			package: 'AI-MetricsInspector' with: [ spec requires: #('AIMetrics') ];
 			package: 'AI-DataFrameInspector-Tests' with: [ spec requires: #( 'AI-DataFrameInspector' ) ].
 		
