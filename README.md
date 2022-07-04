@@ -25,6 +25,7 @@ EpMonitor disableDuring: [
 	Metacello new
 		baseline: 'AIDataFrameInspector';
 		repository: 'github://pharo-ai/data-inspector/src';
+		onConflictUseIncoming;
 		load ]
 ```
 
