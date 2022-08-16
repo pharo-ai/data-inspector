@@ -8,10 +8,6 @@
 
 A Pharo inspector extension to operate and view DataFrame multiple information in a same inspector view. Currently it displays:
 
-- The DataFrame in the upper part.
-- In the middle part, an Evaluator with a summary data table (basic statistics).
-- A lower part with Roassal histograms for each column and a data table which describes basic data frame information such as dimensions, if has nil values, etc.
-
 A configurable limit is set by default to quickly visualize a DataFrame. To change the limit, for example to 50000, you can evaluate:
 
 ```smalltalk
@@ -51,6 +47,6 @@ EpMonitor disableDuring: [
 AIDatasets loadIris inspect.
 ```
 
-![data-inspector-screenshot](https://user-images.githubusercontent.com/4825959/143688886-49ee898b-1bcf-4ef3-aadb-245708df6d8b.gif)
+![Capture d’écran 2022-08-16 à 19 02 33](https://user-images.githubusercontent.com/33934979/184937228-37bdc3ce-58ef-4009-999c-10524ef81843.png)
 
-![Capture d’écran 2022-03-07 à 17 39 37](https://user-images.githubusercontent.com/33934979/157077758-49fd5b65-29de-47de-8559-a549cfc49357.png)
+![Capture d’écran 2022-08-16 à 19 02 42](https://user-images.githubusercontent.com/33934979/184937251-590b12b2-5344-4f36-b043-deec1ccfce3a.png)
