@@ -123,7 +123,7 @@ AISpDataFrameDescriberPresenter >> initializeDataFramePresenter [
 			SpStringTableColumn new
 				title: columnName; 
 				beSortable;
-				evaluated: [ :each | each atIndex: idx ])].
+				evaluated: [ : selection | selection dsElementAt: idx ])].
 	
 	dataFramePresenter items: dataFrame.
 
