@@ -48,6 +48,11 @@ DataFrame >> hasNil [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
+DataFrame >> historigrams [
+	^ AISpDataFrameVisualizerPresenter openOn: self
+]
+
+{ #category : #'*AI-DataFrameInspector' }
 DataFrame >> visualizer [
 
 	<inspectorPresentationOrder: 3 title: 'Visualizations'>

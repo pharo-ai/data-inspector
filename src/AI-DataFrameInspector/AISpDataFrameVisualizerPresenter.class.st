@@ -30,25 +30,16 @@ Class {
 }
 
 { #category : #'instance creation' }
-AISpDataFrameVisualizerPresenter class >> onsss: aDataFrame [
-
-"	^ self basicNew
-		dataFrame: aDataFrame;
-		initialize;
-		yourself."
-]
-
-{ #category : #'instance creation' }
 AISpDataFrameVisualizerPresenter class >> openOn: aDataFrame [
 
-	^ (self on: aDataFrame) 
-		openWithSpec;
-		withWindowDo: [ :w | 
-          w
-				extent: 1200 @ 700;
-				centered;
-            title: 'DataFrame Inspector' translated;
-            aboutText: 'About DataFrame' ]
+	^ (self on: aDataFrame)
+		  open;
+		  withWindowDo: [ :w |
+			  w
+				  extent: 1200 @ 700;
+				  centered;
+				  title: 'DataFrame Inspector' translated;
+				  aboutText: 'About DataFrame' ]
 ]
 
 { #category : #initialization }
