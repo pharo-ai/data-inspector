@@ -52,11 +52,12 @@ AISpDataFrameVisualizerPresenter >> allColumnValues [
 
 { #category : #initialization }
 AISpDataFrameVisualizerPresenter >> allColumnValuesWithColumnName [
-
 	" Private - Answer a <Collection> of <Association> with numeric column values in the receiver's data frame "
 
-	^ self numericColumnNames collect: [ :colName | 
-		  colName -> ((self model column: colName) asArray collect: #value) ]
+	| columns |
+	columns := self model columns.
+
+	^ self numericColumnNames collect: [ :colName | colName -> ((columns at: (self model columnNames indexOf: colName)) reject: #isNil) ]
 ]
 
 { #category : #accessing }
@@ -103,7 +104,7 @@ AISpDataFrameVisualizerPresenter >> numberOfBins [
 { #category : #initialization }
 AISpDataFrameVisualizerPresenter >> numericColumnNames [
 
-	^ self columnNames select: [ : colName | (self model column: colName) isNumerical ]
+	^ self model numericColumnNames
 ]
 
 { #category : #initialization }
