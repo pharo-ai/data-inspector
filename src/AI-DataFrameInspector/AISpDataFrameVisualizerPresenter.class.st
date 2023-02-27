@@ -6,26 +6,11 @@ This Roassal >=3 presenter provides histogram for all numeric columns in the dis
 - Initialization happens in setModelBeforeInitialization:
 - They key method for rendering is `AISpDataFrameBasicViz>>plotAllHistograms`
 
-Internal Representation and Key Implementation Points.
-
-    Instance Variables
-	chart:		<RSChart>
-	dataFrame:		<Object>
-	group:		<Object>
-	numberOfBins:		<Object>
-	plot:		<Object>
-
-
-    Implementation Points
 "
 Class {
 	#name : #AISpDataFrameVisualizerPresenter,
-	#superclass : #SpRoassalPresenter,
-	#traits : 'SpTModel',
+	#superclass : #AISpAbstractVisualizerPresenter,
 	#classTraits : 'SpTModel classTrait',
-	#instVars : [
-		'numberOfBins'
-	],
 	#category : #'AI-DataFrameInspector-Main presenters'
 }
 
@@ -43,14 +28,6 @@ AISpDataFrameVisualizerPresenter class >> openOn: aDataFrame [
 ]
 
 { #category : #initialization }
-AISpDataFrameVisualizerPresenter >> allColumnValues [
-	" Private - Answer a <Collection> of numeric column values in the receiver's data frame "
-
-	^ self numericColumnNames collect: [ : colName |
-		(model column: colName) asArray collect: #value ]
-]
-
-{ #category : #initialization }
 AISpDataFrameVisualizerPresenter >> allColumnValuesWithColumnName [
 	" Private - Answer a <Collection> of <Association> with numeric column values in the receiver's data frame "
 
@@ -60,17 +37,12 @@ AISpDataFrameVisualizerPresenter >> allColumnValuesWithColumnName [
 	^ self numericColumnNames collect: [ :colName | colName -> ((columns at: (self model columnNames indexOf: colName)) reject: #isNil) ]
 ]
 
-{ #category : #accessing }
-AISpDataFrameVisualizerPresenter >> columnNames [ 
-
-	^ self dataFrame columnNames
-]
-
 { #category : #'to review' }
 AISpDataFrameVisualizerPresenter >> createCanvas [
+
 	| canvas |
 	canvas := RSCanvas new.
-	canvas inspectorContext: RSEmptyContextInteraction new..
+	canvas inspectorContext: RSEmptyContextInteraction new.
 	self plotAllHistograms: canvas.
 	^ canvas
 ]
@@ -79,114 +51,4 @@ AISpDataFrameVisualizerPresenter >> createCanvas [
 AISpDataFrameVisualizerPresenter >> dataFrame [
 
 	^ model
-]
-
-{ #category : #initialization }
-AISpDataFrameVisualizerPresenter >> defaultNumberOfBins [
-
-	^ 6
-]
-
-{ #category : #initialization }
-AISpDataFrameVisualizerPresenter >> initializePresenters [
-
-	self plotAllHistograms: self canvas.
-	self refresh
-]
-
-{ #category : #initialization }
-AISpDataFrameVisualizerPresenter >> numberOfBins [
-
-	^ numberOfBins
-		ifNil: [ numberOfBins := self defaultNumberOfBins. ]
-]
-
-{ #category : #initialization }
-AISpDataFrameVisualizerPresenter >> numericColumnNames [
-
-	^ self model numericColumnNames
-]
-
-{ #category : #initialization }
-AISpDataFrameVisualizerPresenter >> plotAllHistograms: aCanvas [
-
-	| shapes |
-	shapes := self allColumnValuesWithColumnName collect: [ :columnAssoc | 
-		self plotHistogram: columnAssoc ].
-	
-	aCanvas
-		addAll: shapes;
-		addInteraction: RSCanvasController new.
-
-	aCanvas when: RSExtentChangedEvent do: [ 
-		RSFlowLayout new
-			gapSize: 10;
-			maxWidth: aCanvas extent x;
-			on: shapes.
-		aCanvas camera zoomToFit: aCanvas extent * 0.98.
-
-		aCanvas signalUpdate ]
-]
-
-{ #category : #initialization }
-AISpDataFrameVisualizerPresenter >> plotHistogram: columnAssoc [
-
-	| container c columnValues plot vertical horizontal |
-	columnValues := columnAssoc value.
-	c := RSChart new.
-	container := RSGroup new.
-
-	plot := [
-	        RSHistogramPlot new
-		        x: columnValues;
-		        numberOfBins: self numberOfBins ]
-		        on: DomainError
-		        do: [ :ex | RSLinePlot new y: columnValues ].
-
-	vertical := RSVerticalTick new.
-	vertical fontSize: 11.
-	horizontal := RSHorizontalTick new.
-	horizontal
-		fontSize: 11;
-		useDiagonalLabel.
-
-	c container: container.
-	c addPlot: plot.
-	c addDecoration: vertical.
-	c addDecoration: horizontal.
-	c title: columnAssoc key.
-	c build.
-
-	plot createdShapes @ (RSPopup new
-		 model: #yourself;
-		 yourself).
-
-	^ container asShape
-]
-
-{ #category : #'to review' }
-AISpDataFrameVisualizerPresenter >> selectedColumnValues [
-
-	self flag: #review.
-	^ (self model column: 'sepal length (cm)') asArray collect: #value
-]
-
-{ #category : #'to review' }
-AISpDataFrameVisualizerPresenter >> visualizeHistogram: aView [
-	" Private - For single selection, do not delete yet "
-	| chart plot |
-	self flag: #review.
-	chart container: aView.
-	plot := RSHistogramPlot new.
-	plot x: self selectedColumnValues.
-
-	aView when: RSExtentChangedEvent do: [ 
-		aView camera zoomToFit: aView extent.
-		aView signalUpdate ].
-
-	chart 
-		addPlot: plot;
-		addDecoration: RSVerticalTick new;
-		addDecoration: RSHorizontalTick new;
-		build.
 ]

@@ -12,3 +12,9 @@ DataSeries >> copyRowValuesWithLabelsToClipboard [
 
 	Clipboard clipboardText: (String streamContents: [ :s | s << self associations asString ])
 ]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataSeries >> historigram [
+
+	^ AISpDataSeriesVisualizerPresenter openOn: self
+]
