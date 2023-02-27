@@ -50,3 +50,12 @@ AIDatasets loadIris inspect.
 ![Capture d’écran 2022-08-16 à 19 02 33](https://user-images.githubusercontent.com/33934979/184937228-37bdc3ce-58ef-4009-999c-10524ef81843.png)
 
 ![Capture d’écran 2022-08-16 à 19 02 42](https://user-images.githubusercontent.com/33934979/184937251-590b12b2-5344-4f36-b043-deec1ccfce3a.png)
+
+It is also possible to visualize the historigrams of a DataFrame or a DataSeries like this
+
+```st
+iris := AIDatasets loadIris.
+
+iris historigrams.
+(iris column: #'petal length (cm)') historigram.
+```
