@@ -48,7 +48,7 @@ DataFrame >> hasNil [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
-DataFrame >> historigrams [
+DataFrame >> histograms [
 	^ AISpDataFrameVisualizerPresenter openOn: self
 ]
 

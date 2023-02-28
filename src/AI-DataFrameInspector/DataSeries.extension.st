@@ -14,7 +14,7 @@ DataSeries >> copyRowValuesWithLabelsToClipboard [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
-DataSeries >> historigram [
+DataSeries >> histogram [
 
 	^ AISpDataSeriesVisualizerPresenter openOn: self
 ]
