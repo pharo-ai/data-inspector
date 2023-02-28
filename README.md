@@ -56,6 +56,6 @@ It is also possible to visualize the historigrams of a DataFrame or a DataSeries
 ```st
 iris := AIDatasets loadIris.
 
-iris historigrams.
-(iris column: #'petal length (cm)') historigram.
+iris histograms.
+(iris column: #'petal length (cm)') histogram.
 ```
