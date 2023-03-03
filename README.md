@@ -17,12 +17,11 @@ AISpDataFrameInspector maxRows: 50000
 # Installation
 
 ```smalltalk
-EpMonitor disableDuring: [ 
-	Metacello new
-		baseline: 'AIDataFrameInspector';
-		repository: 'github://pharo-ai/data-inspector/src';
-		onConflictUseIncoming;
-		load ]
+Metacello new
+	baseline: 'AIDataFrameInspector';
+	repository: 'github://pharo-ai/data-inspector/src';
+	onConflictUseIncoming;
+	load
 ```
 
 # If you want to depend on it
@@ -58,4 +57,11 @@ iris := AIDatasets loadIris.
 
 iris histograms.
 (iris column: #'petal length (cm)') histogram.
+```
+
+You can specify the number of intervals to display like this:
+
+```st
+iris histogramsBins: 50.
+(iris column: #'petal length (cm)') histogramBins: 50.
 ```
