@@ -10,9 +10,9 @@ Class {
 }
 
 { #category : #'instance creation' }
-AISpAbstractVisualizerPresenter class >> openOn: anObject [
+AISpAbstractVisualizerPresenter class >> openOn: aModel [
 
-	self subclassResponsibility
+	^ (self on: aModel) open
 ]
 
 { #category : #initialization }
@@ -31,12 +31,13 @@ AISpAbstractVisualizerPresenter >> columnNames [
 { #category : #initialization }
 AISpAbstractVisualizerPresenter >> defaultNumberOfBins [
 
-	^ 6
+	^ 50
 ]
 
 { #category : #initialization }
 AISpAbstractVisualizerPresenter >> initializePresenters [
 
+	self canvas: RSCanvas new.
 	self plotAllHistograms: self canvas.
 	self refresh
 ]
@@ -45,6 +46,13 @@ AISpAbstractVisualizerPresenter >> initializePresenters [
 AISpAbstractVisualizerPresenter >> numberOfBins [
 
 	^ numberOfBins ifNil: [ numberOfBins := self defaultNumberOfBins ]
+]
+
+{ #category : #initialization }
+AISpAbstractVisualizerPresenter >> numberOfBins: aNumber [
+
+	numberOfBins := aNumber.
+	self initializePresenters
 ]
 
 { #category : #initialization }

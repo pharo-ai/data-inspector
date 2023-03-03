@@ -14,19 +14,6 @@ Class {
 	#category : #'AI-DataFrameInspector-Main presenters'
 }
 
-{ #category : #'instance creation' }
-AISpDataFrameVisualizerPresenter class >> openOn: aDataFrame [
-
-	^ (self on: aDataFrame)
-		  open;
-		  withWindowDo: [ :w |
-			  w
-				  extent: 1200 @ 700;
-				  centered;
-				  title: 'DataFrame Inspector' translated;
-				  aboutText: 'About DataFrame' ]
-]
-
 { #category : #initialization }
 AISpDataFrameVisualizerPresenter >> allColumnValuesWithColumnName [
 	" Private - Answer a <Collection> of <Association> with numeric column values in the receiver's data frame "
@@ -51,4 +38,17 @@ AISpDataFrameVisualizerPresenter >> createCanvas [
 AISpDataFrameVisualizerPresenter >> dataFrame [
 
 	^ model
+]
+
+{ #category : #'instance creation' }
+AISpDataFrameVisualizerPresenter >> open [
+
+	^ super
+		  open;
+		  withWindowDo: [ :w |
+			  w
+				  extent: 1200 @ 700;
+				  centered;
+				  title: 'DataFrame Inspector' translated;
+				  aboutText: 'About DataFrame' ]
 ]

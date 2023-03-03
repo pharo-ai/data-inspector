@@ -53,6 +53,14 @@ DataFrame >> histograms [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
+DataFrame >> histogramsBins: aNumber [
+
+	^ (AISpDataFrameVisualizerPresenter on: self)
+		  numberOfBins: aNumber;
+		  open
+]
+
+{ #category : #'*AI-DataFrameInspector' }
 DataFrame >> numericColumnNames [
 
 	| r |

@@ -10,19 +10,6 @@ Class {
 	#category : #'AI-DataFrameInspector-Main presenters'
 }
 
-{ #category : #'instance creation' }
-AISpDataSeriesVisualizerPresenter class >> openOn: aDataSeries [
-
-	^ (self on: aDataSeries)
-		  open;
-		  withWindowDo: [ :w |
-			  w
-				  extent: 1200 @ 700;
-				  centered;
-				  title: 'DataSeries Inspector' translated;
-				  aboutText: 'About DataSeries' ]
-]
-
 { #category : #initialization }
 AISpDataSeriesVisualizerPresenter >> allColumnValuesWithColumnName [
 	" Private - Answer a <Collection> of <Association> with numeric column values in the receiver's data frame "
@@ -30,4 +17,17 @@ AISpDataSeriesVisualizerPresenter >> allColumnValuesWithColumnName [
 	self model isNumerical ifFalse: [ self error: 'Can only plot numerical columns.' ].
 
 	^ { (self model name -> (self model reject: #isNil)) }
+]
+
+{ #category : #'instance creation' }
+AISpDataSeriesVisualizerPresenter >> open [
+
+	^ super
+		  open;
+		  withWindowDo: [ :w |
+			  w
+				  extent: 1200 @ 700;
+				  centered;
+				  title: 'DataSeries Inspector' translated;
+				  aboutText: 'About DataSeries' ]
 ]

@@ -18,3 +18,11 @@ DataSeries >> histogram [
 
 	^ AISpDataSeriesVisualizerPresenter openOn: self
 ]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataSeries >> histogramBins: aNumber [
+
+	^ (AISpDataSeriesVisualizerPresenter on: self)
+		  numberOfBins: aNumber;
+		  open
+]
