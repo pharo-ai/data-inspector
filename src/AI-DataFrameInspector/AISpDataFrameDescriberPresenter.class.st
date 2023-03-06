@@ -22,9 +22,8 @@ Class {
 { #category : #accessing }
 AISpDataFrameDescriberPresenter class >> maxRows [
 	" Answer the <Number> of rows to visualize in the receiver "
-	
-	^ MaxRows
-		ifNil: [ MaxRows := 1000 ]
+
+	^ MaxRows ifNil: [ MaxRows := 1000 ]
 ]
 
 { #category : #accessing }

@@ -61,18 +61,9 @@ DataFrame >> histogramsBins: aNumber [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
-DataFrame >> numericColumnNames [
+DataFrame >> histogramsInspector [
 
-	| r |
-	r := OrderedCollection new.
-	self dataTypes keysAndValuesDo: [ :name :type | (type includesBehavior: Number) ifTrue: [ r add: name asSymbol ] ].
-	^ r asArray
-]
-
-{ #category : #'*AI-DataFrameInspector' }
-DataFrame >> visualizer [
-
-	<inspectorPresentationOrder: 3 title: 'Visualizations'>
+	<inspectorPresentationOrder: 3 title: 'Histograms'>
 	| roassalPresenter |
 	
 	roassalPresenter := AISpDataFrameVisualizerPresenter on:
@@ -88,7 +79,46 @@ DataFrame >> visualizer [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
-DataFrame >> visualizerContext: aContext [
+DataFrame >> histogramsInspectorContext: aContext [
+
+	aContext withoutEvaluator
+]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataFrame >> numericColumnNames [
+
+	| r |
+	r := OrderedCollection new.
+	self columnNames do: [ :column | ((self dataTypes at: column) includesBehavior: Number) ifTrue: [ r add: column ] ].
+	^ r asArray
+]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataFrame >> scatterMatrix [
+
+	^ AISpScatterMatrixPresenter openOn: self
+]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataFrame >> scatterMatrixInspector [
+
+	<inspectorPresentationOrder: 4 title: 'Scatter Matrix'>
+	| roassalPresenter |
+	
+	roassalPresenter := AISpScatterMatrixPresenter on:
+		(self numberOfRows > self evaluatorRowsLimit
+			ifFalse: [ self ]
+			ifTrue: [ self head: AISpDataFrameDescriberPresenter maxRows ]).
+	
+	^ SpRoassal3InspectorPresenter new
+		canvas: roassalPresenter createCanvas;
+		yourself
+	
+
+]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataFrame >> scatterMatrixInspectorContext: aContext [
 
 	aContext withoutEvaluator
 ]
