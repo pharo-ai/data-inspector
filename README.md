@@ -7,8 +7,11 @@
 # Description
 
 A Pharo inspector extension to operate and view DataFrame multiple information in a same inspector view. Currently it displays:
+- General informations about the dataframe
+- Histograms about all numerical columns of the dataframe
+- A scatter matrix of the DataFrame
 
-A configurable limit is set by default to quickly visualize a DataFrame. To change the limit, for example to 50000, you can evaluate:
+A configurable limit is set by default to quickly visualize a DataFrame when we are in the inspector. To change the limit, for example to 50000, you can evaluate:
 
 ```smalltalk
 AISpDataFrameInspector maxRows: 50000
@@ -46,9 +49,11 @@ EpMonitor disableDuring: [
 AIDatasets loadIris inspect.
 ```
 
-![Capture d’écran 2022-08-16 à 19 02 33](https://user-images.githubusercontent.com/33934979/184937228-37bdc3ce-58ef-4009-999c-10524ef81843.png)
+![](resources/imgs/datainspector.png)
 
-![Capture d’écran 2022-08-16 à 19 02 42](https://user-images.githubusercontent.com/33934979/184937251-590b12b2-5344-4f36-b043-deec1ccfce3a.png)
+![](resources/imgs/histograms.png)
+
+![](resources/imgs/scattermatrix.png)
 
 It is also possible to visualize the historigrams of a DataFrame or a DataSeries like this
 
@@ -64,4 +69,10 @@ You can specify the number of intervals to display like this:
 ```st
 iris histogramsBins: 50.
 (iris column: #'petal length (cm)') histogramBins: 50.
+```
+
+The scatter matrix can be opened like this:
+
+```st
+iris scatterMatrix
 ```
