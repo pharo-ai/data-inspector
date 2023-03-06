@@ -34,11 +34,11 @@ AISpDataFrameSummaryPresenter >> initializePresenters [
 		items: self summaryStatsLabels;
 		addColumn: (SpStringTableColumn title: 'Statistic' evaluated: [ :each | each ]).
 
-	self columnNames do: [ :columnName | 
+	self dataFrame numericColumnNames do: [ :columnName |
 		dataFrameSummaryPresenter addColumn: (SpStringTableColumn new
-			title: columnName;
-			evaluated: [ :aString | self summaryStatsValueFor: aString in: columnName ];
-			beSortable) ]
+				 title: columnName;
+				 evaluated: [ :aString | self summaryStatsValueFor: aString in: columnName ];
+				 beSortable) ]
 ]
 
 { #category : #defaults }
@@ -89,10 +89,5 @@ AISpDataFrameSummaryPresenter >> summaryStatsLabels [
 { #category : #calculating }
 AISpDataFrameSummaryPresenter >> summaryStatsValueFor: aString in: col [
 
-	| colDataSeries |
-	colDataSeries := self dataFrame column: col.
-	
-	^ colDataSeries isNumerical
-		ifTrue: [ self performCalculation: aString forDataSeries: colDataSeries ]
-		ifFalse: [ 'NaN' ]
+	^ self performCalculation: aString forDataSeries: (self dataFrame column: col)
 ]

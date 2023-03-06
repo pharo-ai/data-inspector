@@ -22,12 +22,6 @@ AISpAbstractVisualizerPresenter >> allColumnValuesWithColumnName [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
-AISpAbstractVisualizerPresenter >> columnNames [ 
-
-	^ self dataFrame columnNames
-]
-
 { #category : #initialization }
 AISpAbstractVisualizerPresenter >> defaultNumberOfBins [
 

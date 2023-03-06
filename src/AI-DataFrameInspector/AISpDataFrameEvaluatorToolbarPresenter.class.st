@@ -33,9 +33,9 @@ AISpDataFrameEvaluatorToolbarPresenter >> evaluatorPresenter [
 ]
 
 { #category : #initialization }
-AISpDataFrameEvaluatorToolbarPresenter >> initializePresenters [ 
+AISpDataFrameEvaluatorToolbarPresenter >> initializePresenters [
 
-	self initializeToolbar.
+	self initializeToolbar
 ]
 
 { #category : #initialization }

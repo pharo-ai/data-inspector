@@ -40,12 +40,6 @@ AISpDataFrameDescriberPresenter class >> openOn: aDataFrame [
 ]
 
 { #category : #initialization }
-AISpDataFrameDescriberPresenter >> columnNames [ 
-
-	^ dataFrame columnNames
-]
-
-{ #category : #initialization }
 AISpDataFrameDescriberPresenter >> contextMenu [
 
 	^ self contextMenuActions asMenuPresenter
@@ -114,18 +108,16 @@ AISpDataFrameDescriberPresenter >> initializeDataFramePresenter [
 		enableSearch;
 		contextMenu: [ self contextMenu ];
 		contextKeyBindings: self contextMenuKeyBindings.
-	
-	dataFramePresenter addColumn: self newCheckBoxColumn.
-	
-	self columnNames doWithIndex: [ : columnName : idx |
-		dataFramePresenter addColumn: (
-			SpStringTableColumn new
-				title: columnName; 
-				beSortable;
-				evaluated: [ :each | each atIndex: idx ])].
-	
-	dataFramePresenter items: dataFrame.
 
+	dataFramePresenter addColumn: self newCheckBoxColumn.
+
+	dataFrame columnNames doWithIndex: [ :columnName :idx |
+		dataFramePresenter addColumn: (SpStringTableColumn new
+				 title: columnName;
+				 beSortable;
+				 evaluated: [ :each | each atIndex: idx ]) ].
+
+	dataFramePresenter items: dataFrame
 ]
 
 { #category : #initialization }
