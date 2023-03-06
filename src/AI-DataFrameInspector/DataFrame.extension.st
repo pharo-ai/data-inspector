@@ -9,7 +9,7 @@ DataFrame >> at: anIndex ifAbsent: aBlock [
 { #category : #'*AI-DataFrameInspector' }
 DataFrame >> dataDescriber [
     <inspectorPresentationOrder: 2 title: 'Data Description'>
-    
+
 	^ AISpDataFrameDescriberPresenter on: (
 		self numberOfRows > self evaluatorRowsLimit
 			ifFalse: [ self ]
@@ -20,7 +20,6 @@ DataFrame >> dataDescriber [
 DataFrame >> dataDescriberContext: aContext [
 
 	aContext withoutEvaluator
-
 ]
 
 { #category : #'*AI-DataFrameInspector' }
@@ -65,17 +64,15 @@ DataFrame >> histogramsInspector [
 
 	<inspectorPresentationOrder: 3 title: 'Histograms'>
 	| roassalPresenter |
-	
+
 	roassalPresenter := AISpDataFrameVisualizerPresenter on:
 		(self numberOfRows > self evaluatorRowsLimit
 			ifFalse: [ self ]
 			ifTrue: [ self head: AISpDataFrameDescriberPresenter maxRows ]).
-	
+
 	^ SpRoassal3InspectorPresenter new
 		canvas: roassalPresenter createCanvas;
 		yourself
-	
-
 ]
 
 { #category : #'*AI-DataFrameInspector' }
@@ -104,17 +101,15 @@ DataFrame >> scatterMatrixInspector [
 
 	<inspectorPresentationOrder: 4 title: 'Scatter Matrix'>
 	| roassalPresenter |
-	
+
 	roassalPresenter := AISpScatterMatrixPresenter on:
 		(self numberOfRows > self evaluatorRowsLimit
 			ifFalse: [ self ]
 			ifTrue: [ self head: AISpDataFrameDescriberPresenter maxRows ]).
-	
+
 	^ SpRoassal3InspectorPresenter new
 		canvas: roassalPresenter createCanvas;
 		yourself
-	
-
 ]
 
 { #category : #'*AI-DataFrameInspector' }

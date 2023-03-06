@@ -59,14 +59,14 @@ AISpAbstractVisualizerPresenter >> numericColumnNames [
 AISpAbstractVisualizerPresenter >> plotAllHistograms: aCanvas [
 
 	| shapes |
-	shapes := self allColumnValuesWithColumnName collect: [ :columnAssoc | 
+	shapes := self allColumnValuesWithColumnName collect: [ :columnAssoc |
 		self plotHistogram: columnAssoc ].
-	
+
 	aCanvas
 		addAll: shapes;
 		addInteraction: RSCanvasController new.
 
-	aCanvas when: RSExtentChangedEvent do: [ 
+	aCanvas when: RSExtentChangedEvent do: [
 		RSFlowLayout new
 			gapSize: 10;
 			maxWidth: aCanvas extent x;

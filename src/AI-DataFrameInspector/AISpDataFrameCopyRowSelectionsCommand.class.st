@@ -10,8 +10,8 @@ Class {
 }
 
 { #category : #converting }
-AISpDataFrameCopyRowSelectionsCommand >> asSpecCommand [ 
-	
+AISpDataFrameCopyRowSelectionsCommand >> asSpecCommand [
+
 	^ super asSpecCommand
 		iconName: #smallCopy;
 		shortcutKey: $s control unix | $s control win | $s command mac;

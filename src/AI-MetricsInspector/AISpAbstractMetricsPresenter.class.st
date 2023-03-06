@@ -25,7 +25,7 @@ AISpAbstractMetricsPresenter >> defaultLayout [
 		add: recommendedMetricsLabel expand: false;
 		add: primaryMetricsTable;
 		add: (SpBoxLayout newLeftToRight
-			add: otherMetricsLabel expand: false;		
+			add: otherMetricsLabel expand: false;
 			add: showOtherMetricsButton withConstraints: [ :constraints |
 				constraints
 					height: 18;
@@ -65,9 +65,9 @@ AISpAbstractMetricsPresenter >> initializePresenters [
 	self initializePrimaryMetricsTable.
 	self initializeShowOtherMetricsButton.
 	self initializeOtherMetricsTable.
-	
+
 	self initializeOtherMetricsLabel.
-	self initializeRecommendedLabel.
+	self initializeRecommendedLabel
 ]
 
 { #category : #initialization }
@@ -99,10 +99,10 @@ AISpAbstractMetricsPresenter >> initializeShowOtherMetricsButton [
 AISpAbstractMetricsPresenter >> toggleOtherMetricsTable [
 
 	isOtherMetricsTableShown
-		ifTrue: [ 
+		ifTrue: [
 			showOtherMetricsButton iconName: #arrowDown.
 			self layout remove: otherMetricsTable ]
-		ifFalse: [ 
+		ifFalse: [
 			showOtherMetricsButton iconName: #arrowUp.
 			self layout add: otherMetricsTable ].
 
