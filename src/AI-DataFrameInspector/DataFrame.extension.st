@@ -1,6 +1,20 @@
 Extension { #name : #DataFrame }
 
 { #category : #'*AI-DataFrameInspector' }
+DataFrame >> addScatterPlotShapeToChart: aRSChart [
+	" Assume a receiver with two first columns as x and y coordinates. 
+	Requires Roassal 3. Answer a Roassal scatter plot shape with points color configured to aColor "
+
+	| scatterPlot x y |
+
+	x := (self columnAt: 1) asOrderedCollection.
+	y := (self columnAt: 2) asOrderedCollection.
+	scatterPlot := RSScatterPlot new x: x y: y.
+	aRSChart addPlot: scatterPlot.
+	^ scatterPlot
+]
+
+{ #category : #'*AI-DataFrameInspector' }
 DataFrame >> at: anIndex ifAbsent: aBlock [
 
 	^ self row: anIndex ifAbsent: aBlock
@@ -88,6 +102,31 @@ DataFrame >> numericColumnNames [
 	r := OrderedCollection new.
 	self columnNames do: [ :column | ((self dataTypes at: column) includesBehavior: Number) ifTrue: [ r add: column ] ].
 	^ r asArray
+]
+
+{ #category : #'*AI-DataFrameInspector' }
+DataFrame >> openScatterPlotWithTitle: aString forColumn: columnName [
+	" Assume a receiver with two first columns as x and y coordinates. 
+	Requires Roassal 3. Plot and open a new window"
+
+	| roassalChart scatterPlotShapes uniqueColumns |
+	roassalChart := RSChart new
+		title: aString;
+		addDecoration: (RSHorizontalTick new doNotUseNiceLabel asFloat: 3);
+		addDecoration: RSVerticalTick new;
+		yourself.
+	uniqueColumns := (self column: columnName) asSet.
+	scatterPlotShapes := uniqueColumns collect: [ : type | 
+		(self select: [ : e | e values includes: type ]) 
+			addScatterPlotShapeToChart: roassalChart ].
+
+	scatterPlotShapes asOrderedCollection
+		with: ((1 to: uniqueColumns size) collect: [ : c | Color random ])
+		do: [ : scatterPlotShape  : scatterPlotDotColor |
+			scatterPlotShape color: scatterPlotDotColor ].
+	roassalChart padding: 10.
+
+	roassalChart open.
 ]
 
 { #category : #'*AI-DataFrameInspector' }
