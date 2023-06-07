@@ -20,11 +20,12 @@ AISpDataFrameInspector maxRows: 50000
 # Installation
 
 ```smalltalk
-Metacello new
-	baseline: 'AIDataFrameInspector';
-	repository: 'github://pharo-ai/data-inspector/src';
+EpMonitor disableDuring: [ 
+    Metacello new
+        baseline: 'AIDataFrameInspector';
+        repository: 'github://pharo-ai/data-inspector/src';
 	onConflictUseIncoming;
-	load
+        load ]
 ```
 
 # If you want to depend on it
