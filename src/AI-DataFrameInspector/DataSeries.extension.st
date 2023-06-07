@@ -14,6 +14,13 @@ DataSeries >> copyRowValuesWithLabelsToClipboard [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
+DataSeries >> dataSeriesElementAt: anInteger [
+	"Support for DataFrame sorting when column name is clicked"
+
+	^ self atIndex: anInteger
+]
+
+{ #category : #'*AI-DataFrameInspector' }
 DataSeries >> histogram [
 
 	^ AISpDataSeriesVisualizerPresenter openOn: self

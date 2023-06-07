@@ -114,7 +114,7 @@ AISpDataFrameDescriberPresenter >> initializeDataFramePresenter [
 		dataFramePresenter addColumn: (SpStringTableColumn new
 				 title: columnName;
 				 beSortable;
-				 evaluated: [ :each | each atIndex: idx ]) ].
+				 evaluated: [ : selection | selection dataSeriesElementAt: idx ]) ].
 
 	dataFramePresenter items: dataFrame
 ]
