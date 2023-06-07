@@ -14,7 +14,7 @@ DataSeries >> copyRowValuesWithLabelsToClipboard [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
-DataSeries >> dsElementAt: anInteger [ 
+DataSeries >> dataSeriesElementAt: anInteger [
 	"Support for DataFrame sorting when column name is clicked"
 
 	^ self atIndex: anInteger
