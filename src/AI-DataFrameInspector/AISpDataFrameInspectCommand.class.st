@@ -10,8 +10,8 @@ Class {
 }
 
 { #category : #converting }
-AISpDataFrameInspectCommand >> asSpecCommand [ 
-	
+AISpDataFrameInspectCommand >> asSpecCommand [
+
 	^ super asSpecCommand
 		iconName: #smallInspectIt;
 		shortcutKey: $i control unix | $i control win | $i command mac;

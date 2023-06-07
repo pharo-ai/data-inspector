@@ -10,8 +10,8 @@ Class {
 }
 
 { #category : #converting }
-AISpDataFrameCopyRowValuesCommand >> asSpecCommand [ 
-	
+AISpDataFrameCopyRowValuesCommand >> asSpecCommand [
+
 	^ super asSpecCommand
 		iconName: #smallCopy;
 		shortcutKey: $v control unix | $v control win | $v command mac;

@@ -11,7 +11,7 @@ Class {
 AISpClassificationMetricsModel >> inspectorTab [
 
 	<inspectorPresentationOrder: 0 title: 'Classification Metrics'>
-	
+
 	^ AISpClassificationMetricsPresenter on: self
 ]
 

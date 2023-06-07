@@ -22,15 +22,14 @@ Class {
 { #category : #accessing }
 AISpDataFrameDescriberPresenter class >> maxRows [
 	" Answer the <Number> of rows to visualize in the receiver "
-	
-	^ MaxRows
-		ifNil: [ MaxRows := 1000 ]
+
+	^ MaxRows ifNil: [ MaxRows := 1000 ]
 ]
 
 { #category : #accessing }
 AISpDataFrameDescriberPresenter class >> maxRows: anInteger [
 	" Set the maximum <Number> of rows to visualize in the receiver "
-	
+
 	MaxRows := anInteger
 ]
 
@@ -38,12 +37,6 @@ AISpDataFrameDescriberPresenter class >> maxRows: anInteger [
 AISpDataFrameDescriberPresenter class >> openOn: aDataFrame [
 
 	^ (self on: aDataFrame) open
-]
-
-{ #category : #initialization }
-AISpDataFrameDescriberPresenter >> columnNames [ 
-
-	^ dataFrame columnNames
 ]
 
 { #category : #initialization }
@@ -60,7 +53,7 @@ AISpDataFrameDescriberPresenter >> contextMenuActions [
 		register: (AISpDataFrameCopyRowValuesCommand forSpecContext: self);
 		register: (AISpDataFrameCopyRowValuesWithLabelsCommand forSpecContext: self);
 		register: (AISpDataFrameCopyRowSelectionsCommand forSpecContext: self);
-		register: (AISpDataFrameInspectCommand forSpecContext: self);		
+		register: (AISpDataFrameInspectCommand forSpecContext: self);
 		yourself
 ]
 
@@ -86,12 +79,11 @@ AISpDataFrameDescriberPresenter >> defaultLayout [
 				add: summaryPresenter;
 				add: (SpPanedLayout newTopToBottom
 					positionOfSlider: 35 percent;
-					add: additionalInfoPane;			
+					add: additionalInfoPane;
 					add: evaluatorPane;
 					yourself);
 				yourself);
-		yourself.
-
+		yourself
 ]
 
 { #category : #initialization }
@@ -104,7 +96,7 @@ AISpDataFrameDescriberPresenter >> initialize [
 { #category : #initialization }
 AISpDataFrameDescriberPresenter >> initializeAdditionalInfoPresenter [
 
-	additionalInfoPane := self instantiate: AISpDataFrameBasicInfoPresenter on: dataFrame.
+	additionalInfoPane := self instantiate: AISpDataFrameBasicInfoPresenter on: dataFrame
 ]
 
 { #category : #initialization }
@@ -132,7 +124,7 @@ AISpDataFrameDescriberPresenter >> initializeDataFramePresenter [
 { #category : #initialization }
 AISpDataFrameDescriberPresenter >> initializeEvaluatorPresenter [
 
-	evaluatorPane := self instantiate: AISpDataFrameEvaluatorPresenter on: dataFrame.
+	evaluatorPane := self instantiate: AISpDataFrameEvaluatorPresenter on: dataFrame
 ]
 
 { #category : #initialization }
@@ -142,9 +134,8 @@ AISpDataFrameDescriberPresenter >> initializePresenters [
 	self initializeEvaluatorPresenter.
 	self initializeAdditionalInfoPresenter.
 	self initializeSummaryPresenter.
-	
-	self focusOrder add: evaluatorPane
 
+	self focusOrder add: evaluatorPane
 ]
 
 { #category : #initialization }

@@ -18,12 +18,6 @@ Class {
 	#category : #'AI-DataFrameInspector-Sub presenters'
 }
 
-{ #category : #initialization }
-AISpDataFrameAbstractPresenter >> columnNames [ 
-
-	^ self dataFrame columnNames
-]
-
 { #category : #accessing }
 AISpDataFrameAbstractPresenter >> dataFrame [
 

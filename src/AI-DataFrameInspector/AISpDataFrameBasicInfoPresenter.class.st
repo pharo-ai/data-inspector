@@ -65,7 +65,7 @@ AISpDataFrameBasicInfoPresenter >> summaryDescriptions [
 { #category : #'private building' }
 AISpDataFrameBasicInfoPresenter >> summaryDescriptionsLabels [
 
-	^ self summaryDescriptions keys asSortedCollection 
+	^ self summaryDescriptions keys asSortedCollection
 ]
 
 { #category : #'private building' }

@@ -33,20 +33,20 @@ AISpDataFrameEvaluatorToolbarPresenter >> evaluatorPresenter [
 ]
 
 { #category : #initialization }
-AISpDataFrameEvaluatorToolbarPresenter >> initializePresenters [ 
+AISpDataFrameEvaluatorToolbarPresenter >> initializePresenters [
 
-	self initializeToolbar.
+	self initializeToolbar
 ]
 
 { #category : #initialization }
 AISpDataFrameEvaluatorToolbarPresenter >> initializeToolbar [
-
 	"evaluateItButton := AISpEvaluateItCommand asSpecButtonForContext: self"
 
 	| group |
 	group := CmCommandGroup forSpec.
-	AISpAbstractToolbarCommand toolbarButtons do: [ :aCommand | 
-		group register: (aCommand forSpecContext: self) ].
+	AISpAbstractToolbarCommand toolbarButtons do: [ :aCommand | group register: (aCommand forSpecContext: self) ].
 
-	toolbar := group asToolbarPresenter
+	toolbar := SpToolbarPresenterBuilder new
+		           visit: group;
+		           toolbarPresenter
 ]

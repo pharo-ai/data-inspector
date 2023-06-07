@@ -11,7 +11,7 @@ Class {
 AISpRegressionMetricsModel >> inspectorTab [
 
 	<inspectorPresentationOrder: 0 title: 'Regression Metrics'>
-	
+
 	^ AISpRegressionMetricsPresenter on: self
 ]
 

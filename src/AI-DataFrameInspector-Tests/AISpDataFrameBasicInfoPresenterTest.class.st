@@ -73,5 +73,5 @@ AISpDataFrameBasicInfoPresenterTest >> testSummaryValueFor [
 		equals: 'false'.
 		self
 		assert: (self dfBrowser summaryValueFor: 'Has categorical')
-		equals: 'false'.
+		equals: 'false'
 ]

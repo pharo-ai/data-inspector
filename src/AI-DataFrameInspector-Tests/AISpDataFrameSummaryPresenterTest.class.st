@@ -20,7 +20,9 @@ AISpDataFrameSummaryPresenterTest >> dfSummaryPresenter [
 AISpDataFrameSummaryPresenterTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 
-	dfSummaryPresenter := AISpDataFrameSummaryPresenter on: self sampleDataFrame.
+	super setUp.
+
+	dfSummaryPresenter := AISpDataFrameSummaryPresenter on: self sampleDataFrame
 ]
 
 { #category : #test }
@@ -55,15 +57,14 @@ AISpDataFrameSummaryPresenterTest >> testSummaryStatsAt [
 	self assert: (self dfSummaryPresenter summaryStatsAt: 'Standard deviation') equals: #stdev.
 	self assert: (self dfSummaryPresenter summaryStatsAt: 'Minimum') equals: #min.
 	self assert: (self dfSummaryPresenter summaryStatsAt: 'Maximum') equals: #max.
-	self assert: (self dfSummaryPresenter summaryStatsAt: '1st Quartile') equals: #firstQuartile.
-
+	self assert: (self dfSummaryPresenter summaryStatsAt: '1st Quartile') equals: #firstQuartile
 ]
 
 { #category : #test }
 AISpDataFrameSummaryPresenterTest >> testSummaryStatsLabels [
 
 	self assert: (self dfSummaryPresenter summaryStatsLabels isKindOf: Collection).
-	self deny: self dfSummaryPresenter summaryStatsLabels isEmpty.
+	self denyEmpty: self dfSummaryPresenter summaryStatsLabels
 ]
 
 { #category : #test }
@@ -71,5 +72,5 @@ AISpDataFrameSummaryPresenterTest >> testSummaryStatsValueForIn [
 
 	self assert: (self dfSummaryPresenter summaryStatsValueFor: 'Minimum' in: 'child_mort') equals: '16.60'.
 	self assert: (self dfSummaryPresenter summaryStatsValueFor: 'Maximum' in: 'exports') equals: '38.40'.
-	self assert: (self dfSummaryPresenter summaryStatsValueFor: 'Average' in: 'gdpp') equals: '3034.33'.
+	self assert: (self dfSummaryPresenter summaryStatsValueFor: 'Average' in: 'gdpp') equals: '3034.33'
 ]

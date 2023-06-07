@@ -41,15 +41,15 @@ AISpEvaluateItCommand >> asSpecCommand [
 
 { #category : #executing }
 AISpEvaluateItCommand >> execute [
-	
+
 	| evaluatingResult |
 
 	context evaluatorPresenter selectAll.
-	
-	evaluatingResult := context evaluatorPresenter 
+
+	evaluatingResult := context evaluatorPresenter
 		evaluate: context evaluatorPresenter selectedTextOrLine
 		onCompileError: [ ^ self ]
 		onError: [ :e | e pass ].
-	
+
 	context evaluatorPresenter insertPrintPopoverAfterCurrentSelection: evaluatingResult
 ]

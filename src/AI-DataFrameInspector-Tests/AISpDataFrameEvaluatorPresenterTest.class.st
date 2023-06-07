@@ -13,7 +13,7 @@ Class {
 { #category : #running }
 AISpDataFrameEvaluatorPresenterTest >> setUp [
 	super setUp.
-	
+
 	dfEvaluator := AISpDataFrameEvaluatorPresenter on: self sampleDataFrame
 ]
 

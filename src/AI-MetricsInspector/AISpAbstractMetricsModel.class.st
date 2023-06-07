@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-AISpAbstractMetricsModel class >> predictedValues: predicted actualValues: actual [ 
+AISpAbstractMetricsModel class >> predictedValues: predicted actualValues: actual [
 
 	^ self new
 		predictedValues: predicted;
@@ -51,7 +51,7 @@ AISpAbstractMetricsModel >> inspectorTab [
 ]
 
 { #category : #inspector }
-AISpAbstractMetricsModel >> inspectorTabContext: arg1 [ 
+AISpAbstractMetricsModel >> inspectorTabContext: arg1 [
 	^ self subclassResponsibility
 ]
 
