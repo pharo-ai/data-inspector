@@ -201,7 +201,7 @@ AISpDataFrameDescriberPresenter >> newRowNamesColumn [
 
 	^ SpStringTableColumn new
 			title: 'Row Name';
-			compareFunction: [ : colA : colB | colA asString threeWayCompareTo: colB asString ];
+			compareFunction: [ : objA : objB | objA asString < objB asString ];
 			evaluated: [ : rowWithName | rowWithName at: 1 ]
 ]
 
