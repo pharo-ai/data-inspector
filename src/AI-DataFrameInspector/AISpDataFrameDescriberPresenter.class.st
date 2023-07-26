@@ -117,24 +117,27 @@ AISpDataFrameDescriberPresenter >> initializeDataFramePresenter [
 
 	self initializeDataFramePresenterContents.
 
-	dataFramePresenter items: dataFrame
+	dataFramePresenter items: dataFrame asArrayOfRowsWithName
 ]
 
 { #category : #initialization }
 AISpDataFrameDescriberPresenter >> initializeDataFramePresenterContents [
 	" Private - Set the receiver's displayed contents. Display row names if present "
 
-	dataFramePresenter addColumn: self newCheckBoxColumn.
-	
-	{ nil } , dataFrame columnNames doWithIndex: [ : columnName :idx |
-		| evalBlock |
-		evalBlock := columnName
-			ifNil: [ [ : selection | selection name ] ]
-			ifNotNil: [ [ : selection | selection dataSeriesElementAt: idx - 1 ] ].
+	dataFramePresenter 
+		addColumn: self newIndexColumn;
+		addColumn: self newCheckBoxColumn;
+		addColumn: self newRowNamesColumn.
+
+	dataFrame columnNames doWithIndex: [ : columnName :idx |
 		dataFramePresenter addColumn: (SpStringTableColumn new
-				 title: columnName;
-				 beSortable;
-				 evaluated: evalBlock ) ].
+			title: columnName;
+			compareFunction: [ : colA : colB | 
+				(colA at: (dataFrame indexOfColumnNamed: columnName) + 1) <=
+					(colB at: (dataFrame indexOfColumnNamed: columnName) + 1) ];			
+			evaluated: [ : selection | selection dataSeriesElementAt: idx + 1 ] ) ].
+			
+
 ]
 
 { #category : #initialization }
@@ -180,6 +183,26 @@ AISpDataFrameDescriberPresenter >> newCheckBoxColumn [
 			onDeactivation: [ :branch | self selectedItems remove: branch ];
 			width: 20 * self currentWorld displayScaleFactor;
 			yourself
+]
+
+{ #category : #initialization }
+AISpDataFrameDescriberPresenter >> newIndexColumn [
+
+	^ SpIndexTableColumn new
+		title: '#';
+		width: 30;
+		beNotExpandable;
+		yourself
+
+]
+
+{ #category : #initialization }
+AISpDataFrameDescriberPresenter >> newRowNamesColumn [
+
+	^ SpStringTableColumn new
+			title: 'Row Name';
+			compareFunction: [ : colA : colB | colA asString threeWayCompareTo: colB asString ];
+			evaluated: [ : rowWithName | rowWithName at: 1 ]
 ]
 
 { #category : #accessing }
