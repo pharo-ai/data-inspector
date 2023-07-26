@@ -41,7 +41,8 @@ AISpScatterMatrixPresenter >> initializeScatterMatrix: aCanvas [
 
 	| shapes namedColumns |
 	shapes := OrderedCollection new.
-	namedColumns := (model numericColumnNames collect: [ :e | e -> (model column: e) ]) asOrderedDictionary.
+	namedColumns := (model numericColumnNames collect: [ :e |
+		                 e -> (model column: e) ]) asOrderedDictionary.
 	namedColumns keys doWithIndex: [ :column1 :index1 |
 		namedColumns keys doWithIndex: [ :column2 :index2 |
 			| container c plot |
@@ -53,7 +54,10 @@ AISpScatterMatrixPresenter >> initializeScatterMatrix: aCanvas [
 					        RSHistogramPlot new
 						        x: (namedColumns at: column1);
 						        numberOfBins: 50 ]
-				        ifFalse: [ RSScatterPlot new x: (namedColumns at: column2) values y: (namedColumns at: column1) values ].
+				        ifFalse: [
+					        RSScatterPlot new
+						        x: (namedColumns at: column2) values
+						        y: (namedColumns at: column1) values ].
 
 
 			c container: container.
@@ -83,11 +87,14 @@ AISpScatterMatrixPresenter >> initializeScatterMatrix: aCanvas [
 		addAll: shapes;
 		addInteraction: RSCanvasController new.
 
-	aCanvas when: RSExtentChangedEvent do: [
-		RSGridLayout on: shapes.
-		aCanvas camera zoomToFit: aCanvas extent * 0.98.
+	aCanvas
+		when: RSExtentChangedEvent
+		do: [
+			RSGridLayout on: shapes.
+			aCanvas camera zoomToFit: aCanvas extent * 0.98.
 
-		aCanvas signalUpdate ]
+			aCanvas signalUpdate ]
+		for: self
 ]
 
 { #category : #'instance creation' }
