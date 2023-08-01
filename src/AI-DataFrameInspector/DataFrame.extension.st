@@ -37,6 +37,13 @@ DataFrame >> dataDescriberContext: aContext [
 ]
 
 { #category : #'*AI-DataFrameInspector' }
+DataFrame >> dataFrameToolBar [
+
+	<inspectorPresentationOrder: 1 title: 'Interactive'>
+	^ AISpDataFramePresenter on: self
+]
+
+{ #category : #'*AI-DataFrameInspector' }
 DataFrame >> evaluatorRowsLimit [
 
 	" Private - The maximum limit to consider a DataFrame is big enough for a visualization "
