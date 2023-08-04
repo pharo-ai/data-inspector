@@ -22,26 +22,20 @@ AISpSortTablePresenter class >> openOn: aDataFrame [
 	^ (self on: aDataFrame) open
 ]
 
-{ #category : #initialization }
-AISpSortTablePresenter >> connectPresenters [
+{ #category : #adding }
+AISpSortTablePresenter >> addButtonAction [
 
-	addButton action: [
-		newRow := Dictionary new.
-		newRow at: 'columnName' put: columnName selectedItem.
-		newRow at: 'sortType' put: sortType selectedItem.
-		newRow at: 'sortBlock' put: block text.
-		Transcript show: block text.
+	newRow := Dictionary new.
+	newRow at: 'columnName' put: columnName selectedItem.
+	newRow at: 'sortType' put: sortType selectedItem.
+	newRow at: 'sortBlock' put: block text.
+	dataRows add: newRow.
+	tablePresenter items: dataRows
+]
 
-		"Add the new row to the dataRows collection"
-		dataRows add: newRow.
+{ #category : #'as yet unclassified' }
+AISpSortTablePresenter >> changeSortType [
 
-		"Update the table"
-
-		tablePresenter items: dataRows ].
-	applyButton action: [
-		self sortButtonAction.
-		self window close ].
-	cancelButton action: [ self window close ].
 	sortType whenSelectionChangedDo: [ :newSortType |
 		newSortType selectedIndex = 1 ifTrue: [
 			block text: '[ :a :b | a <= b ]'.
@@ -52,6 +46,17 @@ AISpSortTablePresenter >> connectPresenters [
 		newSortType selectedIndex = 3 ifTrue: [
 			block text: ''.
 			block beEditable ] ]
+]
+
+{ #category : #initialization }
+AISpSortTablePresenter >> connectPresenters [
+
+	addButton action: [ self addButtonAction ].
+	applyButton action: [
+		self sortButtonAction.
+		self window close ].
+	cancelButton action: [ self window close ].
+	self changeSortType
 ]
 
 { #category : #layout }
@@ -74,16 +79,51 @@ AISpSortTablePresenter >> defaultLayout [
 	^ SpBoxLayout newTopToBottom
 		  spacing: 5;
 		  add: topLayout height: 20;
-		  "Make sure to set an appropriate height for block"add:
-			  tablePresenter;
+		  add: tablePresenter;
 		  add: bottomLayout height: 30;
 		  yourself
+]
+
+{ #category : #initialization }
+AISpSortTablePresenter >> initializeAddButton [
+
+	addButton := self newToolbarButton
+		             label: 'Add';
+		             icon: (self iconNamed: #smallAdd);
+		             yourself
+]
+
+{ #category : #initialization }
+AISpSortTablePresenter >> initializeApplyCancelButtons [
+
+	applyButton := SpButtonPresenter new label: 'sort'.
+	cancelButton := SpButtonPresenter new label: 'cancel'
 ]
 
 { #category : #initialization }
 AISpSortTablePresenter >> initializePresenters [
 
 	dataRows := OrderedCollection new.
+	self initializeTablePresenter.
+	self initializeAddButton.
+	self initializeSelectionFields.
+	self initializeApplyCancelButtons
+]
+
+{ #category : #initialization }
+AISpSortTablePresenter >> initializeSelectionFields [
+
+	columnName := SpDropListPresenter new items: dataFrame columnNames.
+	block := SpTextInputFieldPresenter new
+		         text: '[ :a :b | a <= b ]';
+		         beNotEditable.
+	sortType := SpDropListPresenter new items:
+		            #( ascending descending other )
+]
+
+{ #category : #initialization }
+AISpSortTablePresenter >> initializeTablePresenter [
+
 	tablePresenter := self newTable
 		                  addColumn: (SpStringTableColumn
 				                   title: 'Column Name'
@@ -94,19 +134,7 @@ AISpSortTablePresenter >> initializePresenters [
 		                  addColumn: (SpStringTableColumn
 				                   title: 'Sort Block'
 				                   evaluated: [ :row | row at: 'sortBlock' ]);
-		                  yourself.
-	addButton := self newToolbarButton
-		             label: 'Add';
-		             icon: (self iconNamed: #smallAdd);
-		             yourself.
-	columnName := SpDropListPresenter new items: dataFrame columnNames.
-	block := SpTextInputFieldPresenter new
-		         text: '[ :a :b | a <= b ]';
-		         beNotEditable.
-	sortType := SpDropListPresenter new items:
-		            #( ascending descending other ).
-	applyButton := SpButtonPresenter new label: 'sort'.
-	cancelButton := SpButtonPresenter new label: 'cancel'
+		                  yourself
 ]
 
 { #category : #initialization }
