@@ -173,12 +173,11 @@ AISpDataFramePresenter >> initializeSortPresenter [
 { #category : #initialization }
 AISpDataFramePresenter >> initializeToolbarPresenter [
 
-	editButton := SpButtonPresenter new
+	editButton := self newButton
 		              label: 'Edit';
 		              yourself.
-	searchBar := SpTextInputFieldPresenter new placeholder:
-		             '          search'.
-	sortButton := SpButtonPresenter new
+	searchBar := self newTextInput placeholder: '          search'.
+	sortButton := self newButton
 		              label: 'sort';
 		              yourself
 ]

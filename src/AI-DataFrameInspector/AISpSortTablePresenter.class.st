@@ -96,8 +96,8 @@ AISpSortTablePresenter >> initializeAddButton [
 { #category : #initialization }
 AISpSortTablePresenter >> initializeApplyCancelButtons [
 
-	applyButton := SpButtonPresenter new label: 'sort'.
-	cancelButton := SpButtonPresenter new label: 'cancel'
+	applyButton := self newButton label: 'sort'.
+	cancelButton := self newButton label: 'cancel'
 ]
 
 { #category : #initialization }
@@ -113,12 +113,12 @@ AISpSortTablePresenter >> initializePresenters [
 { #category : #initialization }
 AISpSortTablePresenter >> initializeSelectionFields [
 
-	columnName := SpDropListPresenter new items: dataFrame columnNames.
-	block := SpTextInputFieldPresenter new
+	columnName := self newDropList items: dataFrame columnNames.
+	block := self newTextInput
 		         text: '[ :a :b | a <= b ]';
 		         beNotEditable.
-	sortType := SpDropListPresenter new items:
-		            #( ascending descending other )
+	sortType := self newDropList items: #( ascending descending
+	               other )
 ]
 
 { #category : #initialization }
