@@ -8,7 +8,8 @@ Class {
 		'editButton',
 		'searchBar',
 		'sortButton',
-		'newdataFramePresenter'
+		'newdataFramePresenter',
+		'sortPresenter'
 	],
 	#category : #'AI-DataFrameInspector-Main presenters'
 }
@@ -37,7 +38,11 @@ AISpDataFramePresenter >> connectPresenters [
 		searchBar text ifNotEmpty: [
 			newdataFramePresenter := dataFramePresenter.
 			self filterTableWithSearchQuery: searchBar text.
-			self layout replace: dataFramePresenter with: newdataFramePresenter ] ]
+			self layout replace: dataFramePresenter with: newdataFramePresenter ] ].
+
+	sortButton action: [
+		sortPresenter open.
+		 ].
 ]
 
 { #category : #layout }
@@ -99,15 +104,23 @@ AISpDataFramePresenter >> initializeDataFramePresenter [
 		dataFramePresenter addColumn: (SpStringTableColumn
 				 title: headerName
 				 evaluated: [ :rowWithName | rowWithName at: columnIndex + 1 ]) ].
+	dataFramePresenter beResizable.
 
-	dataFramePresenter items: dataFrame asArrayOfRowsWithName.
+	dataFramePresenter items: dataFrame asArrayOfRowsWithName
 ]
 
 { #category : #initialization }
 AISpDataFramePresenter >> initializePresenters [
 
 	self initializeDataFramePresenter.
-	self initializeToolbarPresenter
+	self initializeToolbarPresenter.
+	self initializeSortPresenter
+]
+
+{ #category : #initialization }
+AISpDataFramePresenter >> initializeSortPresenter [
+
+	sortPresenter := self instantiate: AISpSortTablePresenter on: dataFrame
 ]
 
 { #category : #initialization }
@@ -121,6 +134,15 @@ AISpDataFramePresenter >> initializeToolbarPresenter [
 	sortButton := SpButtonPresenter new
 		              label: 'sort';
 		              yourself
+]
+
+{ #category : #'as yet unclassified' }
+AISpDataFramePresenter >> parentRefresh [
+	self initializeDataFramePresenter.
+
+	Transcript endEntry show: (dataFrame columnAt: 1).
+	self layout refresh.
+	"dataFramePresenter refresh"
 ]
 
 { #category : #'accessing - model' }
@@ -171,6 +193,7 @@ AISpDataFramePresenter >> updateDataFramePresenter [
 						putVal := newValue asNumber ].
 					dataFrame at: rowInd at: idx put: putVal ].
 				newdataFramePresenter addColumn: column ] ].
+	newdataFramePresenter beResizable.
 
 	newdataFramePresenter items: dataFrame asArrayOfRowsWithName
 ]
