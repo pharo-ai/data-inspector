@@ -72,8 +72,8 @@ AISpSortTablePresenter >> defaultLayout [
 
 	bottomLayout := SpBoxLayout newLeftToRight
 		                spacing: 5;
-		                add: applyButton width: 50;
-		                add: cancelButton width: 50;
+		                add: applyButton width: 65;
+		                add: cancelButton width: 65;
 		                yourself.
 
 	^ SpBoxLayout newTopToBottom
@@ -96,8 +96,12 @@ AISpSortTablePresenter >> initializeAddButton [
 { #category : #initialization }
 AISpSortTablePresenter >> initializeApplyCancelButtons [
 
-	applyButton := self newButton label: 'sort'.
-	cancelButton := self newButton label: 'cancel'
+	applyButton := self newButton
+		               label: 'sort';
+		               icon: (self iconNamed: #smallOk).
+	cancelButton := self newButton
+		                label: 'cancel';
+		                icon: (self iconNamed: #smallCancel)
 ]
 
 { #category : #initialization }

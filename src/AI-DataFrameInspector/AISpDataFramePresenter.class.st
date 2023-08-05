@@ -26,8 +26,14 @@ AISpDataFramePresenter >> connectPresenters [
 	editButton action: [
 		dataFrameColumnsEditable := dataFrameColumnsEditable not.
 		dataFrameColumnsEditable
-			ifTrue: [ editButton label: 'read-only' ]
-			ifFalse: [ editButton label: 'edit' ].
+			ifTrue: [
+				editButton
+					label: 'read';
+					icon: (self iconNamed: #book) ]
+			ifFalse: [
+				editButton
+					label: 'edit';
+					icon: (self iconNamed: #editIcon) ].
 		self editDataFrame.
 		self layout replace: dataFramePresenter with: newdataFramePresenter.
 		dataFramePresenter := newdataFramePresenter ].
@@ -175,10 +181,12 @@ AISpDataFramePresenter >> initializeToolbarPresenter [
 
 	editButton := self newButton
 		              label: 'Edit';
+		              icon: (self iconNamed: #editIcon);
 		              yourself.
 	searchBar := self newTextInput placeholder: '          search'.
 	sortButton := self newButton
 		              label: 'sort';
+		              icon: (self iconNamed: #smallOpen);
 		              yourself
 ]
 
