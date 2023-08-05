@@ -120,6 +120,7 @@ AISpSortTablePresenter >> initializeSelectionFields [
 	columnName := self newDropList items: dataFrame columnNames.
 	block := self newTextInput
 		         text: '[ :a :b | a <= b ]';
+		         placeholder: '[ :a :b | a <= b ]';
 		         beNotEditable.
 	sortType := self newDropList items: #( ascending descending
 	               other )
