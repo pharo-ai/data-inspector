@@ -23,7 +23,7 @@ AISpDataFramePresenter class >> openOn: aDataFrame [
 { #category : #initialization }
 AISpDataFramePresenter >> connectPresenters [
 
-	editButton action: [
+	editButton action: [ "dataFramePresenter update."
 		dataFrameColumnsEditable := dataFrameColumnsEditable not.
 		dataFrameColumnsEditable
 			ifTrue: [
@@ -38,15 +38,16 @@ AISpDataFramePresenter >> connectPresenters [
 		self layout replace: dataFramePresenter with: newdataFramePresenter.
 		dataFramePresenter := newdataFramePresenter ].
 	searchBar whenTextChangedDo: [
-		searchBar text ifEmpty: [
-			self initialize.
-			self layout replace: dataFramePresenter with: dataFramePresenter ].
+		searchBar text ifEmpty: [ self initializeDataFramePresenter.
+			self layout replace: newdataFramePresenter with: dataFramePresenter ].
 		searchBar text ifNotEmpty: [
 			newdataFramePresenter := dataFramePresenter.
 			self filterTableWithSearchQuery: searchBar text.
 			self layout replace: dataFramePresenter with: newdataFramePresenter ] ].
 
-	sortButton action: [ sortPresenter open ]
+	sortButton action: [
+		sortPresenter open.
+		dataFramePresenter update ]
 ]
 
 { #category : #layout }
