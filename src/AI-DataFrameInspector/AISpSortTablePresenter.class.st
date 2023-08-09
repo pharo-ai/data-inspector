@@ -34,6 +34,18 @@ AISpSortTablePresenter >> addButtonAction [
 ]
 
 { #category : #'as yet unclassified' }
+AISpSortTablePresenter >> applyButtonAction [
+
+	| currentRow |
+	currentRow := Dictionary new.
+	(1 to: dataRows size) reverseDo: [ :rowNumber |
+		currentRow := dataRows at: rowNumber.
+		dataFrame
+			sortBy: (currentRow at: 'columnName')
+			using: (BlockClosure readFromString: (currentRow at: 'sortBlock')) ]
+]
+
+{ #category : #'as yet unclassified' }
 AISpSortTablePresenter >> changeSortType [
 
 	sortType whenSelectionChangedDo: [ :newSortType |
@@ -53,7 +65,7 @@ AISpSortTablePresenter >> connectPresenters [
 
 	addButton action: [ self addButtonAction ].
 	applyButton action: [
-		self sortButtonAction.
+		self applyButtonAction.
 		self window close ].
 	cancelButton action: [ self window close ].
 	self changeSortType
@@ -82,12 +94,6 @@ AISpSortTablePresenter >> defaultLayout [
 		  add: tablePresenter;
 		  add: bottomLayout height: 30;
 		  yourself
-]
-
-{ #category : #initialization }
-AISpSortTablePresenter >> initialize [
-
-	super initialize
 ]
 
 { #category : #initialization }
@@ -153,22 +159,11 @@ AISpSortTablePresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		initialExtent: 500 @ 300;
+		title: 'Sort Window';
 		whenClosedDo: [
 			dataRows := OrderedCollection new.
 			tablePresenter items: dataRows ];
 		toolbar: (self newToolbar
 				 add: addButton;
 				 yourself)
-]
-
-{ #category : #sorting }
-AISpSortTablePresenter >> sortButtonAction [
-
-	| currentRow |
-	currentRow := Dictionary new.
-	(1 to: dataRows size) reverseDo: [ :rowNumber |
-		currentRow := dataRows at: rowNumber.
-		dataFrame
-			sortBy: (currentRow at: 'columnName')
-			using: (BlockClosure readFromString: (currentRow at: 'sortBlock')) ]
 ]
