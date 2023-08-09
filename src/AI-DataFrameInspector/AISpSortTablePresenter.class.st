@@ -85,6 +85,12 @@ AISpSortTablePresenter >> defaultLayout [
 ]
 
 { #category : #initialization }
+AISpSortTablePresenter >> initialize [
+
+	super initialize
+]
+
+{ #category : #initialization }
 AISpSortTablePresenter >> initializeAddButton [
 
 	addButton := self newToolbarButton
@@ -147,6 +153,9 @@ AISpSortTablePresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		initialExtent: 500 @ 300;
+		whenClosedDo: [
+			dataRows := OrderedCollection new.
+			tablePresenter items: dataRows ];
 		toolbar: (self newToolbar
 				 add: addButton;
 				 yourself)

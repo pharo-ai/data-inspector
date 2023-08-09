@@ -9,7 +9,8 @@ Class {
 		'searchBar',
 		'sortButton',
 		'newdataFramePresenter',
-		'sortPresenter'
+		'sortPresenter',
+		'windowPresenter'
 	],
 	#category : #'AI-DataFrameInspector-Main presenters'
 }
@@ -38,7 +39,8 @@ AISpDataFramePresenter >> connectPresenters [
 		self layout replace: dataFramePresenter with: newdataFramePresenter.
 		dataFramePresenter := newdataFramePresenter ].
 	searchBar whenTextChangedDo: [
-		searchBar text ifEmpty: [ self initializeDataFramePresenter.
+		searchBar text ifEmpty: [
+			self initializeDataFramePresenter.
 			self layout replace: newdataFramePresenter with: dataFramePresenter ].
 		searchBar text ifNotEmpty: [
 			newdataFramePresenter := dataFramePresenter.
@@ -46,8 +48,11 @@ AISpDataFramePresenter >> connectPresenters [
 			self layout replace: dataFramePresenter with: newdataFramePresenter ] ].
 
 	sortButton action: [
-		sortPresenter open.
-		dataFramePresenter update ]
+		windowPresenter := sortPresenter open.
+		windowPresenter whenClosedDo: [
+			self initializeNewDataFramePresenter.
+			self layout replace: dataFramePresenter with: newdataFramePresenter.
+			dataFramePresenter := newdataFramePresenter ] ]
 ]
 
 { #category : #layout }
@@ -164,17 +169,64 @@ AISpDataFramePresenter >> initializeDataFramePresenter [
 ]
 
 { #category : #initialization }
+AISpDataFramePresenter >> initializeLayout [
+
+	self layout: (SpBoxLayout newTopToBottom
+			 spacing: 5;
+			 add: (SpBoxLayout newLeftToRight
+					  spacing: 5;
+					  add: editButton width: 60;
+					  add: sortButton width: 50;
+					  add: searchBar width: 100;
+					  yourself)
+			 height: 20;
+			 yourself;
+			 add: dataFramePresenter;
+			 yourself)
+]
+
+{ #category : #initialization }
+AISpDataFramePresenter >> initializeNewDataFramePresenter [
+
+	newdataFramePresenter := self newTable.
+
+	newdataFramePresenter addColumn: (SpIndexTableColumn new
+			 title: '#';
+			 sortFunction: #yourself ascending;
+			 beNotExpandable;
+			 yourself).
+	dataFrame rowNames
+	= (1 to: dataFrame numberOfRows) asOrderedCollection ifFalse: [
+		newdataFramePresenter addColumn: (SpStringTableColumn
+				 title: ''
+				 evaluated: [ :rowWithName | rowWithName at: 1 ]) ].
+
+	dataFrame columnNames doWithIndex: [ :headerName :columnIndex |
+		newdataFramePresenter addColumn: (SpStringTableColumn
+				 title: headerName
+				 evaluated: [ :rowWithName | rowWithName at: columnIndex + 1 ]) ].
+	newdataFramePresenter beResizable.
+
+	newdataFramePresenter items: dataFrame asArrayOfRowsWithName
+]
+
+{ #category : #initialization }
 AISpDataFramePresenter >> initializePresenters [
 
 	self initializeDataFramePresenter.
 	self initializeToolbarPresenter.
-	self initializeSortPresenter
+	self initializeSortPresenter.
+	self initializeLayout
 ]
 
 { #category : #initialization }
 AISpDataFramePresenter >> initializeSortPresenter [
 
-	sortPresenter := self instantiate: AISpSortTablePresenter on: dataFrame
+	windowPresenter := SpWindowPresenter new whenClosedDo: [
+		                   Transcript show: 'Ok' ].
+	sortPresenter := self
+		                 instantiate: AISpSortTablePresenter
+		                 on: dataFrame
 ]
 
 { #category : #initialization }
