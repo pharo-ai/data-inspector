@@ -9,7 +9,6 @@ Class {
 		'columnName',
 		'block',
 		'addButton',
-		'testButton',
 		'tablePresenter',
 		'applyButton',
 		'cancelButton',
