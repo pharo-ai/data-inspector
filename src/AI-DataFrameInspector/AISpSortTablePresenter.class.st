@@ -1,3 +1,6 @@
+"
+Class for handling the sort window.
+"
 Class {
 	#name : #AISpSortTablePresenter,
 	#superclass : #AISpDataFramePresenter,
@@ -33,7 +36,7 @@ AISpSortTablePresenter >> addButtonAction [
 	tablePresenter items: dataRows
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 AISpSortTablePresenter >> applyButtonAction [
 
 	| currentRow |
@@ -45,7 +48,7 @@ AISpSortTablePresenter >> applyButtonAction [
 			using: (BlockClosure readFromString: (currentRow at: 'sortBlock')) ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 AISpSortTablePresenter >> changeSortType [
 
 	sortType whenSelectionChangedDo: [ :newSortType |

@@ -1,3 +1,6 @@
+"
+Class for handling the dataframe in 'interactive' mode.
+"
 Class {
 	#name : #AISpDataFramePresenter,
 	#superclass : #SpPresenter,
@@ -46,7 +49,7 @@ AISpDataFramePresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #settings }
+{ #category : #editing }
 AISpDataFramePresenter >> editButtonAction [
 
 	dataFrameColumnsEditable := dataFrameColumnsEditable not.
@@ -64,7 +67,7 @@ AISpDataFramePresenter >> editButtonAction [
 	dataFramePresenter := newdataFramePresenter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #editing }
 AISpDataFramePresenter >> editDataFrame [
 
 	newdataFramePresenter := self newTable.
@@ -115,7 +118,7 @@ AISpDataFramePresenter >> editDataFrame [
 	newdataFramePresenter items: dataFrame asArrayOfRowsWithName
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #searching }
 AISpDataFramePresenter >> filterTableWithSearchQuery: newValue [
 
 	| filteredRows |
@@ -216,7 +219,7 @@ AISpDataFramePresenter >> initializeToolbarPresenter [
 		              yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #searching }
 AISpDataFramePresenter >> searchBarAction [
 
 	searchBar text ifEmpty: [
