@@ -8,6 +8,7 @@ Class {
 		'dataFrame',
 		'dataFramePresenter',
 		'dataFrameColumnsEditable',
+		'setRowNames',
 		'editButton',
 		'searchBar',
 		'sortButton',
@@ -135,6 +136,7 @@ AISpDataFramePresenter >> filterTableWithSearchQuery: newValue [
 AISpDataFramePresenter >> initialize [
 
 	dataFrameColumnsEditable ifNil: [ dataFrameColumnsEditable := false ].
+	setRowNames ifNil: [ setRowNames := false ].
 	super initialize
 ]
 
@@ -150,6 +152,7 @@ AISpDataFramePresenter >> initializeDataFramePresenter [
 			 yourself).
 	dataFrame rowNames
 	= (1 to: dataFrame numberOfRows) asOrderedCollection ifFalse: [
+		setRowNames := true.
 		dataFramePresenter addColumn: (SpStringTableColumn
 				 title: ''
 				 evaluated: [ :rowWithName | rowWithName at: 1 ]) ].
@@ -173,8 +176,7 @@ AISpDataFramePresenter >> initializeNewDataFramePresenter [
 			 sortFunction: #yourself ascending;
 			 beNotExpandable;
 			 yourself).
-	dataFrame rowNames
-	= (1 to: dataFrame numberOfRows) asOrderedCollection ifFalse: [
+	setRowNames ifTrue: [
 		newdataFramePresenter addColumn: (SpStringTableColumn
 				 title: ''
 				 evaluated: [ :rowWithName | rowWithName at: 1 ]) ].
