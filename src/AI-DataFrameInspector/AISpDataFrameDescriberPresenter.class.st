@@ -1,6 +1,13 @@
 "
+## Description
+
+Provide a Spec Presenter to display a data frame detailed description of its contents and basic statistics.
+
+## Examples
+```language=Pharo
 AISpDataFrameInspector openOn: AIDatasets loadIris.
 AISpDataFrameInspector openOn: AIDatasets loadWine.
+```
 "
 Class {
 	#name : #AISpDataFrameDescriberPresenter,
@@ -108,15 +115,29 @@ AISpDataFrameDescriberPresenter >> initializeDataFramePresenter [
 		contextMenu: [ self contextMenu ];
 		contextKeyBindings: self contextMenuKeyBindings.
 
-	dataFramePresenter addColumn: self newCheckBoxColumn.
+	self initializeDataFramePresenterContents.
 
-	dataFrame columnNames doWithIndex: [ :columnName :idx |
+	dataFramePresenter items: dataFrame asArrayOfRowsWithName
+]
+
+{ #category : #initialization }
+AISpDataFrameDescriberPresenter >> initializeDataFramePresenterContents [
+	" Private - Set the receiver's displayed contents. Display row names if present "
+
+	dataFramePresenter 
+		addColumn: self newIndexColumn;
+		addColumn: self newCheckBoxColumn;
+		addColumn: self newRowNamesColumn.
+
+	dataFrame columnNames doWithIndex: [ : columnName :idx |
 		dataFramePresenter addColumn: (SpStringTableColumn new
-				 title: columnName;
-				 beSortable;
-				 evaluated: [ : selection | selection dataSeriesElementAt: idx ]) ].
+			title: columnName;
+			compareFunction: [ : colA : colB | 
+				(colA at: (dataFrame indexOfColumnNamed: columnName) + 1) <=
+					(colB at: (dataFrame indexOfColumnNamed: columnName) + 1) ];			
+			evaluated: [ : selection | selection dataSeriesElementAt: idx + 1 ] ) ].
+			
 
-	dataFramePresenter items: dataFrame
 ]
 
 { #category : #initialization }
@@ -162,6 +183,26 @@ AISpDataFrameDescriberPresenter >> newCheckBoxColumn [
 			onDeactivation: [ :branch | self selectedItems remove: branch ];
 			width: 20 * self currentWorld displayScaleFactor;
 			yourself
+]
+
+{ #category : #initialization }
+AISpDataFrameDescriberPresenter >> newIndexColumn [
+
+	^ SpIndexTableColumn new
+		title: '#';
+		width: 30;
+		beNotExpandable;
+		yourself
+
+]
+
+{ #category : #initialization }
+AISpDataFrameDescriberPresenter >> newRowNamesColumn [
+
+	^ SpStringTableColumn new
+			title: 'Row Name';
+			compareFunction: [ : objA : objB | objA asString < objB asString ];
+			evaluated: [ : rowWithName | rowWithName at: 1 ]
 ]
 
 { #category : #accessing }
