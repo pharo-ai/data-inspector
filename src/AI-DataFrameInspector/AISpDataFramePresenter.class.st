@@ -229,13 +229,14 @@ AISpDataFramePresenter >> initializeToolbarPresenter [
 { #category : #searching }
 AISpDataFramePresenter >> searchBarAction [
 
-	searchBar text ifEmpty: [
-		self initializeDataFramePresenter.
-		self layout replace: newdataFramePresenter with: dataFramePresenter ].
-	searchBar text ifNotEmpty: [
-		newdataFramePresenter := dataFramePresenter.
-		self filterTableWithSearchQuery: searchBar text.
-		self layout replace: dataFramePresenter with: newdataFramePresenter ]
+	searchBar text
+		ifEmpty: [
+			self initializeDataFramePresenter.
+			self layout replace: newdataFramePresenter with: dataFramePresenter ]
+		ifNotEmpty: [ :text |
+			newdataFramePresenter := dataFramePresenter.
+			self filterTableWithSearchQuery: text.
+			self layout replace: dataFramePresenter with: newdataFramePresenter ]
 ]
 
 { #category : #'accessing - model' }
