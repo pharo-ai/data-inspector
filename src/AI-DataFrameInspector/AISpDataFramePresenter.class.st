@@ -140,8 +140,8 @@ AISpDataFramePresenter >> filterTableWithSearchQuery: newValue [
 { #category : #initialization }
 AISpDataFramePresenter >> initialize [
 
-	dataFrameColumnsEditable ifNil: [ dataFrameColumnsEditable := false ].
-	setRowNames ifNil: [ setRowNames := false ].
+	dataFrameColumnsEditable := false.
+	setRowNames := false.
 	super initialize
 ]
 
