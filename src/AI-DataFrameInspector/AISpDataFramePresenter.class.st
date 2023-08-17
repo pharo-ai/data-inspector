@@ -50,7 +50,6 @@ AISpDataFramePresenter >> defaultLayout [
 				   add: searchBar width: 100;
 				   yourself)
 		  height: 20;
-		  yourself;
 		  add: dataFramePresenter;
 		  yourself
 ]
