@@ -1,5 +1,14 @@
 "
 Class for handling the sort window.
+It provides a user friendly way to sort DataFrames.
+The sort window has three different fields:
+- **Column Name** : A drop down list from which users can select the column name by which the DataFrame should be sorted.
+- **Sort Type** : A drop down list having three options 'ascending', 'descending' and 'other', the user can define the way the DataFrame should be sorted by choosing one of these options.
+- **Sorting Block** : This field is disabled if the user chooses 'ascending' or 'descending'. The user can write a custom sorting block in this field after selecting the 'other' option from the 'Sort Type' drop down list. 
+
+**Chain sorting** is also possible using this window, simply click the 'Add' button and choose the next column name by which the DataFrame should be sorted if some of the values of the previous selected column are same.
+
+Click on the **sort** button to sort the DataFrame based on the preferences selected or choose the **cancel** button to discard these preferences.
 "
 Class {
 	#name : #AISpSortTablePresenter,

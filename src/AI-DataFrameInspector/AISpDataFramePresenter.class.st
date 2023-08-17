@@ -1,5 +1,10 @@
 "
-Class for handling the dataframe in 'interactive' mode.
+Class for handling the Dataframe in **interactive** mode.
+These are some of the key features of the interactive mode:
+- **Edit** : DataFrames can be edited and the changes will be saved to the original DataFrame.
+- **Search** : Only those rows of the DataFrame will be visible which have the element in the search bar.
+- **Sort** : A sorting window opens where the users can select from drop-down lists the column by which they want the DataFrame to be sorted and the sorting block they would like to use.
+- Column widths can be **resized** by dragging the column borders.
 "
 Class {
 	#name : #AISpDataFramePresenter,
