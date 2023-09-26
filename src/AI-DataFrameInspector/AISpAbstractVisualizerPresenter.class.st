@@ -60,20 +60,23 @@ AISpAbstractVisualizerPresenter >> plotAllHistograms: aCanvas [
 
 	| shapes |
 	shapes := self allColumnValuesWithColumnName collect: [ :columnAssoc |
-		self plotHistogram: columnAssoc ].
+		          self plotHistogram: columnAssoc ].
 
 	aCanvas
 		addAll: shapes;
 		addInteraction: RSCanvasController new.
 
-	aCanvas when: RSExtentChangedEvent do: [
-		RSFlowLayout new
-			gapSize: 10;
-			maxWidth: aCanvas extent x;
-			on: shapes.
-		aCanvas camera zoomToFit: aCanvas extent * 0.98.
+	aCanvas
+		when: RSExtentChangedEvent
+		do: [
+			RSFlowLayout new
+				gapSize: 10;
+				maxWidth: aCanvas extent x;
+				on: shapes.
+			aCanvas camera zoomToFit: aCanvas extent * 0.98.
 
-		aCanvas signalUpdate ]
+			aCanvas signalUpdate ]
+		for: self
 ]
 
 { #category : #initialization }
