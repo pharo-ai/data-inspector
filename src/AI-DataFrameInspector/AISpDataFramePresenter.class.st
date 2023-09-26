@@ -17,8 +17,10 @@ Class {
 		'editButton',
 		'searchBar',
 		'sortButton',
+		'addRowButton',
 		'newdataFramePresenter',
 		'sortPresenter',
+		'addRowPresenter',
 		'windowPresenter'
 	],
 	#category : #'AI-DataFrameInspector-Main presenters'
@@ -30,12 +32,32 @@ AISpDataFramePresenter class >> openOn: aDataFrame [
 	^ (self on: aDataFrame) open
 ]
 
+{ #category : #adding }
+AISpDataFramePresenter >> addRowButtonAction [
+
+	windowPresenter := addRowPresenter open.
+	windowPresenter whenClosedDo: [ self refreshLayout ]
+]
+
 { #category : #initialization }
 AISpDataFramePresenter >> connectPresenters [
 
 	editButton action: [ self editButtonAction ].
 	searchBar whenTextChangedDo: [ self searchBarAction ].
-	sortButton action: [ self sortButtonAction ]
+	sortButton action: [ self sortButtonAction ].
+	addRowButton action: [ self addRowButtonAction ]
+]
+
+{ #category : #'as yet unclassified' }
+AISpDataFramePresenter >> dataFrameContextMenu [
+
+	^ self newMenu addItem: [ :item |
+		  item
+			  name: 'delete row';
+			  icon: (self iconNamed: #remove);
+			  action: [
+				  dataFrame removeRow: (dataFramePresenter selectedItem at: 1).
+				  self refreshLayout ] ]
 ]
 
 { #category : #layout }
@@ -48,6 +70,7 @@ AISpDataFramePresenter >> defaultLayout [
 				   add: editButton width: 60;
 				   add: sortButton width: 50;
 				   add: searchBar width: 100;
+				   add: addRowButton width: 80;
 				   yourself)
 		  height: 20;
 		  add: dataFramePresenter;
@@ -120,7 +143,9 @@ AISpDataFramePresenter >> editDataFrame [
 				newdataFramePresenter addColumn: column ] ].
 	newdataFramePresenter beResizable.
 
-	newdataFramePresenter items: dataFrame asArrayOfRowsWithName
+	newdataFramePresenter
+		items: dataFrame asArrayOfRowsWithName;
+		contextMenu: self dataFrameContextMenu
 ]
 
 { #category : #searching }
@@ -142,6 +167,15 @@ AISpDataFramePresenter >> initialize [
 	dataFrameColumnsEditable := false.
 	setRowNames := false.
 	super initialize
+]
+
+{ #category : #'as yet unclassified' }
+AISpDataFramePresenter >> initializeAddRowPresenter [
+
+	windowPresenter := SpWindowPresenter new.
+	addRowPresenter := self
+		                   instantiate: AISpAddRowPresenter
+		                   on: dataFrame
 ]
 
 { #category : #initialization }
@@ -167,7 +201,9 @@ AISpDataFramePresenter >> initializeDataFramePresenter [
 				 evaluated: [ :rowWithName | rowWithName at: columnIndex + 1 ]) ].
 	dataFramePresenter beResizable.
 
-	dataFramePresenter items: dataFrame asArrayOfRowsWithName
+	dataFramePresenter
+		items: dataFrame asArrayOfRowsWithName;
+		contextMenu: self dataFrameContextMenu
 ]
 
 { #category : #initialization }
@@ -191,7 +227,9 @@ AISpDataFramePresenter >> initializeNewDataFramePresenter [
 				 evaluated: [ :rowWithName | rowWithName at: columnIndex + 1 ]) ].
 	newdataFramePresenter beResizable.
 
-	newdataFramePresenter items: dataFrame asArrayOfRowsWithName
+	newdataFramePresenter
+		items: dataFrame asArrayOfRowsWithName;
+		contextMenu: self dataFrameContextMenu
 ]
 
 { #category : #initialization }
@@ -199,7 +237,8 @@ AISpDataFramePresenter >> initializePresenters [
 
 	self initializeDataFramePresenter.
 	self initializeToolbarPresenter.
-	self initializeSortPresenter
+	self initializeSortPresenter.
+	self initializeAddRowPresenter
 ]
 
 { #category : #initialization }
@@ -222,7 +261,19 @@ AISpDataFramePresenter >> initializeToolbarPresenter [
 	sortButton := self newButton
 		              label: 'sort';
 		              icon: (self iconNamed: #smallOpen);
-		              yourself
+		              yourself.
+	addRowButton := self newButton
+		                label: 'Add Row';
+		                icon: (self iconNamed: #smallAdd);
+		                yourself
+]
+
+{ #category : #'as yet unclassified' }
+AISpDataFramePresenter >> refreshLayout [
+
+	self initializeNewDataFramePresenter.
+	self layout replace: dataFramePresenter with: newdataFramePresenter.
+	dataFramePresenter := newdataFramePresenter
 ]
 
 { #category : #searching }
@@ -248,8 +299,5 @@ AISpDataFramePresenter >> setModelBeforeInitialization: aModel [
 AISpDataFramePresenter >> sortButtonAction [
 
 	windowPresenter := sortPresenter open.
-	windowPresenter whenClosedDo: [
-		self initializeNewDataFramePresenter.
-		self layout replace: dataFramePresenter with: newdataFramePresenter.
-		dataFramePresenter := newdataFramePresenter ]
+	windowPresenter whenClosedDo: [ self refreshLayout ]
 ]
