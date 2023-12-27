@@ -4,12 +4,14 @@ I am a command that copies the clicked row of the DataFrame.
 I am converted to a spec context menu that appears when you right click in a DataFrame row.
 "
 Class {
-	#name : #AISpDataFrameCopyRowValuesCommand,
-	#superclass : #AISpDataFrameCommand,
-	#category : #'AI-DataFrameInspector-Context menu commands'
+	#name : 'AISpDataFrameCopyRowValuesCommand',
+	#superclass : 'AISpDataFrameCommand',
+	#category : 'AI-DataFrameInspector-Context menu commands',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Context menu commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 AISpDataFrameCopyRowValuesCommand >> asSpecCommand [
 
 	^ super asSpecCommand
@@ -18,7 +20,7 @@ AISpDataFrameCopyRowValuesCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 AISpDataFrameCopyRowValuesCommand >> execute [
 
 	"Execute the actions that should be done by the command.
@@ -27,7 +29,7 @@ AISpDataFrameCopyRowValuesCommand >> execute [
 	self selectedItem copyRowValuesToClipboard
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameCopyRowValuesCommand >> initialize [
 
 	super initialize.

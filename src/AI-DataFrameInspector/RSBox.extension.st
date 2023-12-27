@@ -1,6 +1,6 @@
-Extension { #name : #RSBox }
+Extension { #name : 'RSBox' }
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 RSBox >> asString [
 
 	^ String streamContents: [ :stream |

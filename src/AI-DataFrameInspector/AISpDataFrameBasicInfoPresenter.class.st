@@ -14,21 +14,23 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #AISpDataFrameBasicInfoPresenter,
-	#superclass : #AISpDataFrameAbstractPresenter,
+	#name : 'AISpDataFrameBasicInfoPresenter',
+	#superclass : 'AISpDataFrameAbstractPresenter',
 	#instVars : [
 		'dataFrameBasicInfoPresenter'
 	],
-	#category : #'AI-DataFrameInspector-Sub presenters'
+	#category : 'AI-DataFrameInspector-Sub presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Sub presenters'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameBasicInfoPresenter >> dataFrameBasicInfoPresenter [
 
 	^ dataFrameBasicInfoPresenter
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 AISpDataFrameBasicInfoPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -36,7 +38,7 @@ AISpDataFrameBasicInfoPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameBasicInfoPresenter >> initializePresenters [
 
 	dataFrameBasicInfoPresenter := self newTable.
@@ -52,7 +54,7 @@ AISpDataFrameBasicInfoPresenter >> initializePresenters [
 			beSortable)
 ]
 
-{ #category : #'private building' }
+{ #category : 'private building' }
 AISpDataFrameBasicInfoPresenter >> summaryDescriptions [
 
 	^ Dictionary new
@@ -62,19 +64,19 @@ AISpDataFrameBasicInfoPresenter >> summaryDescriptions [
 		yourself
 ]
 
-{ #category : #'private building' }
+{ #category : 'private building' }
 AISpDataFrameBasicInfoPresenter >> summaryDescriptionsLabels [
 
 	^ self summaryDescriptions keys asSortedCollection
 ]
 
-{ #category : #'private building' }
+{ #category : 'private building' }
 AISpDataFrameBasicInfoPresenter >> summaryDescriptorsAt: aString [
 
 	^ self summaryDescriptions at: aString
 ]
 
-{ #category : #'private building' }
+{ #category : 'private building' }
 AISpDataFrameBasicInfoPresenter >> summaryValueFor: aString [
 
 	^ (self dataFrame perform: (self summaryDescriptorsAt: aString)) asString

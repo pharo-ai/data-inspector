@@ -8,13 +8,15 @@ This Roassal >=3 presenter provides histogram for all numeric columns in the dis
 
 "
 Class {
-	#name : #AISpDataFrameVisualizerPresenter,
-	#superclass : #AISpAbstractVisualizerPresenter,
+	#name : 'AISpDataFrameVisualizerPresenter',
+	#superclass : 'AISpAbstractVisualizerPresenter',
 	#classTraits : 'SpTModel classTrait',
-	#category : #'AI-DataFrameInspector-Main presenters'
+	#category : 'AI-DataFrameInspector-Main presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Main presenters'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameVisualizerPresenter >> allColumnValuesWithColumnName [
 	" Private - Answer a <Collection> of <Association> with numeric column values in the receiver's data frame "
 
@@ -24,7 +26,7 @@ AISpDataFrameVisualizerPresenter >> allColumnValuesWithColumnName [
 	^ self numericColumnNames collect: [ :colName | colName -> ((columns at: (self model columnNames indexOf: colName)) reject: #isNil) ]
 ]
 
-{ #category : #'to review' }
+{ #category : 'to review' }
 AISpDataFrameVisualizerPresenter >> createCanvas [
 
 	| canvas |
@@ -34,13 +36,13 @@ AISpDataFrameVisualizerPresenter >> createCanvas [
 	^ canvas
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameVisualizerPresenter >> dataFrame [
 
 	^ model
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AISpDataFrameVisualizerPresenter >> open [
 
 	^ super

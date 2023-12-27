@@ -1,34 +1,36 @@
 Class {
-	#name : #AISpAbstractVisualizerPresenter,
-	#superclass : #SpRoassalPresenter,
+	#name : 'AISpAbstractVisualizerPresenter',
+	#superclass : 'SpRoassalPresenter',
 	#traits : 'SpTModel',
 	#classTraits : 'SpTModel classTrait',
 	#instVars : [
 		'numberOfBins'
 	],
-	#category : #'AI-DataFrameInspector-Main presenters'
+	#category : 'AI-DataFrameInspector-Main presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Main presenters'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AISpAbstractVisualizerPresenter class >> openOn: aModel [
 
 	^ (self on: aModel) open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAbstractVisualizerPresenter >> allColumnValuesWithColumnName [
 	" Private - Answer a <Collection> of <Association> with numeric column values in the receiver's data frame "
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAbstractVisualizerPresenter >> defaultNumberOfBins [
 
 	^ 50
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAbstractVisualizerPresenter >> initializePresenters [
 
 	self canvas: RSCanvas new.
@@ -36,26 +38,26 @@ AISpAbstractVisualizerPresenter >> initializePresenters [
 	self refresh
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAbstractVisualizerPresenter >> numberOfBins [
 
 	^ numberOfBins ifNil: [ numberOfBins := self defaultNumberOfBins ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAbstractVisualizerPresenter >> numberOfBins: aNumber [
 
 	numberOfBins := aNumber.
 	self initializePresenters
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAbstractVisualizerPresenter >> numericColumnNames [
 
 	^ self model numericColumnNames
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAbstractVisualizerPresenter >> plotAllHistograms: aCanvas [
 
 	| shapes |
@@ -79,7 +81,7 @@ AISpAbstractVisualizerPresenter >> plotAllHistograms: aCanvas [
 		for: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAbstractVisualizerPresenter >> plotHistogram: columnAssoc [
 
 	| container c columnValues plot vertical horizontal |

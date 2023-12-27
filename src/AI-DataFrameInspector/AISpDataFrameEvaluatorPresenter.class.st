@@ -12,16 +12,18 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #AISpDataFrameEvaluatorPresenter,
-	#superclass : #AISpDataFrameAbstractPresenter,
+	#name : 'AISpDataFrameEvaluatorPresenter',
+	#superclass : 'AISpDataFrameAbstractPresenter',
 	#instVars : [
 		'toolbar',
 		'evaluatorPresenter'
 	],
-	#category : #'AI-DataFrameInspector-Sub presenters'
+	#category : 'AI-DataFrameInspector-Sub presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Sub presenters'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 AISpDataFrameEvaluatorPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -30,19 +32,19 @@ AISpDataFrameEvaluatorPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameEvaluatorPresenter >> evaluatorPresenter [
 
 	^ evaluatorPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameEvaluatorPresenter >> evaluatorPresenterText [
 
 	^ evaluatorPresenter text
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameEvaluatorPresenter >> initializeEvaluator [
 
 	evaluatorPresenter := self instantiate: SpCodePresenter.
@@ -53,14 +55,14 @@ AISpDataFrameEvaluatorPresenter >> initializeEvaluator [
 		text: 'self'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameEvaluatorPresenter >> initializePresenters [
 
 	self initializeToolbar.
 	self initializeEvaluator
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameEvaluatorPresenter >> initializeToolbar [
 
 	toolbar := self instantiate: AISpDataFrameEvaluatorToolbarPresenter on: self dataFrame

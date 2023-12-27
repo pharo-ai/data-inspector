@@ -2,21 +2,23 @@
 I am a presenter that shows the summary of the statistics of a given DataFrame.
 "
 Class {
-	#name : #AISpDataFrameSummaryPresenter,
-	#superclass : #AISpDataFrameAbstractPresenter,
+	#name : 'AISpDataFrameSummaryPresenter',
+	#superclass : 'AISpDataFrameAbstractPresenter',
 	#instVars : [
 		'dataFrameSummaryPresenter'
 	],
-	#category : #'AI-DataFrameInspector-Sub presenters'
+	#category : 'AI-DataFrameInspector-Sub presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Sub presenters'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameSummaryPresenter >> dataFrameSummaryPresenter [
 
 	^ dataFrameSummaryPresenter
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 AISpDataFrameSummaryPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -24,7 +26,7 @@ AISpDataFrameSummaryPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameSummaryPresenter >> initializePresenters [
 
 	dataFrameSummaryPresenter := self newTable.
@@ -41,7 +43,7 @@ AISpDataFrameSummaryPresenter >> initializePresenters [
 				 beSortable) ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 AISpDataFrameSummaryPresenter >> performCalculation: aString forDataSeries: colDataSeries [
 
 	| calculation |
@@ -50,7 +52,7 @@ AISpDataFrameSummaryPresenter >> performCalculation: aString forDataSeries: colD
 	^ self roundResult: calculation
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 AISpDataFrameSummaryPresenter >> roundResult: aNumber [
 
 	"We choose to show only 3 decimal places according to the European Association of Science Editors guidelines include the useful rule of thumb: “numbers should be given in (sic) 2–3 effective digits”"
@@ -58,7 +60,7 @@ AISpDataFrameSummaryPresenter >> roundResult: aNumber [
 	^ aNumber printShowingDecimalPlaces: 2
 ]
 
-{ #category : #calculating }
+{ #category : 'calculating' }
 AISpDataFrameSummaryPresenter >> summaryStats [
 
 	^ Dictionary new
@@ -74,19 +76,19 @@ AISpDataFrameSummaryPresenter >> summaryStats [
 		yourself
 ]
 
-{ #category : #calculating }
+{ #category : 'calculating' }
 AISpDataFrameSummaryPresenter >> summaryStatsAt: aString [
 
 	^ self summaryStats at: aString
 ]
 
-{ #category : #calculating }
+{ #category : 'calculating' }
 AISpDataFrameSummaryPresenter >> summaryStatsLabels [
 
 	^ self summaryStats keys
 ]
 
-{ #category : #calculating }
+{ #category : 'calculating' }
 AISpDataFrameSummaryPresenter >> summaryStatsValueFor: aString in: col [
 
 	^ self performCalculation: aString forDataSeries: (self dataFrame column: col)

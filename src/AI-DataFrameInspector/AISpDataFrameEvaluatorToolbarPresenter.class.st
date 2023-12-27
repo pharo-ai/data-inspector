@@ -10,15 +10,17 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #AISpDataFrameEvaluatorToolbarPresenter,
-	#superclass : #AISpDataFrameAbstractPresenter,
+	#name : 'AISpDataFrameEvaluatorToolbarPresenter',
+	#superclass : 'AISpDataFrameAbstractPresenter',
 	#instVars : [
 		'toolbar'
 	],
-	#category : #'AI-DataFrameInspector-Sub presenters'
+	#category : 'AI-DataFrameInspector-Sub presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Sub presenters'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 AISpDataFrameEvaluatorToolbarPresenter >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight
@@ -26,19 +28,19 @@ AISpDataFrameEvaluatorToolbarPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameEvaluatorToolbarPresenter >> evaluatorPresenter [
 
 	^ self owner evaluatorPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameEvaluatorToolbarPresenter >> initializePresenters [
 
 	self initializeToolbar
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameEvaluatorToolbarPresenter >> initializeToolbar [
 	"evaluateItButton := AISpEvaluateItCommand asSpecButtonForContext: self"
 

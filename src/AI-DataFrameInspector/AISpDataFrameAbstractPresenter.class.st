@@ -10,27 +10,29 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #AISpDataFrameAbstractPresenter,
-	#superclass : #SpPresenter,
+	#name : 'AISpDataFrameAbstractPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'dataFrame'
 	],
-	#category : #'AI-DataFrameInspector-Sub presenters'
+	#category : 'AI-DataFrameInspector-Sub presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Sub presenters'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameAbstractPresenter >> dataFrame [
 
 	^ dataFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameAbstractPresenter >> dataFrame: anObject [
 
 	dataFrame := anObject
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 AISpDataFrameAbstractPresenter >> setModelBeforeInitialization: aDomainObject [
 
 	dataFrame := aDomainObject

@@ -4,12 +4,14 @@ I am a command that copies the clicked row with the names of the label of the Da
 I am converted to a spec context menu that appears when you right click in a DataFrame row.
 "
 Class {
-	#name : #AISpDataFrameCopyRowValuesWithLabelsCommand,
-	#superclass : #AISpDataFrameCommand,
-	#category : #'AI-DataFrameInspector-Context menu commands'
+	#name : 'AISpDataFrameCopyRowValuesWithLabelsCommand',
+	#superclass : 'AISpDataFrameCommand',
+	#category : 'AI-DataFrameInspector-Context menu commands',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Context menu commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 AISpDataFrameCopyRowValuesWithLabelsCommand >> asSpecCommand [
 
 	^ super asSpecCommand
@@ -18,7 +20,7 @@ AISpDataFrameCopyRowValuesWithLabelsCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 AISpDataFrameCopyRowValuesWithLabelsCommand >> execute [
 
 	"Execute the actions that should be done by the command.
@@ -27,7 +29,7 @@ AISpDataFrameCopyRowValuesWithLabelsCommand >> execute [
 	self selectedItem copyRowValuesWithLabelsToClipboard
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameCopyRowValuesWithLabelsCommand >> initialize [
 
 	super initialize.

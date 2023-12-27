@@ -7,8 +7,8 @@ These are some of the key features of the interactive mode:
 - Column widths can be **resized** by dragging the column borders.
 "
 Class {
-	#name : #AISpDataFramePresenter,
-	#superclass : #SpPresenter,
+	#name : 'AISpDataFramePresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'dataFrame',
 		'dataFramePresenter',
@@ -23,23 +23,25 @@ Class {
 		'addRowPresenter',
 		'windowPresenter'
 	],
-	#category : #'AI-DataFrameInspector-Main presenters'
+	#category : 'AI-DataFrameInspector-Main presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Main presenters'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AISpDataFramePresenter class >> openOn: aDataFrame [
 
 	^ (self on: aDataFrame) open
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 AISpDataFramePresenter >> addRowButtonAction [
 
 	windowPresenter := addRowPresenter open.
 	windowPresenter whenClosedDo: [ self refreshLayout ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFramePresenter >> connectPresenters [
 
 	editButton action: [ self editButtonAction ].
@@ -48,7 +50,7 @@ AISpDataFramePresenter >> connectPresenters [
 	addRowButton action: [ self addRowButtonAction ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AISpDataFramePresenter >> dataFrameContextMenu [
 
 	^ self newMenu addItem: [ :item |
@@ -60,7 +62,7 @@ AISpDataFramePresenter >> dataFrameContextMenu [
 				  self refreshLayout ] ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 AISpDataFramePresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -77,7 +79,7 @@ AISpDataFramePresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #editing }
+{ #category : 'editing' }
 AISpDataFramePresenter >> editButtonAction [
 
 	dataFrameColumnsEditable := dataFrameColumnsEditable not.
@@ -95,7 +97,7 @@ AISpDataFramePresenter >> editButtonAction [
 	dataFramePresenter := newdataFramePresenter
 ]
 
-{ #category : #editing }
+{ #category : 'editing' }
 AISpDataFramePresenter >> editDataFrame [
 
 	newdataFramePresenter := self newTable.
@@ -148,7 +150,7 @@ AISpDataFramePresenter >> editDataFrame [
 		contextMenu: self dataFrameContextMenu
 ]
 
-{ #category : #searching }
+{ #category : 'searching' }
 AISpDataFramePresenter >> filterTableWithSearchQuery: newValue [
 
 	| filteredRows |
@@ -161,7 +163,7 @@ AISpDataFramePresenter >> filterTableWithSearchQuery: newValue [
 	newdataFramePresenter items: filteredRows asArrayOfRowsWithName
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFramePresenter >> initialize [
 
 	dataFrameColumnsEditable := false.
@@ -169,7 +171,7 @@ AISpDataFramePresenter >> initialize [
 	super initialize
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AISpDataFramePresenter >> initializeAddRowPresenter [
 
 	windowPresenter := SpWindowPresenter new.
@@ -178,7 +180,7 @@ AISpDataFramePresenter >> initializeAddRowPresenter [
 		                   on: dataFrame
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFramePresenter >> initializeDataFramePresenter [
 
 	dataFramePresenter := self newTable.
@@ -206,7 +208,7 @@ AISpDataFramePresenter >> initializeDataFramePresenter [
 		contextMenu: self dataFrameContextMenu
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFramePresenter >> initializeNewDataFramePresenter [
 
 	newdataFramePresenter := self newTable.
@@ -232,7 +234,7 @@ AISpDataFramePresenter >> initializeNewDataFramePresenter [
 		contextMenu: self dataFrameContextMenu
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFramePresenter >> initializePresenters [
 
 	self initializeDataFramePresenter.
@@ -241,7 +243,7 @@ AISpDataFramePresenter >> initializePresenters [
 	self initializeAddRowPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFramePresenter >> initializeSortPresenter [
 
 	windowPresenter := SpWindowPresenter new.
@@ -250,7 +252,7 @@ AISpDataFramePresenter >> initializeSortPresenter [
 		                 on: dataFrame
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFramePresenter >> initializeToolbarPresenter [
 
 	editButton := self newButton
@@ -268,7 +270,7 @@ AISpDataFramePresenter >> initializeToolbarPresenter [
 		                yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AISpDataFramePresenter >> refreshLayout [
 
 	self initializeNewDataFramePresenter.
@@ -276,7 +278,7 @@ AISpDataFramePresenter >> refreshLayout [
 	dataFramePresenter := newdataFramePresenter
 ]
 
-{ #category : #searching }
+{ #category : 'searching' }
 AISpDataFramePresenter >> searchBarAction [
 
 	searchBar text
@@ -289,13 +291,13 @@ AISpDataFramePresenter >> searchBarAction [
 			self layout replace: dataFramePresenter with: newdataFramePresenter ]
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 AISpDataFramePresenter >> setModelBeforeInitialization: aModel [
 
 	dataFrame := aModel
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 AISpDataFramePresenter >> sortButtonAction [
 
 	windowPresenter := sortPresenter open.

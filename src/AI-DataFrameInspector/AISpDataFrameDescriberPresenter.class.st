@@ -10,8 +10,8 @@ AISpDataFrameInspector openOn: AIDatasets loadWine.
 ```
 "
 Class {
-	#name : #AISpDataFrameDescriberPresenter,
-	#superclass : #SpPresenter,
+	#name : 'AISpDataFrameDescriberPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'dataFrame',
 		'evaluatorPane',
@@ -23,36 +23,38 @@ Class {
 	#classVars : [
 		'MaxRows'
 	],
-	#category : #'AI-DataFrameInspector-Main presenters'
+	#category : 'AI-DataFrameInspector-Main presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Main presenters'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameDescriberPresenter class >> maxRows [
 	" Answer the <Number> of rows to visualize in the receiver "
 
 	^ MaxRows ifNil: [ MaxRows := 1000 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameDescriberPresenter class >> maxRows: anInteger [
 	" Set the maximum <Number> of rows to visualize in the receiver "
 
 	MaxRows := anInteger
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AISpDataFrameDescriberPresenter class >> openOn: aDataFrame [
 
 	^ (self on: aDataFrame) open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> contextMenu [
 
 	^ self contextMenuActions asMenuPresenter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> contextMenuActions [
 
 	^ CmCommandGroup forSpec
@@ -64,19 +66,19 @@ AISpDataFrameDescriberPresenter >> contextMenuActions [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> contextMenuKeyBindings [
 
 	^ self contextMenuActions asKMCategory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameDescriberPresenter >> dataFramePresenter [
 
 	^ dataFramePresenter
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 AISpDataFrameDescriberPresenter >> defaultLayout [
 
 	^ SpPanedLayout newTopToBottom
@@ -93,20 +95,20 @@ AISpDataFrameDescriberPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> initialize [
 
 	selectedItems := Set new.
 	super initialize
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> initializeAdditionalInfoPresenter [
 
 	additionalInfoPane := self instantiate: AISpDataFrameBasicInfoPresenter on: dataFrame
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> initializeDataFramePresenter [
 
 	dataFramePresenter := self newTable.
@@ -120,7 +122,7 @@ AISpDataFrameDescriberPresenter >> initializeDataFramePresenter [
 	dataFramePresenter items: dataFrame asArrayOfRowsWithName
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> initializeDataFramePresenterContents [
 	" Private - Set the receiver's displayed contents. Display row names if present "
 
@@ -140,13 +142,13 @@ AISpDataFrameDescriberPresenter >> initializeDataFramePresenterContents [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> initializeEvaluatorPresenter [
 
 	evaluatorPane := self instantiate: AISpDataFrameEvaluatorPresenter on: dataFrame
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> initializePresenters [
 
 	self initializeDataFramePresenter.
@@ -157,13 +159,13 @@ AISpDataFrameDescriberPresenter >> initializePresenters [
 	self focusOrder add: evaluatorPane
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> initializeSummaryPresenter [
 
 	summaryPresenter := self instantiate: AISpDataFrameSummaryPresenter on: dataFrame
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> initializeWindow: aWindow [
 
 	aWindow
@@ -173,7 +175,7 @@ AISpDataFrameDescriberPresenter >> initializeWindow: aWindow [
 		aboutText: 'About DataFrame'
 ]
 
-{ #category : #'private building' }
+{ #category : 'private building' }
 AISpDataFrameDescriberPresenter >> newCheckBoxColumn [
 	" Private - Answer a check box column to select specific rows in the receiver "
 
@@ -185,7 +187,7 @@ AISpDataFrameDescriberPresenter >> newCheckBoxColumn [
 			yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> newIndexColumn [
 
 	^ SpIndexTableColumn new
@@ -196,7 +198,7 @@ AISpDataFrameDescriberPresenter >> newIndexColumn [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameDescriberPresenter >> newRowNamesColumn [
 
 	^ SpStringTableColumn new
@@ -205,13 +207,13 @@ AISpDataFrameDescriberPresenter >> newRowNamesColumn [
 			evaluated: [ : rowWithName | rowWithName at: 1 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpDataFrameDescriberPresenter >> selectedItems [
 
 	^ selectedItems
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 AISpDataFrameDescriberPresenter >> setModelBeforeInitialization: aModel [
 
 	dataFrame := aModel

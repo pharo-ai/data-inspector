@@ -4,12 +4,14 @@ I am a command that opens the inspector on the DataFrame clicked row.
 I am converted to a spec context menu that appears when you right click in a DataFrame row.
 "
 Class {
-	#name : #AISpDataFrameInspectCommand,
-	#superclass : #AISpDataFrameCommand,
-	#category : #'AI-DataFrameInspector-Context menu commands'
+	#name : 'AISpDataFrameInspectCommand',
+	#superclass : 'AISpDataFrameCommand',
+	#category : 'AI-DataFrameInspector-Context menu commands',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Context menu commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 AISpDataFrameInspectCommand >> asSpecCommand [
 
 	^ super asSpecCommand
@@ -18,7 +20,7 @@ AISpDataFrameInspectCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 AISpDataFrameInspectCommand >> execute [
 
 	"Execute the actions that should be done by the command.
@@ -27,7 +29,7 @@ AISpDataFrameInspectCommand >> execute [
 	self selectedItem inspect
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataFrameInspectCommand >> initialize [
 
 	super initialize.

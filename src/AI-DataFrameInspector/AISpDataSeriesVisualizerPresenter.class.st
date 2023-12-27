@@ -4,13 +4,15 @@ I am a presenter to visualize a data series in the form of a historigram.
 TO use me, just send #historigram to a DataSeries.
 "
 Class {
-	#name : #AISpDataSeriesVisualizerPresenter,
-	#superclass : #AISpAbstractVisualizerPresenter,
+	#name : 'AISpDataSeriesVisualizerPresenter',
+	#superclass : 'AISpAbstractVisualizerPresenter',
 	#classTraits : 'SpTModel classTrait',
-	#category : #'AI-DataFrameInspector-Main presenters'
+	#category : 'AI-DataFrameInspector-Main presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Main presenters'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpDataSeriesVisualizerPresenter >> allColumnValuesWithColumnName [
 	" Private - Answer a <Collection> of <Association> with numeric column values in the receiver's data frame "
 
@@ -19,7 +21,7 @@ AISpDataSeriesVisualizerPresenter >> allColumnValuesWithColumnName [
 	^ { (self model name -> (self model reject: #isNil)) }
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AISpDataSeriesVisualizerPresenter >> open [
 
 	^ super

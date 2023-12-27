@@ -10,8 +10,8 @@ This window has these fields:
 After entering each item under the specific column, the 'enter' key must be hit.
 "
 Class {
-	#name : #AISpAddRowPresenter,
-	#superclass : #AISpDataFramePresenter,
+	#name : 'AISpAddRowPresenter',
+	#superclass : 'AISpDataFramePresenter',
 	#instVars : [
 		'sortType',
 		'columnName',
@@ -30,16 +30,18 @@ Class {
 		'cancelButton',
 		'dataRows'
 	],
-	#category : #'AI-DataFrameInspector-sub presenters'
+	#category : 'AI-DataFrameInspector-sub presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'sub presenters'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AISpAddRowPresenter class >> openOn: aDataFrame [
 
 	^ (self on: aDataFrame) open
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 AISpAddRowPresenter >> addButtonAction [
 
 	newRow name: newRowName text.
@@ -47,14 +49,14 @@ AISpAddRowPresenter >> addButtonAction [
 	self window close
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAddRowPresenter >> connectPresenters [
 
 	addButton action: [ self addButtonAction ].
 	resetButton action: [ self resetButtonAction ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 AISpAddRowPresenter >> defaultLayout [
 
 	| topLayout bottomLayout |
@@ -84,7 +86,7 @@ AISpAddRowPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAddRowPresenter >> initializeAddResetButtons [
 
 	addButton := self newButton
@@ -95,7 +97,7 @@ AISpAddRowPresenter >> initializeAddResetButtons [
 		               icon: (self iconNamed: #refreshIcon)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAddRowPresenter >> initializeNewRowInputTable [
 
 	emptyRow := dataFrame rowsFrom: 1 to: 1.
@@ -120,7 +122,7 @@ AISpAddRowPresenter >> initializeNewRowInputTable [
 	newRowInputTable items: emptyRow asArrayOfRowsWithName
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AISpAddRowPresenter >> initializeNewRowName [
 
 	newRowName := self newTextInput
@@ -129,7 +131,7 @@ AISpAddRowPresenter >> initializeNewRowName [
 		              yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAddRowPresenter >> initializePositionInput [
 
 	positionInput := self newNumberInput
@@ -138,7 +140,7 @@ AISpAddRowPresenter >> initializePositionInput [
 		                 yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAddRowPresenter >> initializePresenters [
 
 	self initializeNewRowName.
@@ -147,7 +149,7 @@ AISpAddRowPresenter >> initializePresenters [
 	self initializeAddResetButtons
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AISpAddRowPresenter >> initializeRowInputTable [
 
 	emptyRow := dataFrame rowsFrom: 1 to: 1.
@@ -172,7 +174,7 @@ AISpAddRowPresenter >> initializeRowInputTable [
 	rowInputTable items: emptyRow asArrayOfRowsWithName
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAddRowPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
@@ -183,7 +185,7 @@ AISpAddRowPresenter >> initializeWindow: aWindowPresenter [
 			positionInput number: dataFrame numberOfRows + 1 ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpAddRowPresenter >> resetButtonAction [
 
 	self initializeNewRowInputTable.

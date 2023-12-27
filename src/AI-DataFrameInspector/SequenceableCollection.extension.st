@@ -1,6 +1,6 @@
-Extension { #name : #SequenceableCollection }
+Extension { #name : 'SequenceableCollection' }
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 SequenceableCollection >> dataSeriesElementAt: anInteger [
 	"Support for DataFrame sorting when column name is clicked"
 

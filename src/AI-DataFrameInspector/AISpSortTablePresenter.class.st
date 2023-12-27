@@ -11,8 +11,8 @@ The sort window has three different fields:
 Click on the **sort** button to sort the DataFrame based on the preferences selected or choose the **cancel** button to discard these preferences.
 "
 Class {
-	#name : #AISpSortTablePresenter,
-	#superclass : #AISpDataFramePresenter,
+	#name : 'AISpSortTablePresenter',
+	#superclass : 'AISpDataFramePresenter',
 	#instVars : [
 		'sortType',
 		'columnName',
@@ -24,16 +24,18 @@ Class {
 		'dataRows',
 		'newRow'
 	],
-	#category : #'AI-DataFrameInspector-sub presenters'
+	#category : 'AI-DataFrameInspector-sub presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'sub presenters'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AISpSortTablePresenter class >> openOn: aDataFrame [
 
 	^ (self on: aDataFrame) open
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 AISpSortTablePresenter >> addButtonAction [
 
 	newRow := Dictionary new.
@@ -44,7 +46,7 @@ AISpSortTablePresenter >> addButtonAction [
 	tablePresenter items: dataRows
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 AISpSortTablePresenter >> applyButtonAction [
 
 	| currentRow |
@@ -56,7 +58,7 @@ AISpSortTablePresenter >> applyButtonAction [
 			using: (BlockClosure readFromString: (currentRow at: 'sortBlock')) ]
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 AISpSortTablePresenter >> changeSortType [
 
 	sortType whenSelectionChangedDo: [ :newSortType |
@@ -71,7 +73,7 @@ AISpSortTablePresenter >> changeSortType [
 			block beEditable ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpSortTablePresenter >> connectPresenters [
 
 	addButton action: [ self addButtonAction ].
@@ -82,7 +84,7 @@ AISpSortTablePresenter >> connectPresenters [
 	self changeSortType
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 AISpSortTablePresenter >> defaultLayout [
 
 	| topLayout bottomLayout |
@@ -107,7 +109,7 @@ AISpSortTablePresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpSortTablePresenter >> initializeAddButton [
 
 	addButton := self newToolbarButton
@@ -116,7 +118,7 @@ AISpSortTablePresenter >> initializeAddButton [
 		             yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpSortTablePresenter >> initializeApplyCancelButtons [
 
 	applyButton := self newButton
@@ -127,7 +129,7 @@ AISpSortTablePresenter >> initializeApplyCancelButtons [
 		                icon: (self iconNamed: #smallCancel)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpSortTablePresenter >> initializePresenters [
 
 	dataRows := OrderedCollection new.
@@ -137,7 +139,7 @@ AISpSortTablePresenter >> initializePresenters [
 	self initializeApplyCancelButtons
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpSortTablePresenter >> initializeSelectionFields [
 
 	columnName := self newDropList items: dataFrame columnNames.
@@ -149,7 +151,7 @@ AISpSortTablePresenter >> initializeSelectionFields [
 	               other )
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpSortTablePresenter >> initializeTablePresenter [
 
 	tablePresenter := self newTable
@@ -165,7 +167,7 @@ AISpSortTablePresenter >> initializeTablePresenter [
 		                  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpSortTablePresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter

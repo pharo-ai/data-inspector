@@ -1,1 +1,1 @@
-Package { #name : #'AI-DataFrameInspector' }
+Package { #name : 'AI-DataFrameInspector' }

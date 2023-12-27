@@ -6,20 +6,22 @@ It will present a scatter plot of each numerical columns of a data frame against
 This help to manually find some correlations since the human been is good at finding patterns.
 "
 Class {
-	#name : #AISpScatterMatrixPresenter,
-	#superclass : #SpRoassalPresenter,
+	#name : 'AISpScatterMatrixPresenter',
+	#superclass : 'SpRoassalPresenter',
 	#traits : 'SpTModel',
 	#classTraits : 'SpTModel classTrait',
-	#category : #'AI-DataFrameInspector-Main presenters'
+	#category : 'AI-DataFrameInspector-Main presenters',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Main presenters'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AISpScatterMatrixPresenter class >> openOn: aDataFrame [
 
 	^ (self on: aDataFrame) open
 ]
 
-{ #category : #'to review' }
+{ #category : 'to review' }
 AISpScatterMatrixPresenter >> createCanvas [
 
 	| canvas |
@@ -29,14 +31,14 @@ AISpScatterMatrixPresenter >> createCanvas [
 	^ canvas
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpScatterMatrixPresenter >> initializePresenters [
 
 	self initializeScatterMatrix: self canvas.
 	self refresh
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpScatterMatrixPresenter >> initializeScatterMatrix: aCanvas [
 
 	| shapes namedColumns |
@@ -97,7 +99,7 @@ AISpScatterMatrixPresenter >> initializeScatterMatrix: aCanvas [
 		for: self
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AISpScatterMatrixPresenter >> open [
 
 	^ super

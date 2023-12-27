@@ -2,36 +2,38 @@
 I am a command that can be converted into a button to be used in the toolbar of the evaluator
 "
 Class {
-	#name : #AISpEvaluateItCommand,
-	#superclass : #AISpAbstractToolbarCommand,
-	#category : #'AI-DataFrameInspector-Toolbar evaluator commands'
+	#name : 'AISpEvaluateItCommand',
+	#superclass : 'AISpAbstractToolbarCommand',
+	#category : 'AI-DataFrameInspector-Toolbar evaluator commands',
+	#package : 'AI-DataFrameInspector',
+	#tag : 'Toolbar evaluator commands'
 }
 
-{ #category : #default }
+{ #category : 'default' }
 AISpEvaluateItCommand class >> defaultDescription [
 
 	^ 'Do it all and print it.'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AISpEvaluateItCommand class >> defaultIconName [
 
 	^ #smallDoIt
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 AISpEvaluateItCommand class >> defaultName [
 
 	^ 'Do it'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AISpEvaluateItCommand class >> order [
 
 	^ 0
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 AISpEvaluateItCommand >> asSpecCommand [
 
 	^ super asSpecCommand
@@ -39,7 +41,7 @@ AISpEvaluateItCommand >> asSpecCommand [
 		  yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 AISpEvaluateItCommand >> execute [
 
 	| evaluatingResult |

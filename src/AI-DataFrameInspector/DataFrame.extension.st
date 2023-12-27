@@ -1,6 +1,6 @@
-Extension { #name : #DataFrame }
+Extension { #name : 'DataFrame' }
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> addScatterPlotShapeToChart: aRSChart [
 	" Assume a receiver with two first columns as x and y coordinates. 
 	Requires Roassal 3. Answer a Roassal scatter plot shape with points color configured to aColor "
@@ -10,17 +10,17 @@ DataFrame >> addScatterPlotShapeToChart: aRSChart [
 	x := (self columnAt: 1) asOrderedCollection.
 	y := (self columnAt: 2) asOrderedCollection.
 	scatterPlot := RSScatterPlot new x: x y: y.
-	aRSChart addPlot: scatterPlot.
+	aRSChart add: scatterPlot.
 	^ scatterPlot
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> at: anIndex ifAbsent: aBlock [
 
 	^ self row: anIndex ifAbsent: aBlock
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> dataDescriber [
     <inspectorPresentationOrder: 2 title: 'Data Description'>
 
@@ -30,20 +30,20 @@ DataFrame >> dataDescriber [
 			ifTrue: [ self head: AISpDataFrameDescriberPresenter maxRows ])
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> dataDescriberContext: aContext [
 
 	aContext withoutEvaluator
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> dataFrameToolBar [
 
 	<inspectorPresentationOrder: 1 title: 'Interactive'>
 	^ AISpDataFramePresenter on: self
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> evaluatorRowsLimit [
 
 	" Private - The maximum limit to consider a DataFrame is big enough for a visualization "
@@ -51,7 +51,7 @@ DataFrame >> evaluatorRowsLimit [
 	^ 5000
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> hasCategorical [
 
 	" Answer <true> if the receiver has at least one categorical (not numerical) value "
@@ -59,7 +59,7 @@ DataFrame >> hasCategorical [
 	^ self anySatisfy: [ :each | each isCategorical ]
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> hasNil [
 
 	" Answer <true> if the receiver has at least one nil value "
@@ -67,12 +67,12 @@ DataFrame >> hasNil [
 	^ self anySatisfy: [ :each | each hasNil ]
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> histograms [
 	^ AISpDataFrameVisualizerPresenter openOn: self
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> histogramsBins: aNumber [
 
 	^ (AISpDataFrameVisualizerPresenter on: self)
@@ -80,7 +80,7 @@ DataFrame >> histogramsBins: aNumber [
 		  open
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> histogramsInspector [
 
 	<inspectorPresentationOrder: 3 title: 'Histograms'>
@@ -96,13 +96,13 @@ DataFrame >> histogramsInspector [
 		yourself
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> histogramsInspectorContext: aContext [
 
 	aContext withoutEvaluator
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> numericColumnNames [
 
 	| r |
@@ -111,7 +111,7 @@ DataFrame >> numericColumnNames [
 	^ r asArray
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> openScatterPlotWithTitle: aString forColumn: columnName [
 	" Assume a receiver with two first columns as x and y coordinates. 
 	Requires Roassal 3. Plot and open a new window"
@@ -136,13 +136,13 @@ DataFrame >> openScatterPlotWithTitle: aString forColumn: columnName [
 	roassalChart open.
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> scatterMatrix [
 
 	^ AISpScatterMatrixPresenter openOn: self
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> scatterMatrixInspector [
 
 	<inspectorPresentationOrder: 4 title: 'Scatter Matrix'>
@@ -158,7 +158,7 @@ DataFrame >> scatterMatrixInspector [
 		yourself
 ]
 
-{ #category : #'*AI-DataFrameInspector' }
+{ #category : '*AI-DataFrameInspector' }
 DataFrame >> scatterMatrixInspectorContext: aContext [
 
 	aContext withoutEvaluator
