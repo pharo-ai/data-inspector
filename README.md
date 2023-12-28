@@ -32,7 +32,7 @@ EpMonitor disableDuring: [
 
 ```smalltalk
 spec 
-   baseline: 'AIDataInspector' 
+   baseline: 'AIDataFrameInspector' 
    with: [ spec repository: 'github://pharo-ai/data-inspector/src' ].
 ```
 
